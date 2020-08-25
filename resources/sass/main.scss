@@ -1,0 +1,24 @@
+.btn{
+    min-width: 80px;
+}
+
+.btn p{
+    margin: 0;
+}
+
+.app-container{
+    padding: 50px 150px;
+    width: 100%;
+}
+
+.login-form button{
+    float: right;
+}
+
+.register-form button{
+    float: right;
+}
+
+.w-c-50{
+    width: calc(50% - 10px);
+}

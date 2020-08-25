@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     public function showIndexPage(){
-        return view('auth.login');
+
+        $register = true;
+
+        return view('auth.login')->with('register', $register);
     }
 
     public function redirectToIndexPage(){
