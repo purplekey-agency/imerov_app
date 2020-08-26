@@ -16,5 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','PagesController@showIndexPage');
 
 Auth::routes();
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/login', 'PagesController@redirectToIndexPage');
+Route::get('/verify', 'PagesController@showVerifyPage');
+Route::get('/dashboard', 'PagesController@showDashboardPage');

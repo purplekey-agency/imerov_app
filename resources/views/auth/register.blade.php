@@ -22,29 +22,29 @@
         <div class="app-container">
 
             <div class="form-container">
-                <form action="{{ url('/login') }}" role="form" class="form-horizontal register-form" method="POST">
+                <form action="{{ url('/register') }}" role="form" class="form-horizontal register-form" method="POST">
                     @csrf
                     <div class="d-flex justify-content-md-between">
                         <div class="form-group w-c-50">
                             <label for="inputname">Name</label>
-                            <input type="text" class="form-control" id="inputname" name="inputname">
+                            <input type="text" class="form-control" id="inputname" name="name">
                         </div>
                         <div class="form-group w-c-50">
                             <label for="inputsurename">Surename</label>
-                            <input type="text" class="form-control" id="inputsurename" name="inputsurename">
+                            <input type="text" class="form-control" id="inputsurename" name="surename">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputemail">Email</label>
-                        <input type="email" class="form-control" id="inputemail" name="inputemail">
+                        <input type="email" class="form-control" id="inputemail" name="email">
                     </div>
                     <div class="form-group">
                         <label for="inputusername">Username</label>
-                        <input type="text" class="form-control" id="inputusername" name="inputusername">
+                        <input type="text" class="form-control" id="inputusername" name="username">
                     </div>
                     <div class="form-group">
                         <label for="inputpassword">Password</label>
-                        <input type="password" class="form-control" id="inputpassword" name="inputpassword">
+                        <input type="password" class="form-control" id="inputpassword" name="password">
                     </div>
                     <div class="form-group">
                         <label for="confirmpassword">Confirm Password</label>
