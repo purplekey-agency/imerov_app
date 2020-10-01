@@ -13,11 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','PagesController@showIndexPage');
+//First two pages
+Route::get('/','AuthViewsController@showIndexPage')->name('register');
+Route::get('/login', 'AuthViewsController@showLoginPage')->name('login');
 
-Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/login', 'PagesController@redirectToIndexPage');
-Route::get('/verify', 'PagesController@showVerifyPage');
-Route::get('/dashboard', 'PagesController@showDashboardPage');
+Auth::routes();
+
+Route::get('/dashboard', 'PagesController@showDashboardPage')->name('showDashboard');
+Route::get('/questionarre','PagesController@showQuestionarePage')->name('showQuestionare');
+Route::get('/worksheet', 'PagesController@showWorksheetPage')->name('showWorksheet');
+Route::get('/diet-plan', 'PagesController@showDietPlanPage')->name('showDietPlan');
+Route::get('/videos', 'PagesController@showVideosPage')->name('showVideos');
+
+
+

@@ -7,36 +7,29 @@ use Auth;
 
 class PagesController extends Controller
 {
-    public function showIndexPage(){
 
-        if(Auth::user()){
-            if(Auth::user()->hasVerifiedEmail()){
-                return redirect('/dashboard');
-            }
-            else{
-                return redirect('/verify');
-            }
-        }
-        else{
-            $register = true;
-
-            return view('auth.login')->with('register', $register);
-        }
-    }
-
-    public function redirectToIndexPage(){
-        return \redirect('/');
-    }
-
-    public function showVerifyPage(){
-        return view('auth.verify');
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
     public function showDashboardPage(){
-        if(Auth::user()->hasVerifiedEmail()){
-            return view('dashboard');
-        } else {
-            return redirect('/verify');
-        }
+        return view('user.dashboard');
+    }
+
+    public function showQuestionarePage(){
+        return view('user.questionare');
+    }
+
+    public function showWorksheetPage(){
+        return view('user.worksheet');
+    }
+
+    public function showDietPlanPage(){
+        return view('user.dietplan');
+    }
+
+    public function showVideosPage(){
+        return view('user.videos');
     }
 }

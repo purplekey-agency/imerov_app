@@ -8,24 +8,24 @@
         </a>
 
         <div class="d-flex align-items-center justify-content-md-between" style="width: auto;">
-            @if(!Auth::user())
+            @if(Auth::user() == null)
                 @if(isset($register) && $register)
-                <a class="btn btn-primary d-flex align-items-center" href="/register">
+                <a class="btn btn-transparent d-flex align-items-center" href="/">
                     <div class="w-100 h-100">
                         <p>Register</p>
                     </div>
                 </a>
                 @else
-                <a class="btn btn-primary d-flex align-items-center" href="/">
+                <a class="btn btn-transparent d-flex align-items-center" href="/login">
                     <div class="w-100 h-100">
                         <p>Login</p>
                     </div>
                 </a>
                 @endif
             @else
-            <a class="btn btn-primary d-flex align-items-center" href="/register">
+            <a class="btn btn-transparent d-flex align-items-center" href="/logout">
                 <div class="w-100 h-100">
-                    <p>Register</p>
+                    <p>Logout</p>
                 </div>
             </a>
             @endif

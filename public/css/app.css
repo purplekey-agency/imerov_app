@@ -10935,3 +10935,59 @@ header {
   width: calc(50% - 10px);
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+  outline: none;
+}
+
+a:hover {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.hover-text a:hover {
+  font-size: larger;
+}
+
+.text-small {
+  font-size: 9pt;
+}
+
+.required:after {
+  content: "*";
+}
+
+.w-40 {
+  width: 40% !important;
+}
+
+#tel::-webkit-outer-spin-button,
+#tel::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#tel {
+  -moz-appearance: textfield;
+}
+
+input[type=radio] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+}
+
+.btn-transparent {
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+  border-radius: 0 !important;
+}
+

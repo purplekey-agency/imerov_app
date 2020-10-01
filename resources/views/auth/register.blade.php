@@ -51,7 +51,7 @@
                         <input type="password" class="form-control" id="confirmpassword" name="confirmpassword">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-transparent">Register</button>
                     </div>
                     
                         @if($errors->any())
