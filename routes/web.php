@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //First two pages
 Route::get('/','AuthViewsController@showIndexPage')->name('register');
-Route::get('/login', 'AuthViewsController@showLoginPage')->name('login');
+Route::get('/login', 'Auth.LoginController@showLoginPage')->name('login');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
@@ -28,4 +28,6 @@ Route::get('/diet-plan', 'PagesController@showDietPlanPage')->name('showDietPlan
 Route::get('/videos', 'PagesController@showVideosPage')->name('showVideos');
 
 
+//admin routes
 
+Route::get('/admin', 'AdminViewsController@showDashboard');

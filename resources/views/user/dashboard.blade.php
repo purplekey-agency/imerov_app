@@ -96,18 +96,20 @@
 
                 <div class="row col-4">
 
-                    <div class="image-container col col-md-offset-2">
+                    <div class="col col-md-offset-2">
                         <div class="row">
                             <a href="" class="row">
                                 <p>Before</p>
                                 <p class="text-secondary">(edit)</p>
                             </a>
                         </div>
-
-                        <img src="#">
+                        <div class="image-container">
+                            <img src="#">
+                        </div>
+                        
                     </div>
 
-                    <div class="image-container col col-md-offset-2">
+                    <div class="col col-md-offset-2">
                         <div class="row">
                             <a href="" class="row">
                                 <p>After</p>
@@ -115,7 +117,9 @@
                             </a>
                         </div>
 
-                        <img src="#">
+                        <div class="image-container">
+                            <img src="#">
+                        </div>
                     </div>
                 </div>
 

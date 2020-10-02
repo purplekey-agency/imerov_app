@@ -79,3 +79,110 @@ input[type="radio"]{
     border-bottom: 1px solid #000;
     border-radius: 0 !important;
 }
+
+
+.active{
+    font-weight: 600;
+    text-decoration: underline #C2A274;
+    text-underline-offset: .5em;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.bb-br{
+    border-bottom: 1px solid #C2A274;
+    text-underline-offset: 1rem;
+    width: 100%;
+}
+
+.bb-bl{
+    border-bottom: 1px solid #000;
+    text-underline-offset: 1rem;
+    width: 100%;
+}
+
+.mh-40{
+    min-height: 40px;
+}
+
+.bg-brown{
+    background: #C2A274;
+}
+
+.text-spacing-bigger{
+    letter-spacing: .3em;
+}
+
+.image-container{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-form-input{
+    border:none;
+    border-bottom: 1px solid #000;
+    outline: none;
+}
+
+.custom-form-input:focus{
+    border-bottom: 2px solid #C2A274;
+}
+
+.ts-14{
+    font-size: 14pt;
+}
+
+.border-brown-c{
+    border: 1px solid #C2A274;
+}
+
+.border-right-black{
+    border-right: 1px solid #000;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    outline: none;
+    border: none;
+}
+
+#body-measurements-btn{
+    cursor: pointer;
+}
+
+#body-measurements-btn:hover{
+    -webkit-text-decoration: underline #C2A274;
+    text-decoration: underline #C2A274;
+    text-underline-offset: 0.5em;
+}
+
+#exercises-btn{
+    cursor: pointer;
+}
+
+#exercises-btn:hover{
+    -webkit-text-decoration: underline #C2A274;
+    text-decoration: underline #C2A274;
+    text-underline-offset: 0.5em;
+}
+
+.bodyactive{
+    display: flex;
+}
+
+.bodyinactive{
+    display: none;
+}

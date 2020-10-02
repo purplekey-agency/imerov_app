@@ -75,6 +75,9 @@ class LoginController extends Controller
       }
 
     public function showLoginForm(){
+        if(Auth::user()){
+            return redirect('/dashboard');
+        }
         return view('auth.login')->with('register', true);
     }
 }

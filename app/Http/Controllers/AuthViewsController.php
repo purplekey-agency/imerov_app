@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 class AuthViewsController extends Controller
 {
     public function showIndexPage(){
+        if(Auth::user())
         return view('auth.register');
     }
 
     public function showLoginPage(){
-        $register = true;
-        dd($register);
+
+        #dd($register);
         return view('auth.login')->with('register', $register);
     }
 }
