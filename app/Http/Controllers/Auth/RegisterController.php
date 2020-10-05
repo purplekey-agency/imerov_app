@@ -8,6 +8,9 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
+
+use App\UserQuestionare;
 
 class RegisterController extends Controller
 {
@@ -67,12 +70,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $user = new User();
+        $user->name = $data['name'];
+        $user->surename = $data['surename'];
+        $user->username = $data['username'];
+        $user->email = $data['email'];
+        $user->password = Crypt::encrypt($data['password']);
+        $user->save();
+
+        $userQuestionare = new UserQuestionare();
+        $userQuestionare->user_id = $user->id;
+        $userQuestionare->name = $data['name'];
+        $userQuestionare->surename = $data['surename'];
+        $userQuestionare->email = $data['email'];
+
+        $userQuestionare->save();
+
+        return $user;
+
+
+
+        /*return User::create([
             'name' => $data['name'],
             'surename' => $data['surename'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+        ]);*/
     }
 }

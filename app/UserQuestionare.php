@@ -13,7 +13,7 @@ class UserQuestionare extends Model
      * @var string
      * 
     */
-    protected $table = 'userquestionare';
+    protected $table = 'user_questionare';
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +26,7 @@ class UserQuestionare extends Model
         'list_of_physical_activities','diagnosed_health_problems','medications','additional_therapies',
         'injuries_list','additional_therapies_injury','stress_motivational_problems','family_heart_disease',
         'current_cigarete_smoker','current_diet','readiness_for_change','best_fit_goals',
-        'goal_fot_training','why_goal_for_training','timeline_for_achieing','how_often_wiling_per_week',
+        'goal_for_training','why_goal_for_training','timeline_for_achieing','how_often_wiling_per_week',
         'rate_motivational_level','currently_exercising_regulary','personal_trainer_before',
         'what_kind_of_training','at_what_times_prefer_training','your_expectations'
     ];

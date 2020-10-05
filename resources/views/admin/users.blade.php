@@ -29,13 +29,13 @@
                 <div class="col-4 col-md-offset-2">
                     <div class="hover-text">
                         <a href="/admin/dashboard">
-                            <p class="strong">Dashboard</p>
+                            <p class="text-secondary">Dashboard</p>
                         </a>
                     </div>
 
                     <div class="hover-text">
                         <a href="/admin/users">
-                            <p class="text-secondary">Users</p>
+                            <p class="strong">Users</p>
                         </a>
                     </div>
 
@@ -69,28 +69,52 @@
                                         <i class="fa fa-search text-grey" aria-hidden="true"></i>
                                     </span>
                                 </div>
-
-
                             </div>
                         </form>
                     </div>
 
-                    <div class="mb-3">
-                        <h2>Welcome, {{Auth::User()->name}}</h2>
+                    <div class="col-12 col-md-offset-2">
+
+                        @foreach($users as $user)
+
+                            <a href="/admin/users/{{$user->id}}">
+                                <div class="row">
+
+                                    <div class="col-2">
+                                        <p class="text-secondary">{{$user->id}}</p>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <p class="strong">{{$user->username}}</p>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <p class="text-secondary">Detail 01</p>
+                                    </div>
+
+                                    <div class="col-3">
+                                        <p class="text-secondary">Detail 01</p>
+                                    </div>
+
+                                </div>
+                            </a>
+
+
+                        @endforeach
+
                     </div>
 
-                    <div class="pmargin-0">
-                        <p class="text-secondary">Active subscriptions: <strong>45</strong></p>
-                        <p class="text-secondary">Inactive subscriptions:<strong class="red">4</strong></p>
-                        <p class="text-secondary">Messages: <strong>20/</strong><strong class="red">4</strong></p>
-                        <p class="text-secondary">Upload</p>
-                    </div>
+
                 </div>
 
             </div>
 
         </div>
-    
+
+
     </main>
 
 </body>
+
+
+</html>

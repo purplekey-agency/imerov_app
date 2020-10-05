@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;   
+use Auth;
+use App\UserQuestionare;   
 
 class PagesController extends Controller
 {
@@ -18,7 +19,8 @@ class PagesController extends Controller
     }
 
     public function showQuestionarePage(){
-        return view('user.questionare');
+        $userQuestionare = UserQuestionare::where('user_id', Auth::User()->id)->first();
+        return view('user.questionare')->with(['userQuestionare'=>$userQuestionare]);
     }
 
     public function showWorksheetPage(){
@@ -31,5 +33,9 @@ class PagesController extends Controller
 
     public function showVideosPage(){
         return view('user.videos');
+    }
+
+    public function updateQuestionare(Request $request){
+        dd($request);
     }
 }

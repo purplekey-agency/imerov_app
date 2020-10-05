@@ -21,13 +21,29 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Auth::routes();
 
-Route::get('/dashboard', 'PagesController@showDashboardPage')->name('showDashboard');
-Route::get('/questionarre','PagesController@showQuestionarePage')->name('showQuestionare');
-Route::get('/worksheet', 'PagesController@showWorksheetPage')->name('showWorksheet');
-Route::get('/diet-plan', 'PagesController@showDietPlanPage')->name('showDietPlan');
-Route::get('/videos', 'PagesController@showVideosPage')->name('showVideos');
+Route::get('/dashboard', 'PagesController@showDashboardPage')->name('showDashboard')->middleware('admin');
+Route::get('/questionarre','PagesController@showQuestionarePage')->name('showQuestionare')->middleware('admin');
+Route::get('/worksheet', 'PagesController@showWorksheetPage')->name('showWorksheet')->middleware('admin');
+Route::get('/diet-plan', 'PagesController@showDietPlanPage')->name('showDietPlan')->middleware('admin');
+Route::get('/videos', 'PagesController@showVideosPage')->name('showVideos')->middleware('admin');
+
+Route::post('/questionarre/update', 'PagesController@updateQuestionare');
 
 
 //admin routes
 
-Route::get('/admin', 'AdminViewsController@showDashboard');
+Route::get('/admin/dashboard', 'AdminViewsController@showAdminDashboard');
+Route::get('/admin/users', 'AdminViewsController@showUsersPage');
+Route::get('/admin/users/{id}', 'AdminViewsController@showUserPage');
+Route::get('/admin/users/{id}/questionarre','AdminViewsController@showUserQuestionarePage');
+Route::get('/admin/users/{id}/worksheet','AdminViewsController@showUserWorksheetPage');
+Route::get('/admin/users/{id}/diet-plan','AdminViewsController@showUserDietPlanPage');
+Route::get('/admin/users/{id}/videos','AdminViewsController@showUserVideosPage');
+Route::get('/admin/users/{id}/edit-profile','AdminViewsController@showUserEditProfilePage');
+Route::get('/admin/messages', 'AdminViewsController@showUsersPage');
+Route::get('/admin/upload', 'AdminViewsController@showUsersPage');
+Route::get('/admin/videos', 'AdminViewsController@showUsersPage');
+
+
+//admin post routes
+Route::post('/admin/search', 'AdminViewsController@searchFunction');

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AuthViewsController extends Controller
 {
     public function showIndexPage(){
-        if(Auth::user())
+        
         return view('auth.register');
     }
 
