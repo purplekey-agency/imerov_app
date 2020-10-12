@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\UserQuestionare;
 
 class AdminViewsController extends Controller
 {
@@ -32,7 +33,8 @@ class AdminViewsController extends Controller
 
     public function showUserQuestionarePage($id){
         $user = User::where('id', $id)->first();
-        return view('admin.user.questionare')->with(['user'=>$user]);
+        $userQuestionare = UserQuestionare::where('user_id', $user->id)->first();
+        return view('admin.user.questionare')->with(['user'=>$user, 'userQuestionare'=>$userQuestionare]);
     }
 
     public function showUserWorksheetPage($id){
@@ -53,6 +55,20 @@ class AdminViewsController extends Controller
     public function showUserEditProfilePage($id){
         $user = User::where('id', $id)->first();
         return view('admin.user.editprofile')->with(['user'=>$user]);
+    }
+
+    public function showAdminMessagesPage(){
+        $users = User::where('type_of_user', 0)->get();
+        return view('admin.upload')->with(['users'=>$users]);
+    }
+
+    public function showAdminUploadPage(){
+        $users = User::where('type_of_user', 0)->get();
+        return view('admin.upload')->with(['users'=>$users]);
+    }
+
+    public function showAdminVideosPage(){
+        return view('');
     }
 
     public function searchFunction(Request $request){

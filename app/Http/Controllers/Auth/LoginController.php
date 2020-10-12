@@ -7,6 +7,10 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use App\User;
+
 class LoginController extends Controller
 {
     /*
@@ -67,6 +71,35 @@ class LoginController extends Controller
 
     public function username(){
         return $this->username;
+    }
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function login(Request $request)
+    {
+        $decrypted = $request->input('password');
+        
+        if(strpos($request->email, '@') !== false){
+            $user      = User::where('email', $request->input('email'))->first();
+        }
+        else{
+            $user      = User::where('username', $request->input('email'))->first();
+        }
+
+        if ($user) {
+            if (Crypt::decrypt($user->password) == $decrypted) {
+                Auth::login($user);
+                return $this->sendLoginResponse($request);
+            }
+        }
+
+        return $this->sendFailedLoginResponse($request);
     }
 
     public function logout() {

@@ -40,9 +40,9 @@ Route::get('/admin/users/{id}/worksheet','AdminViewsController@showUserWorksheet
 Route::get('/admin/users/{id}/diet-plan','AdminViewsController@showUserDietPlanPage');
 Route::get('/admin/users/{id}/videos','AdminViewsController@showUserVideosPage');
 Route::get('/admin/users/{id}/edit-profile','AdminViewsController@showUserEditProfilePage');
-Route::get('/admin/messages', 'AdminViewsController@showUsersPage');
-Route::get('/admin/upload', 'AdminViewsController@showUsersPage');
-Route::get('/admin/videos', 'AdminViewsController@showUsersPage');
+Route::get('/admin/messages', 'AdminViewsController@showAdminMessagesPage');
+Route::get('/admin/upload', 'AdminViewsController@showAdminUploadPage');
+Route::get('/admin/videos', 'AdminViewsController@showAdminVideosPage');
 
 
 //admin post routes

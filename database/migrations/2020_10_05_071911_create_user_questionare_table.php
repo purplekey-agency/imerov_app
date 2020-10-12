@@ -44,7 +44,11 @@ class CreateUserQuestionareTable extends Migration
             $table->boolean('current_diet_4')->default(false);
             $table->boolean('current_diet_5')->default(false);
             $table->integer('readiness_for_change')->nullable();
-            $table->string('best_fit_goals')->nullable();
+            $table->boolean('goals_1')->nullable();
+            $table->boolean('goals_2')->nullable();
+            $table->boolean('goals_3')->nullable();
+            $table->boolean('goals_4')->nullable();
+            $table->boolean('goals_5')->nullable();
             $table->string('goal_for_training')->nullable();
             $table->string('why_goal_for_training')->nullable();
             $table->integer('timeline_for_achieing')->nullable();
@@ -53,7 +57,10 @@ class CreateUserQuestionareTable extends Migration
             $table->boolean('currently_exercising_regulary')->nullable();
             $table->boolean('personal_trainer_before')->nullable();
             $table->string('what_kind_of_training')->nullable();
-            $table->integer('at_what_times_prefer_training')->nullable();
+            $table->boolean('what_times_1')->nullable();
+            $table->boolean('what_times_2')->nullable();
+            $table->boolean('what_times_3')->nullable();
+            $table->boolean('what_times_4')->nullable();
             $table->string('your_expectations', 1024)->nullable();
             $table->timestamps();
         });

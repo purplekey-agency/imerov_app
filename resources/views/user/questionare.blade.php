@@ -57,7 +57,19 @@
 
                 <div class="col-8 md-offset-2">
                     
-                    <form action="" method="POST">
+                    @if(Session::has('sucess'))
+                    <div class="alert alert-success" role="alert">
+                        {{Session::get('sucess')}}
+                    </div>
+                    @endif
+
+                    @if(Session::has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{Session::get('error')}}
+                    </div>
+                    @endif
+
+                    <form action="/questionarre/update" method="POST">
 
                         @csrf
 
@@ -79,6 +91,21 @@
                         <div class="form-group">
                             <label for="phone" class="strong">Phone number</label>
                             <input type="text" class="form-control" id="tel" name="tel" value="{{$userQuestionare->phone_number}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="strong">What is your gender?</label>
+                            <div class="form-check">
+                                <input @if($userQuestionare->gender == "M") checked @endif value="M" type="radio" id="gender_1" name="gender" class="form-check-input"><label for="gender_1">Male</label>
+                            </div>
+                            <div class="form-check">
+                                <input @if($userQuestionare->gender == "F") checked @endif value="F" type="radio" id="gender_2" name="gender" class="form-check-input"><label for="gender_2">Female</label>
+                            </div>
+                        </div> 
+
+                        <div class="form-group">
+                            <label for="birthday" class="strong">Date of birth</label>
+                            <input type="date" class="form-control" id="birthday" name="birthday" value="{{$userQuestionare->date_of_birth}}">
                         </div>
 
                         <div class="form-group">
@@ -248,137 +275,137 @@
                         <div class="form-group">
                             <label class="strong">What following goals does best fit in with your goals?</label>
                             <div class="form-check">
-                                <input type="checkbox" id="goals_1" name="goals_1" class="form-check-input"><label for="goals_1">Improved health</label>
+                                <input type="checkbox" @if($userQuestionare->goals_1) checked @endif id="goals_1" name="goals_1" class="form-check-input"><label for="goals_1">Improved health</label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" id="goals_2" name="goals_2" class="form-check-input"><label for="goals_2">Improved endurance</label>
+                                <input type="checkbox" @if($userQuestionare->goals_2) checked @endif id="goals_2" name="goals_2" class="form-check-input"><label for="goals_2">Improved endurance</label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" id="goals_3" name="goals_3" class="form-check-input"><label for="goals_3">Increased strength</label>
+                                <input type="checkbox" @if($userQuestionare->goals_3) checked @endif id="goals_3" name="goals_3" class="form-check-input"><label for="goals_3">Increased strength</label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" id="goals_4" name="goals_4" class="form-check-input"><label for="goals_4">Increased muscle mass</label>
+                                <input type="checkbox" @if($userQuestionare->goals_4) checked @endif id="goals_4" name="goals_4" class="form-check-input"><label for="goals_4">Increased muscle mass</label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" id="goals_5" name="goals_5" class="form-check-input"><label for="goals_5">Fat loss</label>
+                                <input type="checkbox" @if($userQuestionare->goals_5) checked @endif id="goals_5" name="goals_5" class="form-check-input"><label for="goals_5">Fat loss</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="your_goal" class="strong">What is your goal with your training?</label>
-                            <input type="text" class="form-control" id="your_goal" name="your_goal">
+                            <input type="text" class="form-control" id="your_goal" name="your_goal" value="{{$userQuestionare->goal_for_training}}">
                         </div>
 
                         <div class="form-group">
                             <label for="why" class="strong">Why?</label>
-                            <input type="text" class="form-control" id="why" name="why">
+                            <input type="text" class="form-control" id="why" name="why" value="{{$userQuestionare->why_goal_for_training}}">
                         </div>
 
                         <div class="form-group">
                             <label class="strong">Timeline for achieving your goal.</label>
                             <div class="form-check">
-                                <input type="radio" id="timeline_1" name="timeline" class="form-check-input"><label for="timeline_1">8 WKS X</label>
+                                <input type="radio" @if($userQuestionare->timeline_for_achieing == 8) checked @endif id="timeline_1" name="timeline" value="8" class="form-check-input"><label for="timeline_1">8 WKS X</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="timeline_2" name="timeline" class="form-check-input"><label for="timeline_2">16 WKS X</label>
+                                <input type="radio" @if($userQuestionare->timeline_for_achieing == 16) checked @endif id="timeline_2" name="timeline" value="16" class="form-check-input"><label for="timeline_2">16 WKS X</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="timeline_3" name="timeline" class="form-check-input"><label for="timeline_3">24 WKS X</label>
+                                <input type="radio" @if($userQuestionare->timeline_for_achieing == 24) checked @endif id="timeline_3" name="timeline" value="24" class="form-check-input"><label for="timeline_3">24 WKS X</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="timeline_4" name="timeline" class="form-check-input"><label for="timeline_4">32 WKS X</label>
+                                <input type="radio" @if($userQuestionare->timeline_for_achieing == 32) checked @endif id="timeline_4" name="timeline" value="32" class="form-check-input"><label for="timeline_4">32 WKS X</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="timeline_5" name="timeline" class="form-check-input"><label for="timeline_5">40 WKS X</label>
+                                <input type="radio" @if($userQuestionare->timeline_for_achieing == 40) checked @endif id="timeline_5" name="timeline" value="40" class="form-check-input"><label for="timeline_5">40 WKS X</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="timeline_6" name="timeline" class="form-check-input"><label for="timeline_6">1 YEAR</label>
+                                <input type="radio" @if($userQuestionare->timeline_for_achieing == 54) checked @endif id="timeline_6" name="timeline" value="54" class="form-check-input"><label for="timeline_6">1 YEAR</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="how_often" class="strong">How often are you willing to train a week to reach your goal?</label>
-                            <input type="text" class="form-control" id="how_often" name="how_often">
+                            <input type="text" class="form-control" id="how_often" name="how_often" value="{{$userQuestionare->how_often_wiling_per_week}}">
                         </div>
 
                         <div class="form-group">
                             <label class="strong">Please rate your motivational level to do what it takes for reaching your goal.</label>
                             <div class="form-check">
-                                <input type="radio" id="motivational_1" name="motivational" class="form-check-input"><label for="motivational_1">1</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 1) checked @endif id="motivational_1" value="1" name="motivational" class="form-check-input"><label for="motivational_1">1</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="motivational_2" name="motivational" class="form-check-input"><label for="motivational_2">2</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 2) checked @endif id="motivational_2" value="2" name="motivational" class="form-check-input"><label for="motivational_2">2</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="motivational_3" name="motivational" class="form-check-input"><label for="motivational_3">3</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 3) checked @endif id="motivational_3" value="3" name="motivational" class="form-check-input"><label for="motivational_3">3</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="motivational_4" name="motivational" class="form-check-input"><label for="motivational_4">4</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 4) checked @endif id="motivational_4" value="4" name="motivational" class="form-check-input"><label for="motivational_4">4</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="motivational_5" name="motivational" class="form-check-input"><label for="motivational_5">5</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 5) checked @endif id="motivational_5" value="5" name="motivational" class="form-check-input"><label for="motivational_5">5</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="motivational_6" name="motivational" class="form-check-input"><label for="motivational_6">6</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 6) checked @endif id="motivational_6" value="6" name="motivational" class="form-check-input"><label for="motivational_6">6</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="motivational_7" name="motivational" class="form-check-input"><label for="motivational_7">7</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 7) checked @endif id="motivational_7" value="7" name="motivational" class="form-check-input"><label for="motivational_7">7</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="motivational_8" name="motivational" class="form-check-input"><label for="motivational_8">8</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 8) checked @endif id="motivational_8" value="8" name="motivational" class="form-check-input"><label for="motivational_8">8</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="motivational_9" name="motivational" class="form-check-input"><label for="motivational_9">9</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 9) checked @endif id="motivational_9" value="9" name="motivational" class="form-check-input"><label for="motivational_9">9</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="motivational_10" name="motivational" class="form-check-input"><label for="motivational_10">10</label>
+                                <input type="radio" @if($userQuestionare->rate_motivational_level == 10) checked @endif id="motivational_10" value="10" name="motivational" class="form-check-input"><label for="motivational_10">10</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="strong">Are you currently exersising regulary (at least 3x per week)?</label>
                             <div class="form-check">
-                                <input type="radio" id="exercise_regulary_1" name="exercise_regulary" class="form-check-input"><label for="exercise_regulary_1">Yes</label>
+                                <input type="radio" @if($userQuestionare->currently_exercising_regulary == 1) checked @endif id="exercise_regulary_1" value="1" name="exercise_regulary" class="form-check-input"><label for="exercise_regulary_1">Yes</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="exercise_regulary_2" name="exercise_regulary" class="form-check-input"><label for="exercise_regulary_2">No</label>
+                                <input type="radio" @if($userQuestionare->currently_exercising_regulary == 2) checked @endif id="exercise_regulary_2" value="2" name="exercise_regulary" class="form-check-input"><label for="exercise_regulary_2">No</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="strong">Have you trained with a personal trainer before?</label>
                             <div class="form-check">
-                                <input type="radio" id="personal_trainer_1" name="personal_trainer" class="form-check-input"><label for="personal_trainer_1">Yes</label>
+                                <input type="radio" @if($userQuestionare->personal_trainer_before) checked @endif id="personal_trainer_1" value="1" name="personal_trainer" class="form-check-input"><label for="personal_trainer_1">Yes</label>
                             </div>
                             <div class="form-check">
-                                <input type="radio" id="personal_trainer_1" name="personal_trainer" class="form-check-input"><label for="personal_trainer_2">No</label>
+                                <input type="radio" @if(!$userQuestionare->personal_trainer_before) checked @endif id="personal_trainer_1" value="0" name="personal_trainer" class="form-check-input"><label for="personal_trainer_2">No</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="kind_of_training" class="strong">If yes, what kind of training did you do:</label>
-                            <input type="text" class="form-control" id="kind_of_training" name="kind_of_training">
+                            <input type="text" class="form-control" id="kind_of_training" name="kind_of_training" value="{{$userQuestionare->what_kind_of_training}}" >
                         </div>
 
                         <div class="form-group">
                             <label class="strong">At what times during the day would you prefer to train?</label>
                             <div class="form-check">
-                                <input type="checkbox" id="what_times_1" name="what_times" class="form-check-input"><label for="what_times_1">Morning</label>
+                                <input type="checkbox" @if($userQuestionare->what_times_1) checked @endif id="what_times_1" name="what_times_1" class="form-check-input"><label for="what_times_1">Morning</label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" id="what_times_2" name="what_times" class="form-check-input"><label for="what_times_2">Mid-Day</label>
+                                <input type="checkbox" @if($userQuestionare->what_times_2) checked @endif id="what_times_2" name="what_times_2" class="form-check-input"><label for="what_times_2">Mid-Day</label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" id="what_times_3" name="what_times" class="form-check-input"><label for="what_times_3">Afternoon</label>
+                                <input type="checkbox" @if($userQuestionare->what_times_3) checked @endif id="what_times_3" name="what_times_3" class="form-check-input"><label for="what_times_3">Afternoon</label>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" id="what_times_4" name="what_times" class="form-check-input"><label for="what_times_4">Evening</label>
+                                <input type="checkbox" @if($userQuestionare->what_times_4) checked @endif id="what_times_4" name="what_times_4" class="form-check-input"><label for="what_times_4">Evening</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="expectations_of_trainer" class="strong">What are your expectations on me as your Personal Trainer?</label>
-                            <input type="textarea" class="form-control" id="expectations_of_trainer" name="expectations_of_trainer">
+                            <input type="textarea" class="form-control" id="expectations_of_trainer" name="expectations_of_trainer" value="{{$userQuestionare->your_expectations}}">
                         </div>
 
                         <div class="form-group row justify-content-end">
@@ -386,7 +413,6 @@
                         </div>
 
                     </form>
-
                 </div>
 
             </div>
