@@ -18,6 +18,7 @@ Route::get('/','AuthViewsController@showIndexPage')->name('register');
 Route::get('/login', 'Auth.LoginController@showLoginPage')->name('login');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::post('email/resend', 'Auth\VerificationController@resend')->name('resend');
 
 Auth::routes(['verify'=>true]);
 
