@@ -19,13 +19,14 @@ Route::get('/login', 'Auth.LoginController@showLoginPage')->name('login');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Auth::routes();
+Auth::routes(['verify'=>true]);
 
 Route::get('/dashboard', 'PagesController@showDashboardPage')->name('showDashboard')->middleware('admin');
 Route::get('/questionarre','PagesController@showQuestionarePage')->name('showQuestionare')->middleware('admin');
 Route::get('/worksheet', 'PagesController@showWorksheetPage')->name('showWorksheet')->middleware('admin');
 Route::get('/diet-plan', 'PagesController@showDietPlanPage')->name('showDietPlan')->middleware('admin');
 Route::get('/videos', 'PagesController@showVideosPage')->name('showVideos')->middleware('admin');
+Route::get('/videos/{parameter}', 'PagesController@showVideoPage')->name('showVideos')->middleware('admin');
 
 Route::post('/questionarre/update', 'PagesController@updateQuestionare');
 

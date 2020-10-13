@@ -15,7 +15,10 @@ class AdminViewsController extends Controller
     }
 
     public function showAdminDashboard(){
-        return view('admin.dashboard');
+        $inactiveusers = count(User::where('type_of_user', 0)->where('subscription_type', 0)->get());
+        $activeusers = count(User::where('type_of_user', 0)->where('subscription_type', 1)->get());
+
+        return view('admin.dashboard')->with(['inactiveusers'=>$inactiveusers, 'activeusers'=>$activeusers]);
     }
 
     public function showUsersPage(){
@@ -28,7 +31,10 @@ class AdminViewsController extends Controller
     public function showUserPage($id){
 
         $user = User::where('id', $id)->first();
-        return view('admin.user.dashboard')->with(['user'=>$user]);
+        $birthday = UserQuestionare::where('user_id', $id)->first();
+        $birthday = $birthday->date_of_birth;
+
+        return view('admin.user.dashboard')->with(['user'=>$user, 'birthday'=>$birthday]);
     }
 
     public function showUserQuestionarePage($id){
@@ -58,8 +64,7 @@ class AdminViewsController extends Controller
     }
 
     public function showAdminMessagesPage(){
-        $users = User::where('type_of_user', 0)->get();
-        return view('admin.upload')->with(['users'=>$users]);
+        return view('admin.messages');
     }
 
     public function showAdminUploadPage(){
@@ -68,7 +73,7 @@ class AdminViewsController extends Controller
     }
 
     public function showAdminVideosPage(){
-        return view('');
+        return view('admin.videos');
     }
 
     public function searchFunction(Request $request){

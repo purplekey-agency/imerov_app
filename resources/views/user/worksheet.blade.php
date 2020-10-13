@@ -21,11 +21,11 @@
             </div>
         </div>
 
-        <div class="app-container">
+        <div class="container">
 
             <div class="container row">
 
-                <div class="col-4 col-md-offset-2">
+                <div class="col-3 col-md-offset-2">
                     <div class="hover-text">
                         <a href="/dashboard">
                             <p class="text-secondary">Dashboard</p>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="col-8 md-offset-2">
+                <div class="col-9 md-offset-2">
                     
                     <div class="row">
 

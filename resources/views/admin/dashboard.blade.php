@@ -22,11 +22,11 @@
             </div>
         </div>
 
-        <div class="app-container">
+        <div class="container">
 
             <div class="container row">
 
-                <div class="col-4 col-md-offset-2">
+                <div class="col-3 col-md-offset-2">
                     <div class="hover-text">
                         <a href="/admin/dashboard">
                             <p class="strong">Dashboard</p>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="col-8 col-md-offset-2">
+                <div class="col-9 col-md-offset-2">
                     <div class="search-container mb-5">
                         <form action="/admin/search" method="POST">
                             @csrf
@@ -80,10 +80,9 @@
                     </div>
 
                     <div class="pmargin-0">
-                        <p class="text-secondary">Active subscriptions: <strong>45</strong></p>
-                        <p class="text-secondary">Inactive subscriptions:<strong class="red">4</strong></p>
-                        <p class="text-secondary">Messages: <strong>20/</strong><strong class="red">4</strong></p>
-                        <p class="text-secondary">Upload</p>
+                        <p class="text-secondary">Active subscriptions: <strong>{{$activeusers}}</strong></p>
+                        <p class="text-secondary">Inactive subscriptions:<strong class="red">{{$inactiveusers}}</strong></p>
+                        <p class="text-secondary">Messages: <strong>0/</strong><strong class="red">0</strong></p>
                     </div>
                 </div>
 

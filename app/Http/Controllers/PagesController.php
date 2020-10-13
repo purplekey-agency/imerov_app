@@ -15,7 +15,9 @@ class PagesController extends Controller
     }
 
     public function showDashboardPage(){
-        return view('user.dashboard');
+
+        $userQuestionare = UserQuestionare::where('user_id', Auth::user()->id)->first();
+        return view('user.dashboard')->with(['userQuestionare'=>$userQuestionare]);
     }
 
     public function showQuestionarePage(){
@@ -33,6 +35,10 @@ class PagesController extends Controller
 
     public function showVideosPage(){
         return view('user.videos');
+    }
+
+    public function showVideoPage($parameter){
+        return view('user.video')->with('parameter', $parameter);
     }
 
     public function updateQuestionare(Request $request){

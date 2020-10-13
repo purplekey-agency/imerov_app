@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="app-container">
+        <div class="container">
 
             <div class="form-container">
                 <form action="{{ url('/register') }}" role="form" class="form-horizontal register-form" method="POST">

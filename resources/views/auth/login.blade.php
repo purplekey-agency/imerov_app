@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="app-container">
+        <div class="container">
 
             <div class="form-container">
                 <form action="{{ url('/login') }}" role="form" class="form-horizontal login-form" method="POST">

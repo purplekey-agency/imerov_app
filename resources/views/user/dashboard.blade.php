@@ -19,11 +19,11 @@
             </div>
         </div>
 
-        <div class="app-container">
+        <div class="container">
 
             <div class="container row">
 
-                <div class="col-4 col-md-offset-2">
+                <div class="col-3 col-md-offset-2">
                     <div class="hover-text">
                         <a href="/dashboard">
                             <p class="strong">Dashboard</p>
@@ -55,18 +55,18 @@
                     </div>
                 </div>
 
-                <div class="col-4 md-offset-2">
+                <div class="col-3 md-offset-2">
                     <div class="text-small">
                         <p class="strong">{{Auth::user()->username}}</p>
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Subscription:</span>
-                        <span class="strong">Full Body</span>
+                        <span class="strong">None</span>
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Messages:</span>
-                        <span class="strong">20/</span>
-                        <span class="strong red">4</span>
+                        <span class="strong">0/</span>
+                        <span class="strong red">0</span>
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Name:</span>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Dob:</span>
-                        <span class="strong">Date of birth</span>
+                        <span class="strong">{{$userQuestionare->date_of_birth}}</span>
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Detail 1:</span>
@@ -94,14 +94,11 @@
                     </div>
                 </div>
 
-                <div class="row col-4">
+                <div class="row col-6">
 
                     <div class="col col-md-offset-2">
-                        <div class="row">
-                            <a href="" class="row">
-                                <p>Before</p>
-                                <p class="text-secondary">(edit)</p>
-                            </a>
+                        <div class="row m-0">
+                            <p>Before</p>
                         </div>
                         <div class="image-container">
                             <img src="#">
@@ -110,11 +107,8 @@
                     </div>
 
                     <div class="col col-md-offset-2">
-                        <div class="row">
-                            <a href="" class="row">
-                                <p>After</p>
-                                <p class="text-secondary">(edit)</p>
-                            </a>
+                        <div class="row m-0">
+                            <p>After</p>
                         </div>
 
                         <div class="image-container">

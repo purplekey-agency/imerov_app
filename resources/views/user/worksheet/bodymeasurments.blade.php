@@ -40,7 +40,6 @@
 
     </div>
 
-
     <div class="row col-12 flex-column">
         <div class="image-container">
             <img class="w-75" src="{{asset('/images/measurments.png')}}">
@@ -97,7 +96,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="row col-12 p-3 border-brown-c justify-content-center">
 
@@ -274,7 +272,6 @@
         </div>
 
     </div>
-
 
     <div class="row col-12 p-3 justify-content-end">
         <button type="submit" class="btn btn-transparent">Update</button>
