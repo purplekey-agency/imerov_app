@@ -49,3 +49,5 @@ Route::get('/admin/videos', 'AdminViewsController@showAdminVideosPage');
 
 //admin post routes
 Route::post('/admin/search', 'AdminViewsController@searchFunction');
+
+Route::post('/admin/upload/save', 'AdminViewsController@updateSpreadsheet');

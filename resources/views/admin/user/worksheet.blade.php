@@ -3,6 +3,8 @@
 <head>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 
@@ -26,7 +28,7 @@
 
             <div class="container row">
 
-                <div class="col-3 col-md-offset-2">
+                <div class="col-2 col-md-offset-2">
                     <div class="hover-text">
                         <a href="/admin/dashboard">
                             <p class="text-secondary">Dashboard</p>
@@ -58,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="col-9 col-md-offset-2">
+                <div class="col-7 col-md-offset-2">
                     
                     <div class="">
                     
@@ -98,74 +100,29 @@
                         </div>
                     </div>
     
-                    <div class="row col-12">
-                        <div class="col-4 md-offset-2">
-                            <div class="text-small">
-                                <p class="strong">{{$user->username}}</p>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Subscription:</span>
-                                <span class="strong">Full Body</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Messages:</span>
-                                <span class="strong">20/</span>
-                                <span class="strong red">4</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Name:</span>
-                                <span class="strong">{{$user->name}}</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Last name:</span>
-                                <span class="strong">{{$user->surename}}</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Dob:</span>
-                                <span class="strong">Date of birth</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Detail 1:</span>
-                                <span class="strong">Detail</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Detail 2:</span>
-                                <span class="strong">Detail</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Detail 3:</span>
-                                <span class="strong">Detail</span>
-                            </div>
+                    <div class="row">
+
+                        <div class="mx-2">
+
+                            <a onclick="changestate('body_measurements')" class="" id="body-measurements-btn">Body Measurements</a>
+
                         </div>
-        
-                        <div class="row col-8">
-        
-                            <div class="col col-md-offset-2">
-                                <div class="d-flex">
-                                    <a href="" class="d-flex">
-                                        <p>Before</p>
-                                        <p class="text-secondary">(edit)</p>
-                                    </a>
-                                </div>
-                                <div class="image-container">
-                                    <img src="#">
-                                </div>
-                                
-                            </div>
-        
-                            <div class="col col-md-offset-2">
-                                <div class="d-flex">
-                                    <a href="" class="d-flex">
-                                        <p>After</p>
-                                        <p class="text-secondary">(edit)</p>
-                                    </a>
-                                </div>
-        
-                                <div class="image-container">
-                                    <img src="#">
-                                </div>
-                            </div>
+
+                        <div class="mx-2">
+
+                            <a onclick="changestate('exercises')" class="" id="exercises-btn">Exercises</a>
+
                         </div>
+
+                    </div>
+
+
+                    <div class="w-100 bodyinactive" id="body-measurments">
+                    @include('user.worksheet.bodymeasurments')
+                    </div>
+
+                    <div class="w-100 bodyinactive" id="excercises">
+                    @include('user.worksheet.exercises')
                     </div>
 
     
@@ -178,6 +135,39 @@
 
 
     </main>
+
+    <script>
+
+    $(document).ready(function(){
+
+        $('#body-measurements-btn').addClass('active');
+        $('#body-measurments').removeClass('bodyinactive').addClass('bodyactive');
+
+    })
+
+    function changestate(button){
+        if(button == 'body_measurements'){
+            if(!$('#body-measurements-btn').hasClass('active')){
+                $('#body-measurements-btn').addClass('active');
+                $('#body-measurments').removeClass('bodyinactive').addClass('bodyactive');
+
+                $('#exercises-btn').removeClass('active');
+                $('#excercises').removeClass('bodyactive').addClass('bodyinactive');
+            }
+        }
+
+        if(button == 'exercises'){
+            if(!$('#exercises-btn').hasClass('active')){
+                $('#exercises-btn').addClass('active');
+                $('#excercises').removeClass('bodyinactive').addClass('bodyactive');
+
+                $('#body-measurements-btn').removeClass('active');
+                $('#body-measurments').removeClass('bodyactive').addClass('bodyinactive');
+            }
+        }
+    }
+
+    </script>
 
 </body>
 

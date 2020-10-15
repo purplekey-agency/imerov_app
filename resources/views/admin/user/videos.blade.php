@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="col-9 col-md-offset-2">
+                <div class="col-6 col-md-offset-2">
                     
                     <div class="">
                     
@@ -97,77 +97,6 @@
                             </a>
                         </div>
                     </div>
-    
-                    <div class="row col-12">
-                        <div class="col-4 md-offset-2">
-                            <div class="text-small">
-                                <p class="strong">{{$user->username}}</p>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Subscription:</span>
-                                <span class="strong">Full Body</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Messages:</span>
-                                <span class="strong">20/</span>
-                                <span class="strong red">4</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Name:</span>
-                                <span class="strong">{{$user->name}}</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Last name:</span>
-                                <span class="strong">{{$user->surename}}</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Dob:</span>
-                                <span class="strong">Date of birth</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Detail 1:</span>
-                                <span class="strong">Detail</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Detail 2:</span>
-                                <span class="strong">Detail</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Detail 3:</span>
-                                <span class="strong">Detail</span>
-                            </div>
-                        </div>
-        
-                        <div class="row col-8">
-        
-                            <div class="col col-md-offset-2">
-                                <div class="d-flex">
-                                    <a href="" class="d-flex">
-                                        <p>Before</p>
-                                        <p class="text-secondary">(edit)</p>
-                                    </a>
-                                </div>
-                                <div class="image-container">
-                                    <img src="#">
-                                </div>
-                                
-                            </div>
-        
-                            <div class="col col-md-offset-2">
-                                <div class="d-flex">
-                                    <a href="" class="d-flex">
-                                        <p>After</p>
-                                        <p class="text-secondary">(edit)</p>
-                                    </a>
-                                </div>
-        
-                                <div class="image-container">
-                                    <img src="#">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
     
 
                 </div>

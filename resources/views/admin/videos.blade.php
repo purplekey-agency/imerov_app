@@ -26,7 +26,7 @@
 
             <div class="container row">
 
-                <div class="col-3 col-md-offset-2">
+                <div class="col-2 col-md-offset-2">
                     <div class="hover-text">
                         <a href="/admin/dashboard">
                             <p class="text-secondary">Dashboard</p>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="col-9 col-md-offset-2">
+                <div class="col-7 col-md-offset-2">
                     <div class="search-container mb-5">
                         <form action="/admin/search" method="POST">
                             @csrf

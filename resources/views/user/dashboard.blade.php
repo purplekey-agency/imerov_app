@@ -23,7 +23,7 @@
 
             <div class="container row">
 
-                <div class="col-3 col-md-offset-2">
+                <div class="col-2 col-md-offset-2">
                     <div class="hover-text">
                         <a href="/dashboard">
                             <p class="strong">Dashboard</p>

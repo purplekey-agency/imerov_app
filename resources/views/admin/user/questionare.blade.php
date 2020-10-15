@@ -58,7 +58,7 @@
                     </div>
                 </div>
 
-                <div class="col-9 col-md-offset-2">
+                <div class="col-6 col-md-offset-2">
                     
                     <div class="">
                     

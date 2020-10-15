@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Crypt;
+use File;
 
 use App\UserQuestionare;
 
@@ -71,11 +72,18 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+        File::makeDirectory(public_path().'/storage/'.$data['username'].'/spreadsheets/', 0777, true);
+        File::put(public_path().'/storage/'.$data['username'].'/spreadsheets/worksheet.csv', '');
+        File::put(public_path().'/storage/'.$data['username'].'/spreadsheets/dietplan.csv', '');
+        File::makeDirectory(public_path().'/storage/'.$data['username'].'/images/', 0777, true);
+
         $user = new User();
         $user->name = $data['name'];
         $user->surename = $data['surename'];
         $user->username = $data['username'];
         $user->email = $data['email'];
+        $user->worksheet = public_path().'/storage/'.$data['username'].'/spreadsheets/worksheet.csv';
+        $user->diet_plan = public_path().'/storage/'.$data['username'].'/spreadsheets/dietplan.csv';
         $user->password = Crypt::encrypt($data['password']);
         $user->save();
 
@@ -86,6 +94,8 @@ class RegisterController extends Controller
         $userQuestionare->email = $data['email'];
 
         $userQuestionare->save();
+
+
 
         return $user;
 

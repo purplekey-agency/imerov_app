@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\UserQuestionare;
+use App\UserVideos;
 
 class AdminViewsController extends Controller
 {
@@ -69,7 +70,8 @@ class AdminViewsController extends Controller
 
     public function showAdminUploadPage(){
         $users = User::where('type_of_user', 0)->get();
-        return view('admin.upload')->with(['users'=>$users]);
+        $videos = UserVideos::all();
+        return view('admin.upload')->with(['users'=>$users, 'videos'=>$videos]);
     }
 
     public function showAdminVideosPage(){
@@ -78,5 +80,9 @@ class AdminViewsController extends Controller
 
     public function searchFunction(Request $request){
         dd($request->all());
+    }
+
+    public function updateSpreadsheet(Request $request){
+        
     }
 }

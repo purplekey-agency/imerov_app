@@ -66,7 +66,7 @@
                     
                     </div>
 
-                    <div class="row col-12 col-md-offset-2 justify-content-between">
+                    <div class="row col-7 col-md-offset-2 justify-content-between">
                         <div class="hover-text">
                             <a href="/admin/users/{{$user->id}}">
                                 <p class="strong">Dashboard</p>

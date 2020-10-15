@@ -11173,3 +11173,65 @@ select {
   opacity: 0.5;
 }
 
+.a-hover {
+  cursor: pointer;
+}
+
+.a-hover-active {
+  border: 1px solid #969696;
+  border-radius: 5px;
+}
+
+.a-hover-active p {
+  color: #969696;
+}
+
+.csv-hidden {
+  height: 0;
+  opacity: 0;
+  transition: 0.2s linear;
+}
+
+.csv-hidden div {
+  height: 0;
+}
+
+.csv-hidden p {
+  margin: 0;
+}
+
+.csv-hidden-active {
+  padding: 10px;
+  height: auto !important;
+  opacity: 1 !important;
+  transition: 0.2s linear;
+}
+
+.csv-hidden-active div {
+  height: auto !important;
+}
+
+.csv-hidden-active .h-50 {
+  height: 50% !important;
+}
+
+.user-input-form-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-input-form {
+  width: 100%;
+  border-bottom: 1px solid #C2A274;
+}
+
+.user-input-form input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.user-input-form input[type=number] {
+  -moz-appearance: textfield;
+}
+
