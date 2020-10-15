@@ -20,7 +20,6 @@ class UserWorksheet extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id','date','weight','height','bodyfat','neck','hips','chest','thign','bicep_flexed','calf',
-        'waist','etc','etc','etc'
+        'user_id','date','muscle_group','start','finish','video_id','reps_1','weight_1',
     ];
 }

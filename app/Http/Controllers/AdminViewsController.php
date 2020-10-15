@@ -83,6 +83,6 @@ class AdminViewsController extends Controller
     }
 
     public function updateSpreadsheet(Request $request){
-        
+        dd($request->all());
     }
 }

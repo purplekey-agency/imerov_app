@@ -124,8 +124,10 @@
                         <div class="csv-hidden worksheet" id="worksheet-{{$user->id}}">
                             <div class="worksheet-container">
 
-                                <form action="" class="w-100 mb-5">
-                                    @for($i=0; $i<7; $i++)
+                                <form action="/admin/upload/save" method="POST" class="w-100 mb-5">
+                                    @csrf
+                                    <input type="hidden" name="userid" value="{{$user->id}}">
+                                    @for($i=1; $i<8; $i++)
                                     <div class="user-input-form-container">
                                         <div class="user-input-form">
                                             <div class="row col-12 px-0 pt-5 pb-2">
@@ -229,9 +231,9 @@
                                                             <tr class="row m-0">
                                                                 <td class="col-5">
                                                                     <div class="w-100 h-100 border-bottom-black">
-                                                                        <select class="form-control bg-brown">
+                                                                        <select name="video-{{$k}}" class="form-control">
                                                                             @foreach($videos as $video)
-                                                                                <option value="{{$video->name}}">{{$video->name}}</option>
+                                                                                <option value="{{$video->id}}">{{$video->name}}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -246,50 +248,50 @@
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input type="number" class="bg-brown">
+                                                                        <input name="reps-set-{{$k}}-1" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input type="text" class="">
+                                                                        <input name="weight-set-{{$k}}-1" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input type="number" class="bg-brown">
+                                                                        <input name="reps-set-{{$k}}-2" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input type="text" class="">
+                                                                        <input name="weight-set-{{$k}}-2" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input type="number" class="bg-brown">
+                                                                        <input name="reps-set-{{$k}}-3" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input type="text" class="">
+                                                                        <input name="weight-set-{{$k}}-3" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input type="number" class="bg-brown">
+                                                                        <input name="reps-set-{{$k}}-4" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input type="text" class="">
+                                                                        <input name="weight-set-{{$k}}-4" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input type="number" class="bg-brown">
+                                                                        <input name="reps-set-{{$k}}-5" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input type="text" class="">
+                                                                        <input name="weight-set-{{$k}}-5" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input type="number" class=" bg-brown">
+                                                                        <input name="reps-set-{{$k}}-6" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input type="text" class="">
+                                                                        <input name="weight-set-{{$k}}-6" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -302,6 +304,8 @@
                                     </div>
                                     @endfor
                                 
+                                    <button type="submit" class="btn btn-transparent">Save</button>
+
                                 </form>
 
                             </div>
