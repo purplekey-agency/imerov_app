@@ -325,3 +325,25 @@ select {
 .user-input-form input[type=number] {
     -moz-appearance: textfield;
   }
+
+
+#sub_select{
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+}
+
+.sub-hidden{
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    transition: 0.2s linear;
+}
+
+.subdesc{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    transition: 0.2s linear;
+    opacity: 1;
+}

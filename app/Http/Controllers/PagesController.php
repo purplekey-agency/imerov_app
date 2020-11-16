@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\UserQuestionare;   
+use App\UserQuestionare;
+use App\SubscriptionType;
 
 class PagesController extends Controller
 {
@@ -13,6 +14,7 @@ class PagesController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verified');
+        $this->middleware('subtype', ['except'=>['selectSubscriptionType','updateSubscriptionType']]);
     }
 
     public function showDashboardPage(){
@@ -132,5 +134,20 @@ class PagesController extends Controller
         }
        
 
+    }
+
+    public function selectSubscriptionType(){
+
+        $subscriptionTypes = SubscriptionType::all();
+
+        return view('user.selectsubtype')->with(['subscriptionTypes'=>$subscriptionTypes]);
+    }
+
+    public function updateSubscriptionType(Request $request){
+        $user = Auth::user();
+        $user->subscription_type = $request->sub_select;
+        $user->save();
+
+        return \redirect('/dashboard');
     }
 }

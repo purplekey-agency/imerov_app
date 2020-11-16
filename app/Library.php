@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comments extends Model
+class Library extends Model
 {
     /** 
      * The table associated with the model
@@ -12,7 +12,7 @@ class Comments extends Model
      * @var string
      * 
     */
-    protected $table = 'comments';
+    protected $table = 'library';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +20,7 @@ class Comments extends Model
      * @var array
      */
     protected $fillable = [
-        'sender_id', 'receipent_id', 'type', 'message_content', 'status'
+        'exercise_name', 'video_path_m', 
+        'video_path_f', 'exercise_description'
     ];
-
 }

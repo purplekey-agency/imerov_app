@@ -59,38 +59,33 @@
                 </div>
 
                 <div class="col-7 col-md-offset-2">
-                    <div class="search-container mb-5">
-                        <form action="/admin/search" method="POST">
-                            @csrf
-                            <div class="input-group">
-                                <input type="text" name="search-data" class="form-control my-0 py-1" placeholder="Search">
-                                <div class="input-group-append">
-                                    <span class="input-group-text lime lighten-2">
-                                        <i class="fa fa-search text-grey" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </form>
+
+                    <div class="mb-3">
+                        <h2>Exercise: {{$exercise->exercise_name}}</h2>
                     </div>
 
                     <div class="col-12 col-md-offset-2">
 
-                        <div class="">
-                            <span>All avalible exercises:</span>
+                        <div class="" id="">
+                        
+                            <div class="row">
+                                <div class="col-5">
+                                    <p>Video example, M</p>
+                                    <video width="100%" height="auto" controls>
+                                        <source src="{{$exercise->video_path_m}}" type="video/mp4">
+                                    </video> 
+                                </div>
+
+                                <div class="col-5">
+                                    <p>Video example, F</p>
+                                    <video width="100%" height="auto" controls>
+                                        <source src="{{$exercise->video_path_f}}" type="video/mp4">
+                                    </video> 
+                                </div>
+                            </div>
+                            <p>Exercise description</p>
+                            <textarea>{{$exercise->exercise_description}}</textarea>
                         </div>
-
-                        @foreach($exerciseLibrary as $exercise)
-
-                            <a href="/admin/video/{{$exercise->id}}" class="row">
-                                <div>
-                                    {{$exercise->id}} . 
-                                </div>
-                                <div class="col-6">
-                                    {{$exercise->exercise_name}}
-                                </div>
-                            </a>
-
-                        @endforeach
 
                     </div>
 

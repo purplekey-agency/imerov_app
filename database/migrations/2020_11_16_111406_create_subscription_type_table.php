@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentsTable extends Migration
+class CreateSubscriptionTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('subscription_type', function (Blueprint $table) {
             $table->id();
-            $table->integer('sender_id');
-            $table->integer('receipent_id');
-            $table->integer('type'); //[1, 2, 3]
-            $table->text('message_content');
-            $table->boolean('status')->default(false);
+            $table->string('subscription_type');
+            $table->integer('subscription_price');
+            $table->text('subscription_description')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('subscription_type');
     }
 }

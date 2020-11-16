@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\UserQuestionare;
 use App\UserVideos;
+use App\Library;
 
 class AdminViewsController extends Controller
 {
@@ -17,7 +18,7 @@ class AdminViewsController extends Controller
 
     public function showAdminDashboard(){
         $inactiveusers = count(User::where('type_of_user', 0)->where('subscription_type', 0)->get());
-        $activeusers = count(User::where('type_of_user', 0)->where('subscription_type', 1)->get());
+        $activeusers = count(User::where('type_of_user', 0)->whereIn('subscription_type', [1,2,3,4,5])->get());
 
         return view('admin.dashboard')->with(['inactiveusers'=>$inactiveusers, 'activeusers'=>$activeusers]);
     }
@@ -70,12 +71,22 @@ class AdminViewsController extends Controller
 
     public function showAdminUploadPage(){
         $users = User::where('type_of_user', 0)->get();
-        $videos = UserVideos::all();
+        $videos = Library::all();
         return view('admin.upload')->with(['users'=>$users, 'videos'=>$videos]);
     }
 
     public function showAdminVideosPage(){
-        return view('admin.videos');
+
+        $exerciseLibrary = Library::all();
+
+        return view('admin.videos')->with(['exerciseLibrary'=>$exerciseLibrary]);
+    }
+
+    public function showSingleVideo($id){
+
+        $exercise = Library::where('id', $id)->first();
+
+        return view('admin.video')->with(['exercise'=>$exercise]);
     }
 
     public function searchFunction(Request $request){

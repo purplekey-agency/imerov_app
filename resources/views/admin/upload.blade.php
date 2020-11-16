@@ -233,7 +233,7 @@
                                                                     <div class="w-100 h-100 border-bottom-black">
                                                                         <select name="video-{{$k}}" class="form-control">
                                                                             @foreach($videos as $video)
-                                                                                <option value="{{$video->id}}">{{$video->name}}</option>
+                                                                                <option value="{{$video->id}}">{{$video->exercise_name}}</option>
                                                                             @endforeach
                                                                         </select>
                                                                     </div>

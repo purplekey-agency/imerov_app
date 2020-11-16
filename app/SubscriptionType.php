@@ -4,15 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Comments extends Model
+class SubscriptionType extends Model
 {
+
     /** 
      * The table associated with the model
      * 
      * @var string
      * 
     */
-    protected $table = 'comments';
+    protected $table = 'subscription_type';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +21,6 @@ class Comments extends Model
      * @var array
      */
     protected $fillable = [
-        'sender_id', 'receipent_id', 'type', 'message_content', 'status'
+        'subscription_type', 'subscription_price', 'subscription_description'
     ];
-
 }

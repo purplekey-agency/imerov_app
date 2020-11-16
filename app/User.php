@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\SubscriptionType;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -36,4 +38,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getSubName($id){
+        $subtype = SubscriptionType::where('id', $id)->first();
+        return $subtype->subscription_type;
+    }
 }

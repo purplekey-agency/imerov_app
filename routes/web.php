@@ -28,6 +28,8 @@ Route::get('/worksheet', 'PagesController@showWorksheetPage')->name('showWorkshe
 Route::get('/diet-plan', 'PagesController@showDietPlanPage')->name('showDietPlan')->middleware('admin');
 Route::get('/videos', 'PagesController@showVideosPage')->name('showVideos')->middleware('admin');
 Route::get('/videos/{parameter}', 'PagesController@showVideoPage')->name('showVideos')->middleware('admin');
+Route::get('/selectsub', 'PagesController@selectSubscriptionType')->name('selectsub')->middleware('admin');
+Route::post('/selectsubtype', 'PagesController@updateSubscriptionType')->name('updatesub')->middleware('admin');
 
 Route::post('/questionarre/update', 'PagesController@updateQuestionare');
 
@@ -45,6 +47,7 @@ Route::get('/admin/users/{id}/edit-profile','AdminViewsController@showUserEditPr
 Route::get('/admin/messages', 'AdminViewsController@showAdminMessagesPage');
 Route::get('/admin/upload', 'AdminViewsController@showAdminUploadPage');
 Route::get('/admin/videos', 'AdminViewsController@showAdminVideosPage');
+Route::get('/admin/video/{id}', 'AdminViewsController@showSingleVideo');
 
 
 //admin post routes
