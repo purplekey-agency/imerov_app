@@ -73,7 +73,7 @@
                         </form>
                     </div>
 
-                    <div class="col-12 col-md-offset-2">
+                    <div class="col-8 col-md-offset-2">
 
                         <div class="">
                             <span>All avalible exercises:</span>
@@ -95,6 +95,16 @@
                     </div>
 
 
+                </div>
+
+                <div class="col-3">
+                    <a href="/admin/videos/new">
+                        <div class="col-12">
+                            <div class="btn btn-primary">
+                                Add new exercise
+                            </div>
+                        </div>
+                    </a>
                 </div>
 
             </div>

@@ -105,7 +105,7 @@
                             </div>
                             <div class="text-small">
                                 <span class="text-secondary">Subscription:</span>
-                                <span class="strong">Full Body</span>
+                                <span class="strong">{{$user->getSubName($user->subscription_type)}}</span>
                             </div>
                             <div class="text-small">
                                 <span class="text-secondary">Messages:</span>

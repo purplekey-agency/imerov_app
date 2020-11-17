@@ -41,7 +41,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     public function getSubName($id){
-        $subtype = SubscriptionType::where('id', $id)->first();
-        return $subtype->subscription_type;
+        if($id !== 0){
+            $subtype = SubscriptionType::where('id', $id)->first();
+            return $subtype->subscription_type;
+        }
+        else{
+            return "No subscription selected.";
+        }
+
     }
 }

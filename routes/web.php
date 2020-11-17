@@ -48,9 +48,12 @@ Route::get('/admin/messages', 'AdminViewsController@showAdminMessagesPage');
 Route::get('/admin/upload', 'AdminViewsController@showAdminUploadPage');
 Route::get('/admin/videos', 'AdminViewsController@showAdminVideosPage');
 Route::get('/admin/video/{id}', 'AdminViewsController@showSingleVideo');
+Route::get('/admin/videos/new', 'AdminViewsController@showAddNewExercisePage');
 
 
 //admin post routes
 Route::post('/admin/search', 'AdminViewsController@searchFunction');
 
 Route::post('/admin/upload/save', 'AdminViewsController@updateSpreadsheet');
+
+Route::post('/admin/videos/addnew', 'AdminViewsController@addNewExercise');

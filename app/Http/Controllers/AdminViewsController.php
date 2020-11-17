@@ -7,6 +7,7 @@ use App\User;
 use App\UserQuestionare;
 use App\UserVideos;
 use App\Library;
+use App\SubscriptionType;
 
 class AdminViewsController extends Controller
 {
@@ -87,6 +88,51 @@ class AdminViewsController extends Controller
         $exercise = Library::where('id', $id)->first();
 
         return view('admin.video')->with(['exercise'=>$exercise]);
+    }
+
+    public function showAddNewExercisePage(){
+
+        $subtypes = SubscriptionType::all();
+        return view('admin.addvideo')->with(['subtypes'=>$subtypes]);
+    }
+
+    public function addNewExercise(Request $request){
+
+        $exercise = new Library();
+        $exercise->exercise_name = $request->exercise_name;
+        $exercise->exercise_description = $request->exercise_description;
+        $exercise_video_m = "exercise_video_m_default";
+        $exercise_video_f = "exercise_video_f_default";
+
+        if($request->exercise_video_m !== null){
+            $filenameWithExt = $request->file('exercise_video_m')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('exercise_video_m')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('exercise_video_m')->storeAs('public/videos',$fileNameToStore);
+        }
+
+        $exercise->video_path_m = $fileNameToStore;
+
+        if($request->exercise_video_f !== null){
+            $filenameWithExt = $request->file('exercise_video_f')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('exercise_video_f')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('exercise_video_f')->storeAs('public/videos',$fileNameToStore);
+        }
+
+        $exercise->video_path_f = $fileNameToStore;
+
+        try{
+            $exercise->save();
+            return \redirect()->back()->with('success', 'You have succesfully uploaded the exercise.');
+        }
+        catch(\Exception $e){
+            return \redirect()->back()->with('error', 'Something went wrong. Please try again.');
+        }
+
+        
     }
 
     public function searchFunction(Request $request){

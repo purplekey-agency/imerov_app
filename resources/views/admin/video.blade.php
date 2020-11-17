@@ -70,21 +70,21 @@
                         
                             <div class="row">
                                 <div class="col-5">
-                                    <p>Video example, M</p>
+                                    <p>Video example, Men</p>
                                     <video width="100%" height="auto" controls>
-                                        <source src="{{$exercise->video_path_m}}" type="video/mp4">
+                                        <source src="/storage/videos/{{$exercise->video_path_m}}" type="video/mp4">
                                     </video> 
                                 </div>
 
                                 <div class="col-5">
-                                    <p>Video example, F</p>
+                                    <p>Video example, Women</p>
                                     <video width="100%" height="auto" controls>
-                                        <source src="{{$exercise->video_path_f}}" type="video/mp4">
+                                        <source src="/storage/videos/{{$exercise->video_path_f}}" type="video/mp4">
                                     </video> 
                                 </div>
                             </div>
                             <p>Exercise description</p>
-                            <textarea>{{$exercise->exercise_description}}</textarea>
+                            <textarea disabled>{{$exercise->exercise_description}}</textarea>
                         </div>
 
                     </div>
