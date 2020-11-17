@@ -1,4 +1,4 @@
-<form action="">
+<form action="" method="post">
 
     <div class="row py-5 justify-content-between">
 

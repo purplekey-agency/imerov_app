@@ -127,7 +127,7 @@
                                 <form action="/admin/upload/save" method="POST" class="w-100 mb-5">
                                     @csrf
                                     <input type="hidden" name="userid" value="{{$user->id}}">
-                                    @for($i=1; $i<8; $i++)
+                                    @for($i=1; $i<6; $i++)
                                     <div class="user-input-form-container">
                                         <div class="user-input-form">
                                             <div class="row col-12 px-0 pt-5 pb-2">
@@ -312,7 +312,60 @@
                         </div>
 
                         <div class="csv-hidden diet-plan" id="diet-plan-{{$user->id}}">
-                            dietplan
+                            <div class="dietplan-container">
+                                <div class="user-input-form-container">
+                                    <div class="user-input-form">
+                                        <form action="/admin/upload/worksheet/save" method="post" class="w-100 mb-5">
+                                            @csrf
+                                            <input type="hidden" name="userid" value="{{$user->id}}">
+                                            @for($i=1; $i<6; $i++)
+                                            <div class="user-input-form-container">
+                                                <div class="user-input-form">
+
+                                                <table class="diet-plan-table mb-5">
+                                                    <tr>
+                                                        <th>Lean protein</th>
+                                                        <th>Vegetables</th>
+                                                        <th>Fruits</th>
+                                                        <th>Grains</th>
+                                                        <th>Healty Fats</th>
+                                                        <th>Dairy Products</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Lean protein</td>
+                                                        <td>Vegetables</td>
+                                                        <td>Fruits</td>
+                                                        <td>Grains</td>
+                                                        <td>Healty Fats</td>
+                                                        <td>Dairy Products</td>
+                                                    </tr>
+                                                </table>
+                                                <table class="diet-plan-table-w mt-5">
+                                                    @for($k = 1; $k<6; $k++)
+                                                    <tr>
+                                                        <th>meal 0{{$k}}</th>
+                                                        @for($j = 1; $j<6; $j++)
+                                                        <td><input class="bg-brown" type="text" name="meal_{{$j}}_{{$k}}_{{$i}}" id="meal_{{$j}}_{{$k}}_{{$i}}"></td>
+                                                        @endfor
+                                                    </tr>
+                                                    @endfor
+                                                    <tr>
+                                                        <td>snack</td>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </table>
+                                                </div>
+                                            </div>
+                                            @endfor
+                                            <button type="submit" class="btn btn-transparent">Save</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 

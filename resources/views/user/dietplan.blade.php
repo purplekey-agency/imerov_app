@@ -59,6 +59,82 @@
                     
                     <div class="">
                         
+                        <div class="table-container">
+                        
+                            <table class="diet-plan-table mb-5">
+                                <tr>
+                                    <th>Lean protein</th>
+                                    <th>Vegetables</th>
+                                    <th>Fruits</th>
+                                    <th>Grains</th>
+                                    <th>Healty Fats</th>
+                                    <th>Dairy Products</th>
+                                </tr>
+                                <tr>
+                                    <td>Lean protein</td>
+                                    <td>Vegetables</td>
+                                    <td>Fruits</td>
+                                    <td>Grains</td>
+                                    <td>Healty Fats</td>
+                                    <td>Dairy Products</td>
+                                </tr>
+                            </table>
+
+                            <span class="upperace my-5">choose any foods from each column above to make your meals with the amounts below</span>
+
+                            <table class="diet-plan-table-w mt-5">
+                                <tr>
+                                    <th>meal 01</th>
+                                    <td></th>
+                                    <td></th>
+                                    <td></th>
+                                    <td></th>
+                                    <td></th>
+                                </tr>
+                                <tr>
+                                    <th>meal 02</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>meal 03</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>meal 04</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>meal 05</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>snack</td>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </table>
+                        
+                        </div>
+
                     </div>
 
                 </div>

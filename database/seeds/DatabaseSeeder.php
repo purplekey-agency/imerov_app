@@ -58,48 +58,6 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        DB::table('library')->insert([
-
-            'exercise_name'=>'Flat Barbell Bench Press',
-            'exercise_description'=>'default',
-
-        ]);
-
-        DB::table('library')->insert([
-
-            'exercise_name'=>'Incline Dumbbell Bench Press',
-            'exercise_description'=>'default',
-
-        ]);
-
-        DB::table('library')->insert([
-
-            'exercise_name'=>'Machine Chest Fly',
-            'exercise_description'=>'default',
-
-        ]);
-
-        DB::table('library')->insert([
-
-            'exercise_name'=>'push-ups',
-            'exercise_description'=>'default',
-
-        ]);
-
-        DB::table('library')->insert([
-
-            'exercise_name'=>'ABS',
-            'exercise_description'=>'default',
-
-        ]);
-
-        DB::table('library')->insert([
-
-            'exercise_name'=>'CARDIO',
-            'exercise_description'=>'default',
-
-        ]);
-
         DB::table('subscription_type')->insert([
 
             'subscription_type'=>'SubTypeA',

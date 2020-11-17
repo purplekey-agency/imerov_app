@@ -55,5 +55,6 @@ Route::get('/admin/videos/new', 'AdminViewsController@showAddNewExercisePage');
 Route::post('/admin/search', 'AdminViewsController@searchFunction');
 
 Route::post('/admin/upload/save', 'AdminViewsController@updateSpreadsheet');
+Route::post('/admin/upload/worksheet/save', 'AdminViewsController@updateDietPlan');
 
 Route::post('/admin/videos/addnew', 'AdminViewsController@addNewExercise');

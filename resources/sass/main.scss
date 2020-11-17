@@ -283,6 +283,10 @@ select {
     transition: 0.2s linear;
 }
 
+.csv-hidden form{
+    display: none;
+}
+
 .csv-hidden div{
     height: 0;
 }
@@ -296,6 +300,10 @@ select {
     height: auto !important;
     opacity: 1 !important;
     transition: 0.2s linear;
+}
+
+.csv-hidden-active form{
+    display: block !important;
 }
 
 .csv-hidden-active div{
@@ -320,6 +328,7 @@ select {
     width: 100%;
     border: none;
     outline: none;
+    height: 100%;
 }
 
 .user-input-form input[type=number] {
@@ -346,4 +355,54 @@ select {
     height: auto;
     transition: 0.2s linear;
     opacity: 1;
+}
+
+
+.diet-plan-table th{
+    background: #000;
+    border: 3px solid #fff;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 15px;
+}
+
+.diet-plan-table td{
+    border: none;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+    background: #C2A274;
+    color: #fff;
+
+    padding: 15px;
+}
+
+.diet-plan-table-w{
+    border-collapse: none;
+    min-width: 100% !important;
+    width: 100% !important;
+}
+
+.diet-plan-table-w tr{
+    margin-bottom: 15px;
+    width: 100% !important;
+    display: table;
+}
+
+.diet-plan-table-w th{
+    background: #000;
+    color: #fff;
+    padding: 15px;
+
+    min-width: 16.6666667% !important;
+}
+
+.diet-plan-table-w td{
+    border: none;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+    background: #C2A274;
+    color: #fff;
+
+    min-width: 16.6666667% !important;
+    height: 55px;
 }
