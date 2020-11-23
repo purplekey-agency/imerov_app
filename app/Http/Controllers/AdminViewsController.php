@@ -8,6 +8,7 @@ use App\UserQuestionare;
 use App\UserVideos;
 use App\Library;
 use App\SubscriptionType;
+use App\UserWorksheet;
 
 class AdminViewsController extends Controller
 {
@@ -26,7 +27,7 @@ class AdminViewsController extends Controller
 
     public function showUsersPage(){
 
-        $users = User::where('type_of_user', 0)->get();
+        $users = User::where('type_of_user', 0)->where('subscription_type','>',0)->get();
         return view('admin.users')->with(['users'=>$users]);
 
     }
@@ -71,7 +72,7 @@ class AdminViewsController extends Controller
     }
 
     public function showAdminUploadPage(){
-        $users = User::where('type_of_user', 0)->get();
+        $users = User::where('type_of_user', 0)->where('subscription_type','>',0)->get();
         $videos = Library::all();
         return view('admin.upload')->with(['users'=>$users, 'videos'=>$videos]);
     }
@@ -98,11 +99,29 @@ class AdminViewsController extends Controller
 
     public function addNewExercise(Request $request){
 
+        #dd($request);
+
         $exercise = new Library();
         $exercise->exercise_name = $request->exercise_name;
         $exercise->exercise_description = $request->exercise_description;
         $exercise_video_m = "exercise_video_m_default";
         $exercise_video_f = "exercise_video_f_default";
+
+        if($request->subtype_1 !==null){
+            $exercise->subtype_1 = true;
+        }
+        if($request->subtype_2 !==null){
+            $exercise->subtype_2 = true;
+        }
+        if($request->subtype_3 !==null){
+            $exercise->subtype_3 = true;
+        }
+        if($request->subtype_4 !==null){
+            $exercise->subtype_4 = true;
+        }
+        if($request->subtype_5 !==null){
+            $exercise->subtype_5 = true;
+        }
 
         if($request->exercise_video_m !== null){
             $filenameWithExt = $request->file('exercise_video_m')->getClientOriginalName();
@@ -141,6 +160,46 @@ class AdminViewsController extends Controller
 
     public function updateSpreadsheet(Request $request){
         dd($request->all());
+
+        $user = $request->userid;
+
+        for($i=0; $i<6; $i++){
+
+            if(!isset($request->{"date_" . $i . "_" . $user->id})){
+                dd("You haven't selected date.");
+            }
+            if(!isset($request->{"start_" . $i . "_" . $user->id})){
+                dd("You haven't selected starting time.");
+            }
+            if(!isset($request->{"finish_" . $i . "_" . $user->id})){
+                dd("You haven't selected ending time.");
+            }
+
+            for($j=0; $j<6; $j++){
+                if(isset($request->{"video_" . $i . "_" . $j})){
+
+                    $worksheet = new UserWorksheet();
+                    if(!isset($request->{"strech_" . $i . "_" . $user->id})){
+                        
+                    }
+                    else{
+
+                    }
+
+                    if(!isset($request->{"warm_" . $i . "_" . $user->id})){
+                        
+                    }
+                    else{
+                        
+                    }
+                    
+                    $worksheet->video_id = $request->{"video_" . $i . "_" . $j};
+                    $worksheet->date = $request->{"date_" . $i . "_" . $user->id};
+                    $worksheet->muscle_group = $request->{"date_" . $i . "_" . $user->id};
+
+                }
+            }
+        }
     }
 
     public function updateDietPlan(Request $request){

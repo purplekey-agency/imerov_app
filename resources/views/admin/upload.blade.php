@@ -137,7 +137,7 @@
                                                             <p class="uppercase m-0">DATE</p>
                                                         </div>
                                                         <div class="col-9 d-flex border-right-black p-0 justify-content-center align-items-center">
-                                                            <input type="date" name="date-{{$i}}-{{$user->id}}" class="form-control bg-brown">
+                                                            <input type="date" name="date_{{$i}}_{{$user->id}}" class="form-control bg-brown">
                                                         </div>
                                                     </div>
                                                     <div class="row col-12 bg-brown mx-0 mb-3 p-0">
@@ -145,7 +145,7 @@
                                                             <p class="uppercase m-0"> MUSCLE GROUP </p>
                                                         </div>
                                                         <div class="col-6 p-0 d-flex justify-content-center align-items-center">
-                                                            <select name="muscle-group-{{$i}}-{{$user->id}}" class="form-control bg-brown">
+                                                            <select name="muscle_group_{{$i}}_{{$user->id}}" class="form-control bg-brown">
                                                                 <option value="neck">neck</option>
                                                                 <option value="chest">chest</option>
                                                                 <option value="bicep">bicep</option>
@@ -161,21 +161,21 @@
                                                     <div class="row col-12 bg-brown mx-0 mb-3">
                                                         <div class="col-6 p-0 py-1 d-flex flex-column justify-content-center align-items-center">
                                                             <p class="uppercase m-0">Start</p>
-                                                            <input type="time" name="start-{{$i}}-{{$user->id}}" class="form-control bg-brown">
+                                                            <input type="time" name="start_{{$i}}_{{$user->id}}" class="form-control bg-brown">
                                                         </div>
-                                                        <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+                                                        <div class="col-6 py-1 d-flex flex-column justify-content-center align-items-center">
                                                             <p class="uppercase m-0 ">Finish</p>
-                                                            <input type="time" name="finish-{{$i}}-{{$user->id}}" class="form-control bg-brown">
+                                                            <input type="time" name="finish_{{$i}}_{{$user->id}}" class="form-control bg-brown">
                                                         </div>
                                                     </div>
                                                     <div class="row col-12 bg-brown mx-0 mb-3">
                                                         <div class="col-6 p-0 py-1 d-flex flex-column justify-content-center align-items-center">
                                                             <p class="uppercase m-0">STRECH</p>
-                                                            <input type="checkbox" name="strech-{{$i}}-{{$user->id}}">
+                                                            <input type="checkbox" name="strech_{{$i}}_{{$user->id}}">
                                                         </div>
-                                                        <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+                                                        <div class="col-6 py-1 d-flex flex-column justify-content-center align-items-center">
                                                             <p class="uppercase m-0 ">WARM UP</p>
-                                                            <input type="checkbox" name="warm-{{$i}}-{{$user->id}}">
+                                                            <input type="checkbox" name="warm_{{$i}}_{{$user->id}}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -231,9 +231,12 @@
                                                             <tr class="row m-0">
                                                                 <td class="col-5">
                                                                     <div class="w-100 h-100 border-bottom-black">
-                                                                        <select name="video-{{$k}}" class="form-control">
+                                                                        <select name="video_{{$i}}_{{$k}}" class="form-control">
+                                                                            <option value="" selected disabled>Select exercise</option>
                                                                             @foreach($videos as $video)
+                                                                                @if(($user->subscription_type === 1 && $video->subtype_1 === 1) || ($user->subscription_type === 2 && $video->subtype_2 === 1) || ($user->subscription_type === 3 && $video->subtype_3 === 1) || ($user->subscription_type === 4 && $video->subtype_4 === 1) || ($user->subscription_type === 5 && $video->subtype_5 === 1))
                                                                                 <option value="{{$video->id}}">{{$video->exercise_name}}</option>
+                                                                                @endif
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
@@ -248,50 +251,50 @@
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input name="reps-set-{{$k}}-1" type="number" class="bg-brown">
+                                                                        <input name="reps_set_{{$i}}_{{$k}}_0" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input name="weight-set-{{$k}}-1" type="text" class="">
+                                                                        <input name="weight_set_{{$i}}_{{$k}}_0" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input name="reps-set-{{$k}}-2" type="number" class="bg-brown">
+                                                                        <input name="reps_set_{{$i}}_{{$k}}_1" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input name="weight-set-{{$k}}-2" type="text" class="">
+                                                                        <input name="weight_set_{{$i}}_{{$k}}_1" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input name="reps-set-{{$k}}-3" type="number" class="bg-brown">
+                                                                        <input name="reps_set_{{$i}}_{{$k}}_2" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input name="weight-set-{{$k}}-3" type="text" class="">
+                                                                        <input name="weight_set_{{$i}}_{{$k}}_2" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input name="reps-set-{{$k}}-4" type="number" class="bg-brown">
+                                                                        <input name="reps_set_{{$i}}_{{$k}}_3" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input name="weight-set-{{$k}}-4" type="text" class="">
+                                                                        <input name="weight_set_{{$i}}_{{$k}}_3" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input name="reps-set-{{$k}}-5" type="number" class="bg-brown">
+                                                                        <input name="reps_set_{{$i}}_{{$k}}_4" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input name="weight-set-{{$k}}-5" type="text" class="">
+                                                                        <input name="weight_set_{{$i}}_{{$k}}_4" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                                 <td class="col-1 p-0 text-center border-left-black">
                                                                     <div class="w-100 h-50 bg-brown">
-                                                                        <input name="reps-set-{{$k}}-6" type="number" class="bg-brown">
+                                                                        <input name="reps_set_{{$i}}_{{$k}}_5" type="number" class="bg-brown">
                                                                     </div>
                                                                     <div class="w-100 h-50">
-                                                                        <input name="weight-set-{{$k}}-6" type="text" class="">
+                                                                        <input name="weight_set_{{$i}}_{{$k}}_5" type="text" class="">
                                                                     </div>
                                                                 </td>
                                                             </tr>

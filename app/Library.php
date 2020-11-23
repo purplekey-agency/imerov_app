@@ -21,6 +21,8 @@ class Library extends Model
      */
     protected $fillable = [
         'exercise_name', 'video_path_m', 
-        'video_path_f', 'exercise_description'
+        'video_path_f', 'exercise_description',
+        'subtype_1', 'subtype_2', 'subtype_3',
+        'subtype_4', 'subtype_5'
     ];
 }

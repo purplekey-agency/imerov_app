@@ -19,6 +19,11 @@ class CreateLibraryTable extends Migration
             $table->string('video_path_m')->nullable();
             $table->string('video_path_f')->nullable();
             $table->text('exercise_description');
+            $table->boolean('subtype_1')->default(false);
+            $table->boolean('subtype_2')->default(false);
+            $table->boolean('subtype_3')->default(false);
+            $table->boolean('subtype_4')->default(false);
+            $table->boolean('subtype_5')->default(false);
             $table->timestamps();
         });
     }

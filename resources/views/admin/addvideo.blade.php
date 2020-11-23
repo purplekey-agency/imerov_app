@@ -66,6 +66,17 @@
                     </div>
 
                     <div class="col-12 col-md-offset-2">
+                        @if(Session::has('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{Session::get('success')}}
+                        </div>
+                        @endif
+
+                        @if(Session::has('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{Session::get('error')}}
+                        </div>
+                        @endif
 
 
                         <div class="form-container">
@@ -91,7 +102,10 @@
                                 <div class="my-3 form-group">
                                     <label for="">Avaliable for subscription type:</label>
                                     @foreach($subtypes as $subtype)
-                                        <input type="checkbox" id="" name="vehicle1" value="Bike">
+                                        <div class="col-md-6">
+                                            <label for="subtype-{{$subtype->id}}"> {{$subtype->subscription_type}} </label>
+                                            <input type="checkbox" id="subtype-{{$subtype->id}}" name="subtype_{{$subtype->id}}" value="{{$subtype->id}}">
+                                        </div>
                                     @endforeach
                                 </div>
 
@@ -99,17 +113,6 @@
 
                             </form>
 
-                            @if(Session::has('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{Session::get('success')}}
-                            </div>
-                            @endif
-
-                            @if(Session::has('error'))
-                            <div class="alert alert-danger" role="alert">
-                                {{Session::get('error')}}
-                            </div>
-                            @endif
                             
                         </div>
                     </div>
