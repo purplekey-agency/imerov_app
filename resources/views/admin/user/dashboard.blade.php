@@ -66,36 +66,19 @@
                     
                     </div>
 
-                    <div class="row col-7 col-md-offset-2 justify-content-between">
-                        <div class="hover-text">
+                    <div class="row col-7 col-md-offset-2">
+                        <div class="hover-text mx-3">
                             <a href="/admin/users/{{$user->id}}">
                                 <p class="strong">Dashboard</p>
                             </a>
                         </div>
     
-                        <div class="hover-text">
+                        <div class="hover-text mx-3">
                             <a href="/admin/users/{{$user->id}}/questionarre">
                                 <p class="text-secondary">Questionarre</p>
                             </a>
                         </div>
     
-                        <div class="hover-text">
-                            <a href="/admin/users/{{$user->id}}/worksheet">
-                                <p class="text-secondary">Worksheet</p>
-                            </a>
-                        </div>
-    
-                        <div class="hover-text">
-                            <a href="/admin/users/{{$user->id}}/diet-plan">
-                                <p class="text-secondary">Diet Plan</p>
-                            </a>
-                        </div>
-    
-                        <div class="hover-text">
-                            <a href="/admin/users/{{$user->id}}/videos">
-                                <p class="text-secondary">Videos</p>
-                            </a>
-                        </div>
                     </div>
     
                     <div class="row col-12">
@@ -109,8 +92,8 @@
                             </div>
                             <div class="text-small">
                                 <span class="text-secondary">Messages:</span>
-                                <span class="strong">20/</span>
-                                <span class="strong red">4</span>
+                                <span class="strong">{{@count($allMessages)}}/</span>
+                                <span class="strong red">{{@count($newMessages)}}</span>
                             </div>
                             <div class="text-small">
                                 <span class="text-secondary">Name:</span>
@@ -144,7 +127,6 @@
                                 <div class="d-flex">
                                     <a href="" class="d-flex">
                                         <p>Before</p>
-                                        <p class="text-secondary">(edit)</p>
                                     </a>
                                 </div>
                                 <div class="image-container">
@@ -157,7 +139,6 @@
                                 <div class="d-flex">
                                     <a href="" class="d-flex">
                                         <p>After</p>
-                                        <p class="text-secondary">(edit)</p>
                                     </a>
                                 </div>
         

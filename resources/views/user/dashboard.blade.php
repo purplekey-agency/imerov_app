@@ -65,8 +65,8 @@
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Messages:</span>
-                        <span class="strong">0/</span>
-                        <span class="strong red">0</span>
+                        <span class="strong">{{@count($allMessages)}}/</span>
+                        <span class="strong red">{{@count($newMessages)}}</span>
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Name:</span>

@@ -26,6 +26,7 @@ Route::get('/dashboard', 'PagesController@showDashboardPage')->name('showDashboa
 Route::get('/questionarre','PagesController@showQuestionarePage')->name('showQuestionare')->middleware('admin');
 Route::get('/worksheet', 'PagesController@showWorksheetPage')->name('showWorksheet')->middleware('admin');
 Route::get('/diet-plan', 'PagesController@showDietPlanPage')->name('showDietPlan')->middleware('admin');
+Route::get('/diet-plan/{id}', 'PagesController@showDietPlanPageWithParam')->name('showDietPlanParam')->middleware('admin');
 Route::get('/videos', 'PagesController@showVideosPage')->name('showVideos')->middleware('admin');
 Route::get('/videos/{parameter}', 'PagesController@showVideoPage')->name('showVideos')->middleware('admin');
 Route::get('/selectsub', 'PagesController@selectSubscriptionType')->name('selectsub')->middleware('admin');

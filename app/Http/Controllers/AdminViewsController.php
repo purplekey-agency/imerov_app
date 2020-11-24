@@ -9,6 +9,9 @@ use App\UserVideos;
 use App\Library;
 use App\SubscriptionType;
 use App\UserWorksheet;
+use App\UserDietPlan;
+use App\Comments;
+use Auth;
 
 class AdminViewsController extends Controller
 {
@@ -22,7 +25,10 @@ class AdminViewsController extends Controller
         $inactiveusers = count(User::where('type_of_user', 0)->where('subscription_type', 0)->get());
         $activeusers = count(User::where('type_of_user', 0)->whereIn('subscription_type', [1,2,3,4,5])->get());
 
-        return view('admin.dashboard')->with(['inactiveusers'=>$inactiveusers, 'activeusers'=>$activeusers]);
+        $newMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', false)->get();
+        $allMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', true)->get();
+
+        return view('admin.dashboard')->with(['inactiveusers'=>$inactiveusers, 'activeusers'=>$activeusers, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages]);
     }
 
     public function showUsersPage(){
@@ -38,7 +44,10 @@ class AdminViewsController extends Controller
         $birthday = UserQuestionare::where('user_id', $id)->first();
         $birthday = $birthday->date_of_birth;
 
-        return view('admin.user.dashboard')->with(['user'=>$user, 'birthday'=>$birthday]);
+        $newMessages = Comments::where('receipent_id', $id)->where('status', false)->get();
+        $allMessages = Comments::where('receipent_id', $id)->where('status', true)->get();
+
+        return view('admin.user.dashboard')->with(['user'=>$user, 'birthday'=>$birthday, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages]);
     }
 
     public function showUserQuestionarePage($id){
@@ -159,50 +168,113 @@ class AdminViewsController extends Controller
     }
 
     public function updateSpreadsheet(Request $request){
-        dd($request->all());
+        #dd($request->all());
+        $errors = [];
 
-        $user = $request->userid;
+        $user = User::where('id', $request->userid)->first();
 
         for($i=0; $i<6; $i++){
-
-            if(!isset($request->{"date_" . $i . "_" . $user->id})){
-                dd("You haven't selected date.");
-            }
-            if(!isset($request->{"start_" . $i . "_" . $user->id})){
-                dd("You haven't selected starting time.");
-            }
-            if(!isset($request->{"finish_" . $i . "_" . $user->id})){
-                dd("You haven't selected ending time.");
-            }
 
             for($j=0; $j<6; $j++){
                 if(isset($request->{"video_" . $i . "_" . $j})){
 
-                    $worksheet = new UserWorksheet();
-                    if(!isset($request->{"strech_" . $i . "_" . $user->id})){
-                        
+                    if(!isset($request->{"date_" . $i . "_" . $user->id})){
+                        #dd("You haven't selected date.", $request->{"date_" . $i . "_" . $user->id}, $i);
+                        return redirect()->back()->with('error', "You haven't selected date.");
                     }
-                    else{
+                    if(!isset($request->{"start_" . $i . "_" . $user->id})){
+                        #dd("You haven't selected starting time.", $request->{"start_" . $i . "_" . $user->id}, $i);
+                        return redirect()->back()->with('error', "You haven't selected starting time.");
+                    }
+                    if(!isset($request->{"finish_" . $i . "_" . $user->id})){
+                        return redirect()->back()->with('error', "You haven't selected ending time.");
+                    }
 
-                    }
+                    $worksheet = new UserWorksheet();                  
+                    $worksheet->video_id = $request->{"video_" . $i . "_" . $j};
+                    $worksheet->user_id = $user->id;
+                    $worksheet->date = $request->{"date_" . $i . "_" . $user->id};
+                    $worksheet->muscle_group = $request->{"muscle_group_" . $i . "_" . $user->id};
+                    $worksheet->start = "Test";
+                    $worksheet->finish= "Test";
 
-                    if(!isset($request->{"warm_" . $i . "_" . $user->id})){
-                        
+                    if(isset($request->{"reps_set_" . $i . "_" . $j . "_0"}) && isset($request->{"weight_set_" . $i . "_" . $j . "_0"})){
+                        $worksheet->reps_1 = $request->{"reps_set_" . $i . "_" . $j . "_0"};
+                        $worksheet->weight_1 = $request->{"reps_set_" . $i . "_" . $j . "_0"};
                     }
-                    else{
-                        
+                    if(isset($request->{"reps_set_" . $i . "_" . $j . "_1"}) && isset($request->{"weight_set_" . $i . "_" . $j . "_1"})){
+                        $worksheet->reps_2 = $request->{"reps_set_" . $i . "_" . $j . "_1"};
+                        $worksheet->weight_2 = $request->{"reps_set_" . $i . "_" . $j . "_1"};
+                    }
+                    if(isset($request->{"reps_set_" . $i . "_" . $j . "_2"}) && isset($request->{"weight_set_" . $i . "_" . $j . "_2"})){
+                        $worksheet->reps_3 = $request->{"reps_set_" . $i . "_" . $j . "_2"};
+                        $worksheet->weight_3 = $request->{"reps_set_" . $i . "_" . $j . "_2"};
+                    }
+                    if(isset($request->{"reps_set_" . $i . "_" . $j . "_3"}) && isset($request->{"weight_set_" . $i . "_" . $j . "_3"})){
+                        $worksheet->reps_4 = $request->{"reps_set_" . $i . "_" . $j . "_3"};
+                        $worksheet->weight_4 = $request->{"reps_set_" . $i . "_" . $j . "_3"};
+                    }
+                    if(isset($request->{"reps_set_" . $i . "_" . $j . "_4"}) && isset($request->{"weight_set_" . $i . "_" . $j . "_4"})){
+                        $worksheet->reps_5 = $request->{"reps_set_" . $i . "_" . $j . "_4"};
+                        $worksheet->weight_5 = $request->{"reps_set_" . $i . "_" . $j . "_4"};
+                    }
+                    if(isset($request->{"reps_set_" . $i . "_" . $j . "_5"}) && isset($request->{"weight_set_" . $i . "_" . $j . "_5"})){
+                        $worksheet->reps_6 = $request->{"reps_set_" . $i . "_" . $j . "_5"};
+                        $worksheet->weight_6 = $request->{"reps_set_" . $i . "_" . $j . "_5"};
                     }
                     
-                    $worksheet->video_id = $request->{"video_" . $i . "_" . $j};
-                    $worksheet->date = $request->{"date_" . $i . "_" . $user->id};
-                    $worksheet->muscle_group = $request->{"date_" . $i . "_" . $user->id};
+                    try{
+                        $worksheet->save();
+                    }
+                    catch(\Exception $e){
+                        return redirect()->back()->with('error', $e->getMessage());
+                    }
 
                 }
             }
         }
+
+        return redirect()->back()->with('success', 'You have succesfully updated the user\'s worksheet.');
     }
 
     public function updateDietPlan(Request $request){
-        dd($request->all());
+        #dd($request->all());
+
+        $user = User::where('id', $request->userid)->first();
+
+        for($i=1; $i<=5; $i++){
+            if(isset($request->{'date_' . $i})){
+                $date = $request->{'date_' . $i};
+
+                for($j = 1; $j<=5; $j++){
+
+                    if(isset($request->{"meal_type_".$i."_".$j."_1"}) && isset($request->{"meal_".$i."_".$j."_1"})){
+                        $userDietPlan = new UserDietPlan();
+                        $userDietPlan->user_id = $user->id;
+                        $userDietPlan->date = $date;
+                        $userDietPlan->meal_no = $j;
+    
+                        $userDietPlan->meal_type_1 = $request->{"meal_type_".$i."_".$j."_1"};
+                        $userDietPlan->meal_weight_1 = $request->{"meal_".$i."_".$j."_1"};
+                        $userDietPlan->meal_type_2 = $request->{"meal_type_".$i."_".$j."_2"};
+                        $userDietPlan->meal_weight_2 = $request->{"meal_".$i."_".$j."_2"};
+                        $userDietPlan->meal_type_3 = $request->{"meal_type_".$i."_".$i."_3"};
+                        $userDietPlan->meal_weight_3 = $request->{"meal_".$i."_".$j."_3"};
+                        $userDietPlan->meal_type_4 = $request->{"meal_type_".$i."_".$j."_4"};
+                        $userDietPlan->meal_weight_4 = $request->{"meal_".$i."_".$j."_4"};
+                        $userDietPlan->meal_type_5 = $request->{"meal_type_".$i."_".$j."_5"};
+                        $userDietPlan->meal_weight_5 = $request->{"meal_".$i."_".$j."_5"};
+    
+                        $userDietPlan->save();
+                    }
+
+
+                }
+
+            }
+        }
+
+
+        return redirect()->back()->with('success', 'You have successfully updated user diet plan.');
     }
 }

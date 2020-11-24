@@ -78,6 +78,19 @@
                         </form>
                     </div>
 
+                    @if(Session::has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{Session::get('success')}}
+                    </div>
+                    @endif
+
+                    @if(Session::has('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{Session::get('error')}}
+                    </div>
+                    @endif
+
+
                     @foreach($users as $user)
                         <div id="userclick-{{$user->id}}">
                             <div class="d-flex">
@@ -326,6 +339,14 @@
                                                 <div class="user-input-form">
 
                                                 <table class="diet-plan-table mb-5">
+                                                    <tr class="d-flex">
+                                                        <div class="col-6 d-flex">
+                                                            <p class="uppercase m-0">DATE</p>
+                                                        </div>
+                                                        <div class="col-6 d-flex">
+                                                            <input type="date" name="date_{{$i}}" class="form-control bg-brown">
+                                                        </div>
+                                                    </tr>
                                                     <tr>
                                                         <th>Lean protein</th>
                                                         <th>Vegetables</th>
@@ -347,19 +368,41 @@
                                                     @for($k = 1; $k<6; $k++)
                                                     <tr>
                                                         <th>meal 0{{$k}}</th>
+                                                        <input type="hidden" value="meal 0{{$k}}" name="hiddenvalue_{{$i}}_{{$k}}">
                                                         @for($j = 1; $j<6; $j++)
-                                                        <td><input class="bg-brown" type="text" name="meal_{{$j}}_{{$k}}_{{$i}}" id="meal_{{$j}}_{{$k}}_{{$i}}"></td>
+                                                        <td>
+                                                        <select name="meal_type_{{$i}}_{{$k}}_{{$j}}" class="bg-brown">
+                                                            <option value="" selected disabled>Select one</option>
+                                                            <option value="Lean protein">Lean protein</option>
+                                                            <option value="Vegetables">Vegetables</option>
+                                                            <option value="Fruits">Fruits</option>
+                                                            <option value="Grains">Grains</option>
+                                                            <option value="Healthy Fats">Healthy Fats</option>
+                                                            <option value="Dairy Products">Dairy Products</option>
+                                                        </select>
+                                                        <input class="bg-brown" type="text" name="meal_{{$i}}_{{$k}}_{{$j}}" id="meal_{{$i}}_{{$k}}_{{$j}}">
+                                                        </td>
                                                         @endfor
                                                     </tr>
                                                     @endfor
                                                     <tr>
-                                                        <td>snack</td>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
+                                                        <th>snack</th>
+                                                        @for($j = 1; $j<6; $j++)
+                                                        <td>
+                                                        <select name="meal_type_snack_{{$i}}_{{$j}}" class="bg-brown">
+                                                            <option value="" selected disabled>Select one</option>
+                                                            <option value="Lean protein">Lean protein</option>
+                                                            <option value="Vegetables">Vegetables</option>
+                                                            <option value="Fruits">Fruits</option>
+                                                            <option value="Grains">Grains</option>
+                                                            <option value="Healthy Fats">Healthy Fats</option>
+                                                            <option value="Dairy Products">Dairy Products</option>
+                                                        </select>
+                                                        <input class="bg-brown" type="text" name="meal_snack_{{$i}}_{{$j}}" id="meal_{{$i}}_{{$j}}_1">
+                                                        </td>
+                                                        @endfor
                                                     </tr>
+
                                                 </table>
                                                 </div>
                                             </div>

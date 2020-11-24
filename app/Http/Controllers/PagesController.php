@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\UserQuestionare;
 use App\SubscriptionType;
+use App\Comments;
+use App\UserDietPlan;
 
 class PagesController extends Controller
 {
@@ -20,7 +22,10 @@ class PagesController extends Controller
     public function showDashboardPage(){
 
         $userQuestionare = UserQuestionare::where('user_id', Auth::user()->id)->first();
-        return view('user.dashboard')->with(['userQuestionare'=>$userQuestionare]);
+        $newMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', false)->get();
+        $allMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', true)->get();
+
+        return view('user.dashboard')->with(['userQuestionare'=>$userQuestionare, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages]);
     }
 
     public function showQuestionarePage(){
@@ -33,7 +38,31 @@ class PagesController extends Controller
     }
 
     public function showDietPlanPage(){
-        return view('user.dietplan');
+
+        $user = Auth::user();
+
+        $today = \Carbon\Carbon::now()->format('Y-m-d');
+
+        $userDiets = UserDietPlan::where('user_id', $user->id)->where('date', '>=', $today)->take(7)->get();
+
+        $todaysDiet = false;
+
+        foreach($userDiets as $userDiet){
+            if($userDiet->date == $today){
+                $todaysDiet = true;
+
+                return redirect('/diet-plan/' . $userDiet->id);
+            }
+        }
+
+        return view('user.dietplan')->with(['userDiets'=>$userDiets, 'todaysDiet'=>$todaysDiet, 'userDiets'=>$userDiets]);
+    }
+
+    public function showDietPlanPageWithParam($id){
+        $userDiet = UserDietPlan::where('id', $id)->first();
+        #dd($userDiet);
+
+        return view('user.todaydietplan')->with(['userDiet'=>$userDiet]);
     }
 
     public function showVideosPage(){

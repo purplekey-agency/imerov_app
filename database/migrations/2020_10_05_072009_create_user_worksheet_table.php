@@ -21,7 +21,6 @@ class CreateUserWorksheetTable extends Migration
             $table->string('muscle_group');
             $table->string('start');
             $table->string('finish');
-            $table->integer('video_id');
             $table->integer('reps_1')->nullable();
             $table->string('weight_1')->nullable();
             $table->integer('reps_2')->nullable();

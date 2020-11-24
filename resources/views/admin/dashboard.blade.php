@@ -82,7 +82,7 @@
                     <div class="pmargin-0">
                         <p class="text-secondary">Active subscriptions: <strong>{{$activeusers}}</strong></p>
                         <p class="text-secondary">Inactive subscriptions:<strong class="red">{{$inactiveusers}}</strong></p>
-                        <p class="text-secondary">Messages: <strong>0/</strong><strong class="red">0</strong></p>
+                        <p class="text-secondary">Messages: <strong>{{@count($allMessages)}}/</strong><strong class="red">{{@count($newMessages)}}</strong></p>
                     </div>
                 </div>
 

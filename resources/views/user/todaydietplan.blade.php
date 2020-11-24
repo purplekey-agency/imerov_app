@@ -59,8 +59,6 @@
                     
                     <div class="">
                         
-                        @if($todaysDiet)
-
                         <div class="table-container">
                         
                             <table class="diet-plan-table mb-5">
@@ -136,25 +134,6 @@
                             </table>
                         
                         </div>
-
-                        @else
-                        <div class="table-container">
-                        
-                            <table class="diet-plan-table mb-5">
-                                <tr>
-                                    <td>There is no defined Diet plan for today. Click on the following links to see planned diet plan.</td>
-                                </tr>
-                                @foreach($userDiets as $userDiet)
-                                <tr>
-                                    <td><a href="/diet-plan/{{$userDiet->id}}">{{$userDiet->date}}</a></td>
-                                </tr>
-                                @endforeach
-                            </table>
-
-                        </div>
-
-
-                        @endif
 
                     </div>
 

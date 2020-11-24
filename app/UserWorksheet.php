@@ -12,7 +12,7 @@ class UserWorksheet extends Model
     * @var string
     * 
    */
-   protected $table = 'userworksheet';
+   protected $table = 'user_worksheet';
 
     /**
      * The attributes that are mass assignable.

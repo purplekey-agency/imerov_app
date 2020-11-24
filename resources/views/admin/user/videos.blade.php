@@ -66,36 +66,19 @@
                     
                     </div>
 
-                    <div class="row col-12 col-md-offset-2 justify-content-between">
-                        <div class="hover-text">
+                    <div class="row col-12 col-md-offset-2">
+                        <div class="hover-text mx-3">
                             <a href="/admin/users/{{$user->id}}">
                                 <p class="text-secondary">Dashboard</p>
                             </a>
                         </div>
     
-                        <div class="hover-text">
+                        <div class="hover-text mx-3">
                             <a href="/admin/users/{{$user->id}}/questionarre">
                                 <p class="text-secondary">Questionarre</p>
                             </a>
                         </div>
     
-                        <div class="hover-text">
-                            <a href="/admin/users/{{$user->id}}/worksheet">
-                                <p class="text-secondary">Worksheet</p>
-                            </a>
-                        </div>
-    
-                        <div class="hover-text">
-                            <a href="/admin/users/{{$user->id}}/diet-plan">
-                                <p class="text-secondary">Diet Plan</p>
-                            </a>
-                        </div>
-    
-                        <div class="hover-text">
-                            <a href="/admin/users/{{$user->id}}/videos">
-                                <p class="strong">Videos</p>
-                            </a>
-                        </div>
                     </div>
     
 

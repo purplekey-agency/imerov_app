@@ -11288,6 +11288,10 @@ select {
   width: 100% !important;
 }
 
+.diet-plan-table-w input {
+  text-align: center;
+}
+
 .diet-plan-table-w tr {
   margin-bottom: 15px;
   width: 100% !important;
