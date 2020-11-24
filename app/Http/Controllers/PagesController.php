@@ -51,16 +51,16 @@ class PagesController extends Controller
             if($userDiet->date == $today){
                 $todaysDiet = true;
 
-                return redirect('/diet-plan/' . $userDiet->id);
+                return redirect('/diet-plan/' . $userDiet->date);
             }
         }
 
         return view('user.dietplan')->with(['userDiets'=>$userDiets, 'todaysDiet'=>$todaysDiet, 'userDiets'=>$userDiets]);
     }
 
-    public function showDietPlanPageWithParam($id){
-        $userDiet = UserDietPlan::where('id', $id)->first();
-        #dd($userDiet);
+    public function showDietPlanPageWithParam($date){
+        $userDiet = UserDietPlan::where('date', $date)->where('user_id', Auth::user()->id)->get();
+        dd($userDiet);
 
         return view('user.todaydietplan')->with(['userDiet'=>$userDiet]);
     }
