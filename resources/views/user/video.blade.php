@@ -2,6 +2,11 @@
 <html>
 <head>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+
+    <title>Console Imerov</title>
 </head>
 
 <body>
