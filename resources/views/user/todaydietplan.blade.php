@@ -88,54 +88,184 @@
                             <span class="upperace my-5">choose any foods from each column above to make your meals with the amounts below</span>
 
                             <table class="diet-plan-table-w mt-5">
-                                <tr>
-                                    <th>meal 01</th>
-                                    <td></th>
-                                    <td></th>
-                                    <td></th>
-                                    <td></th>
-                                    <td></th>
-                                </tr>
-                                <tr>
-                                    <th>meal 02</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>meal 03</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>meal 04</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>meal 05</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>snack</td>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
+                                @foreach($userDiet as $meal)
+                                    @if($meal->meal_no == 1)
+                                        <tr>
+                                            <th>meal 01</th>
+                                            <td>
+                                                {{$meal->meal_type_1}}
+                                                <br>
+                                                {{$meal->meal_weight_1}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_2}}
+                                                <br>
+                                                {{$meal->meal_weight_2}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_3}}
+                                                <br>
+                                                {{$meal->meal_weight_3}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_4}}
+                                                <br>
+                                                {{$meal->meal_weight_4}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_5}}
+                                                <br>
+                                                {{$meal->meal_weight_5}}
+                                            </th>
+                                        </tr>
+                                    @elseif($meal->meal_no == 2)
+                                    <tr>
+                                            <th>meal 02</th>
+                                            <td>
+                                                {{$meal->meal_type_1}}
+                                                <br>
+                                                {{$meal->meal_weight_1}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_2}}
+                                                <br>
+                                                {{$meal->meal_weight_2}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_3}}
+                                                <br>
+                                                {{$meal->meal_weight_3}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_4}}
+                                                <br>
+                                                {{$meal->meal_weight_4}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_5}}
+                                                <br>
+                                                {{$meal->meal_weight_5}}
+                                            </th>
+                                        </tr>
+                                    @elseif($meal->meal_no == 3)
+                                    <tr>
+                                            <th>meal 02</th>
+                                            <td>
+                                                {{$meal->meal_type_1}}
+                                                <br>
+                                                {{$meal->meal_weight_1}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_2}}
+                                                <br>
+                                                {{$meal->meal_weight_2}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_3}}
+                                                <br>
+                                                {{$meal->meal_weight_3}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_4}}
+                                                <br>
+                                                {{$meal->meal_weight_4}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_5}}
+                                                <br>
+                                                {{$meal->meal_weight_5}}
+                                            </th>
+                                        </tr>
+                                    @elseif($meal->meal_no == 4)
+                                    <tr>
+                                            <th>meal 02</th>
+                                            <td>
+                                                {{$meal->meal_type_1}}
+                                                <br>
+                                                {{$meal->meal_weight_1}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_2}}
+                                                <br>
+                                                {{$meal->meal_weight_2}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_3}}
+                                                <br>
+                                                {{$meal->meal_weight_3}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_4}}
+                                                <br>
+                                                {{$meal->meal_weight_4}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_5}}
+                                                <br>
+                                                {{$meal->meal_weight_5}}
+                                            </th>
+                                        </tr>
+                                    @elseif($meal->meal_no == 5)
+                                    <tr>
+                                            <th>meal 02</th>
+                                            <td>
+                                                {{$meal->meal_type_1}}
+                                                <br>
+                                                {{$meal->meal_weight_1}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_2}}
+                                                <br>
+                                                {{$meal->meal_weight_2}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_3}}
+                                                <br>
+                                                {{$meal->meal_weight_3}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_4}}
+                                                <br>
+                                                {{$meal->meal_weight_4}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_5}}
+                                                <br>
+                                                {{$meal->meal_weight_5}}
+                                            </th>
+                                        </tr>
+                                    @elseif($meal->meal_no == 6)
+                                    <tr>
+                                            <th>meal 02</th>
+                                            <td>
+                                                {{$meal->meal_type_1}}
+                                                <br>
+                                                {{$meal->meal_weight_1}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_2}}
+                                                <br>
+                                                {{$meal->meal_weight_2}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_3}}
+                                                <br>
+                                                {{$meal->meal_weight_3}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_4}}
+                                                <br>
+                                                {{$meal->meal_weight_4}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_5}}
+                                                <br>
+                                                {{$meal->meal_weight_5}}
+                                            </th>
+                                        </tr>
+                                    @endif
+
+                                @endforeach
                             </table>
                         
                         </div>

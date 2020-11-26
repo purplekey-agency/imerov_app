@@ -1,30 +1,45 @@
-<form action="" method="post">
 
+<form action="/worksheet/updatebodym" method="post" enctype='multipart/form-data'>
+
+    @if(Session::has('success'))
+    <div class="alert alert-success my-5" role="alert">
+        {{Session::get('success')}}
+    </div>
+    @endif
+
+    @if(Session::has('error'))
+    <div class="alert alert-danger my-5" role="alert">
+        {{Session::get('error')}}
+    </div>
+    @endif
+
+
+    @csrf
     <div class="row py-5 justify-content-between">
 
         <div class="col-6">
-            <div class="bb-br mh-40">
+            <div class="mh-40">
                 <p class="uppercase">where I am now?</p>
             </div>
 
-            <div class="bb-bl mh-40">
+            <div class="mh-40">
                 <p class="uppercase"></p>
-                <p class="uppercase text-secondary">date</p>
+                <input type="text" disabled class="uppercase text-secondary custom-form-input" id="datevalue" name="date" placeholder="date" required>
             </div>
 
-            <div class="bb-bl mh-40">
+            <div class="mh-40">
                 <p class="uppercase"></p>
-                <p class="uppercase text-secondary">weight</p>
+                <input type="number" class="uppercase text-secondary custom-form-input" id="weight" name="weight" placeholder="weight" required>
             </div>
 
-            <div class="bb-bl mh-40">
+            <div class="mh-40">
                 <p class="uppercase"></p>
-                <p class="uppercase text-secondary">height</p>
+                <input type="number" class="uppercase text-secondary custom-form-input" id="height" name="height" placeholder="height" required>
             </div>
 
-            <div class="bb-bl mh-40">
+            <div class="mh-40">
                 <p class="uppercase"></p>
-                <p class="uppercase text-secondary">bodyfat</p>
+                <input type="number" class="uppercase text-secondary custom-form-input" id="bodyfat" name="bodyfat" placeholder="bodyfat" required>
             </div>
 
             <div class="bb-bl mh-40"></div>
@@ -34,7 +49,8 @@
 
         <div class="col-6">
             <div class="image-container">
-                <img src="#">
+                <input type="file" name="image" id="image" accept="image/*" required>
+                <label for="image"><img class="hidden-image" id="hidden-image" alt="Your image"></label>
             </div>
         </div>
 
@@ -53,228 +69,73 @@
     <div class="row col-12 p-3">
         <div class="col-6">
             <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="neck" name="neck">
+                <input type="text" class="custom-form-input" id="neck" name="neck" required>
                 <label for="neck" class="custom-form-label uppercase">neck</label>
             </div>
             <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="chest" name="chest">
+                <input type="text" class="custom-form-input" id="chest" name="chest" required>
                 <label for="chest" class="custom-form-label uppercase">chest</label>
             </div>
             <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="bicep" name="bicep">
+                <input type="text" class="custom-form-input" id="bicep" name="bicep" required>
                 <label for="bicep" class="custom-form-label uppercase">Bicep(flexed)</label>
             </div>
             <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="waist" name="waist">
+                <input type="text" class="custom-form-input" id="waist" name="waist" required>
                 <label for="waist" class="custom-form-label uppercase">waist</label>
-            </div>
-            <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="etc1" name="etc1">
-                <label for="etc1" class="custom-form-label uppercase">etc</label>
             </div>
         </div>
         <div class="col-6">
             <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="hips" name="hips">
+                <input type="text" class="custom-form-input" id="hips" name="hips" required>
                 <label for="hips" class="custom-form-label uppercase">hips</label>
             </div>
             <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="thigh" name="thigh">
+                <input type="text" class="custom-form-input" id="thigh" name="thigh" required>
                 <label for="thigh" class="custom-form-label uppercase">thigh</label>
             </div>
             <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="calf" name="calf">
+                <input type="text" class="custom-form-input" id="calf" name="calf" required>
                 <label for="calf" class="custom-form-label uppercase">calf</label>
             </div>
-            <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="etc2" name="etc2">
-                <label for="etc2" class="custom-form-label uppercase">etc</label>
-            </div>
-            <div class="custom-form-group">
-                <input type="text" class="custom-form-input" id="etc3" name="etc3">
-                <label for="etc3" class="custom-form-label uppercase">etc</label>
-            </div>
         </div>
     </div>
 
-    <div class="row col-12 p-3 border-brown-c justify-content-center">
-
-        <div class="col-12 d-flex align-items-center justify-content-center">
-
-            <p class="uppercase ts-14">MAXIMUM/PERSONAL BESTS</p>
-
-        </div>
-
-        <div class="row col-12 justify-content-between">
-            
-            <div class="row col-6">
-                <div class="col-6 mh-40">
-                    <p class="uppercase text-secondary">
-                        Exercise
-                    </p>
-                </div>
-                <div class="col-3 mh-40">
-                    <p class="uppercase text-secondary">
-                        Rec
-                    </p>
-                </div>
-            </div>
-
-            <div class="row col-6">
-                <div class="col-6 mh-40">
-                    <p class="uppercase text-secondary">
-                        Exercise
-                    </p>
-                </div>
-                <div class="col-3 mh-40">
-                    <p class="uppercase text-secondary">
-                        Rec
-                    </p>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="row col-12 justify-content-between mb-3">
-            
-            <div class="row col-6">
-                <div class="col-8 mh-40 align-items-center justify-content-center d-flex p-0">
-                    <select class="col-12 bg-brown text-white p-0 border-right-black">
-                        <option>Option</option>
-                    </select>
-                </div>
-                <div class="col-4 mh-40 d-flex align-items-center justify-content-center p-0">
-                    <select class="col-12 bg-brown text-white p-0">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row col-6">
-                <div class="col-8 mh-40 align-items-center justify-content-center d-flex p-0">
-                    <select class="col-12 bg-brown text-white p-0 border-right-black">
-                        <option>Option</option>
-                    </select>
-                </div>
-                <div class="col-4 mh-40 d-flex align-items-center justify-content-center p-0">
-                    <select class="col-12 bg-brown text-white p-0">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="row col-12 justify-content-between mb-3">
-            
-            <div class="row col-6">
-                <div class="col-8 mh-40 align-items-center justify-content-center d-flex p-0">
-                    <select class="col-12 bg-brown text-white p-0 border-right-black">
-                        <option>Option</option>
-                    </select>
-                </div>
-                <div class="col-4 mh-40 d-flex align-items-center justify-content-center p-0">
-                    <select class="col-12 bg-brown text-white p-0">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row col-6">
-                <div class="col-8 mh-40 align-items-center justify-content-center d-flex p-0">
-                    <select class="col-12 bg-brown text-white p-0 border-right-black">
-                        <option>Option</option>
-                    </select>
-                </div>
-                <div class="col-4 mh-40 d-flex align-items-center justify-content-center p-0">
-                    <select class="col-12 bg-brown text-white p-0">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="row col-12 justify-content-between mb-3">
-            
-            <div class="row col-6">
-                <div class="col-8 mh-40 align-items-center justify-content-center d-flex p-0">
-                    <select class="col-12 bg-brown text-white p-0 border-right-black">
-                        <option>Option</option>
-                    </select>
-                </div>
-                <div class="col-4 mh-40 d-flex align-items-center justify-content-center p-0">
-                    <select class="col-12 bg-brown text-white p-0">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row col-6">
-                <div class="col-8 mh-40 align-items-center justify-content-center d-flex p-0">
-                    <select class="col-12 bg-brown text-white p-0 border-right-black">
-                        <option>Option</option>
-                    </select>
-                </div>
-                <div class="col-4 mh-40 d-flex align-items-center justify-content-center p-0">
-                    <select class="col-12 bg-brown text-white p-0">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="row col-12 justify-content-between mb-3">
-            
-            <div class="row col-6">
-                <div class="col-8 mh-40 align-items-center justify-content-center d-flex p-0">
-                    <select class="col-12 bg-brown text-white p-0 border-right-black">
-                        <option>Option</option>
-                    </select>
-                </div>
-                <div class="col-4 mh-40 d-flex align-items-center justify-content-center p-0">
-                    <select class="col-12 bg-brown text-white p-0">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row col-6">
-                <div class="col-8 mh-40 align-items-center justify-content-center d-flex p-0">
-                    <select class="col-12 bg-brown text-white p-0 border-right-black">
-                        <option>Option</option>
-                    </select>
-                </div>
-                <div class="col-4 mh-40 d-flex align-items-center justify-content-center p-0">
-                    <select class="col-12 bg-brown text-white p-0">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
-                </div>
-            </div>
-            
-        </div>
-
-    </div>
 
     <div class="row col-12 p-3 justify-content-end">
         <button type="submit" class="btn btn-transparent">Update</button>
     </div> 
 
 </form>
+
+<script>
+
+$(document).ready( function() {
+    var d = new Date();
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    date = d.getDate() + "." + d.getMonth() + "." + d.getFullYear();
+    $('#datevalue').val(date);
+ 
+});
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#hidden-image').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+
+    $('#hidden-image').removeClass('hidden-image');
+    $('#hidden-image').addClass('image-show');
+    $('#image').addClass('hidden-image');
+  }
+}
+
+$("#image").change(function() {
+  readURL(this);
+});
+
+</script>

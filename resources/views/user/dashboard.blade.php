@@ -85,18 +85,6 @@
                         <span class="text-secondary">Dob:</span>
                         <span class="strong">{{$userQuestionare->date_of_birth}}</span>
                     </div>
-                    <div class="text-small">
-                        <span class="text-secondary">Detail 1:</span>
-                        <span class="strong">Detail</span>
-                    </div>
-                    <div class="text-small">
-                        <span class="text-secondary">Detail 2:</span>
-                        <span class="strong">Detail</span>
-                    </div>
-                    <div class="text-small">
-                        <span class="text-secondary">Detail 3:</span>
-                        <span class="strong">Detail</span>
-                    </div>
                 </div>
 
                 <div class="row col-6">
@@ -105,9 +93,15 @@
                         <div class="row m-0">
                             <p>Before</p>
                         </div>
+                        @if($userPersonalBests1 !== null)
                         <div class="image-container">
-                            <img src="#">
+                            <img src="/storage/user_images/{{$userPersonalBests1->imagepath}}">
                         </div>
+                        @else
+                        <div class="image-container">
+                            You have not uploaded image yet.
+                        </div>
+                        @endif
                         
                     </div>
 
@@ -115,10 +109,15 @@
                         <div class="row m-0">
                             <p>After</p>
                         </div>
-
+                        @if($userPersonalBests2 !== null)
                         <div class="image-container">
-                            <img src="#">
+                            <img src="/storage/user_images/{{$userPersonalBests2->imagepath}}">
                         </div>
+                        @else
+                        <div class="image-container">
+                            You have not uploaded image yet.
+                        </div>
+                        @endif
                     </div>
                 </div>
 

@@ -62,11 +62,16 @@
 
                 <div class="col-7 md-offset-2">
                     
-                    <a href="/videos/url">
-                        <div class="">
-                        </div>
-                    </a>
-
+                    @foreach($allVideos as $video)
+                        <a href="/videos/{{$video->id}}" class="row">
+                            <div>
+                                {{$video->id}} . 
+                            </div>
+                            <div class="col-6">
+                                {{$video->exercise_name}}
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
 
             </div>

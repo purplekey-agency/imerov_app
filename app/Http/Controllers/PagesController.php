@@ -8,6 +8,8 @@ use App\UserQuestionare;
 use App\SubscriptionType;
 use App\Comments;
 use App\UserDietPlan;
+use App\UserPersonalBests;
+use App\Library;
 
 class PagesController extends Controller
 {
@@ -25,7 +27,14 @@ class PagesController extends Controller
         $newMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', false)->get();
         $allMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', true)->get();
 
-        return view('user.dashboard')->with(['userQuestionare'=>$userQuestionare, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages]);
+        $userPersonalBests1 = UserPersonalBests::where('user_id', Auth::user()->id)->first();
+        $userPersonalBests2 = UserPersonalBests::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->first();
+
+        if($userPersonalBests1->imagepath === $userPersonalBests2->imagepath){
+            $userPersonalBests2 = null;
+        }
+
+        return view('user.dashboard')->with(['userQuestionare'=>$userQuestionare, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages, 'userPersonalBests1'=>$userPersonalBests1, 'userPersonalBests2'=>$userPersonalBests2]);
     }
 
     public function showQuestionarePage(){
@@ -60,17 +69,42 @@ class PagesController extends Controller
 
     public function showDietPlanPageWithParam($date){
         $userDiet = UserDietPlan::where('date', $date)->where('user_id', Auth::user()->id)->get();
-        dd($userDiet);
+        #dd($userDiet);
 
         return view('user.todaydietplan')->with(['userDiet'=>$userDiet]);
     }
 
     public function showVideosPage(){
-        return view('user.videos');
+
+        $user = Auth::user();
+
+        $allVideos = "";
+
+        if($user->subscription_type == 1){
+            $allVideos = Library::where('subtype_1', true)->get();
+        }
+        elseif($user->subscription_type == 2){
+            $allVideos = Library::where('subtype_2', true)->get();
+        }
+        elseif($user->subscription_type == 3){
+            $allVideos = Library::where('subtype_3', true)->get();
+        }
+        elseif($user->subscription_type == 4){
+            $allVideos = Library::where('subtype_4', true)->get();
+        }
+        elseif($user->subscription_type == 5){
+            $allVideos = Library::where('subtype_5', true)->get();
+        }
+
+        #dd($allVideos);
+
+        return view('user.videos')->with(['allVideos'=>$allVideos]);
     }
 
     public function showVideoPage($parameter){
-        return view('user.video')->with('parameter', $parameter);
+
+        $video = Library::where('id', $parameter)->first();
+        return view('user.video')->with(['parameter'=>$parameter, 'video'=>$video]);
     }
 
     public function updateQuestionare(Request $request){
@@ -163,6 +197,44 @@ class PagesController extends Controller
         }
        
 
+    }
+
+    public function updateBodyMeasurments(Request $request){
+        #dd($request);
+
+        $userPersonalBests = new UserPersonalBests();
+        $userPersonalBests->user_id = Auth::user()->id;
+        $userPersonalBests->date = \Carbon\Carbon::now();
+        $userPersonalBests->weight = $request->weight;
+        $userPersonalBests->height = $request->height;
+        $userPersonalBests->bodyfat = $request->bodyfat;
+        
+        $userPersonalBests->neck = $request->neck;
+        $userPersonalBests->hips = $request->hips;
+        $userPersonalBests->chest = $request->chest;
+        $userPersonalBests->thigh = $request->thigh;
+        $userPersonalBests->bicep = $request->bicep;
+        $userPersonalBests->calf = $request->calf;
+        $userPersonalBests->waist = $request->waist;
+
+        $fileNameToStore = "";
+        $path = "";
+
+        if($request->image){
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('image')->storeAs('public/user_images',$fileNameToStore);
+        }
+
+        $userPersonalBests->imagepath = $fileNameToStore;
+        if($userPersonalBests->save()){
+            return redirect()->back()->with('success', 'You have succesfully updated your body beasurments');
+        }
+        else{
+            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
+        }
     }
 
     public function selectSubscriptionType(){

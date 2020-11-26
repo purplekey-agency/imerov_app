@@ -77,7 +77,8 @@ class AdminViewsController extends Controller
     }
 
     public function showAdminMessagesPage(){
-        return view('admin.messages');
+        $comments = Comments::where('receipent_id', Auth::user()->id)->get();
+        return view('admin.messages')->with(['comments'=>$comments]);
     }
 
     public function showAdminUploadPage(){

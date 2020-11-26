@@ -11038,11 +11038,23 @@ input[type=radio] {
 
 .image-container {
   width: 100%;
-  height: 300px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #000;
+}
+
+.image-container img {
+  width: 100%;
+}
+
+.image-container label {
+  margin: 0 !important;
+}
+
+.image-container label:hover {
+  opacity: 0.7;
 }
 
 .custom-form-group {
@@ -11054,6 +11066,19 @@ input[type=radio] {
   border: none;
   border-bottom: 1px solid #000;
   outline: none;
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .custom-form-input:focus {
@@ -11313,5 +11338,26 @@ select {
   color: #fff;
   min-width: 16.6666667% !important;
   height: 55px;
+}
+
+#comment-form {
+  width: 100%;
+  height: 100%;
+  background: #f3ece1;
+}
+
+#comment {
+  min-height: 300px;
+  background: transparent;
+}
+
+.hidden-image {
+  display: none;
+}
+
+.image-show {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 

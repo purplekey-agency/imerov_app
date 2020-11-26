@@ -33,6 +33,7 @@ Route::get('/selectsub', 'PagesController@selectSubscriptionType')->name('select
 Route::post('/selectsubtype', 'PagesController@updateSubscriptionType')->name('updatesub')->middleware('admin');
 
 Route::post('/questionarre/update', 'PagesController@updateQuestionare');
+Route::post('/worksheet/updatebodym', 'PagesController@updateBodyMeasurments');
 
 
 //admin routes
