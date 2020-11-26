@@ -11262,7 +11262,6 @@ select {
   width: 100%;
   border: none;
   outline: none;
-  height: 100%;
 }
 
 .user-input-form input[type=number] {

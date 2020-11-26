@@ -11,6 +11,7 @@ use App\SubscriptionType;
 use App\UserWorksheet;
 use App\UserDietPlan;
 use App\Comments;
+use App\UserPersonalBests;
 use Auth;
 
 class AdminViewsController extends Controller
@@ -47,7 +48,16 @@ class AdminViewsController extends Controller
         $newMessages = Comments::where('receipent_id', $id)->where('status', false)->get();
         $allMessages = Comments::where('receipent_id', $id)->where('status', true)->get();
 
-        return view('admin.user.dashboard')->with(['user'=>$user, 'birthday'=>$birthday, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages]);
+        $userPersonalBests1 = UserPersonalBests::where('user_id', $id)->first();
+        $userPersonalBests2 = UserPersonalBests::where('user_id', $id)->orderBy('id', 'desc')->first();
+
+        if($userPersonalBests1 !== null && $userPersonalBests2 !== null){
+            if($userPersonalBests1->imagepath === $userPersonalBests2->imagepath){
+                $userPersonalBests2 = null;
+            }
+        }
+
+        return view('admin.user.dashboard')->with(['user'=>$user, 'birthday'=>$birthday, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages, 'userPersonalBests1'=>$userPersonalBests1, 'userPersonalBests2'=>$userPersonalBests2]);
     }
 
     public function showUserQuestionarePage($id){

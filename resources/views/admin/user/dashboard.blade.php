@@ -113,44 +113,38 @@
                                 <span class="text-secondary">Dob:</span>
                                 <span class="strong">{{$birthday}}</span>
                             </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Detail 1:</span>
-                                <span class="strong">Detail</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Detail 2:</span>
-                                <span class="strong">Detail</span>
-                            </div>
-                            <div class="text-small">
-                                <span class="text-secondary">Detail 3:</span>
-                                <span class="strong">Detail</span>
-                            </div>
                         </div>
         
                         <div class="row col-8">
-        
+
                             <div class="col col-md-offset-2">
-                                <div class="d-flex">
-                                    <a href="" class="d-flex">
-                                        <p>Before</p>
-                                    </a>
+                                <div class="row m-0">
+                                    <p>Before</p>
                                 </div>
+                                @if($userPersonalBests1 !== null)
                                 <div class="image-container">
-                                    <img src="#">
+                                    <img src="/storage/user_images/{{$userPersonalBests1->imagepath}}">
                                 </div>
-                                
+                                @else
+                                <div class="image-container">
+                                    You have not uploaded image yet.
+                                </div>
+                                @endif
                             </div>
         
                             <div class="col col-md-offset-2">
-                                <div class="d-flex">
-                                    <a href="" class="d-flex">
-                                        <p>After</p>
-                                    </a>
+                                <div class="row m-0">
+                                    <p>After</p>
                                 </div>
-        
+                                @if($userPersonalBests2 !== null)
                                 <div class="image-container">
-                                    <img src="#">
+                                    <img src="/storage/user_images/{{$userPersonalBests2->imagepath}}">
                                 </div>
+                                @else
+                                <div class="image-container">
+                                    You have not uploaded image yet.
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

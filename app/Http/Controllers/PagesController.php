@@ -30,9 +30,12 @@ class PagesController extends Controller
         $userPersonalBests1 = UserPersonalBests::where('user_id', Auth::user()->id)->first();
         $userPersonalBests2 = UserPersonalBests::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->first();
 
-        if($userPersonalBests1->imagepath === $userPersonalBests2->imagepath){
-            $userPersonalBests2 = null;
+        if($userPersonalBests1 !== null && $userPersonalBests2 !== null){
+            if($userPersonalBests1->imagepath === $userPersonalBests2->imagepath){
+                $userPersonalBests2 = null;
+            }
         }
+
 
         return view('user.dashboard')->with(['userQuestionare'=>$userQuestionare, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages, 'userPersonalBests1'=>$userPersonalBests1, 'userPersonalBests2'=>$userPersonalBests2]);
     }
