@@ -347,6 +347,9 @@ select {
 .user-input-form{
     width: 100%;
     border-bottom: 1px solid #C2A274;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .user-input-form input{
@@ -381,6 +384,11 @@ select {
     opacity: 1;
 }
 
+.diet-plan-table{
+    width: 720px;
+    max-width: 720px;
+    min-width: 720px;
+}
 
 .diet-plan-table th{
     background: #000;
@@ -397,7 +405,10 @@ select {
     background: #C2A274;
     color: #fff;
 
-    padding: 15px;
+    padding: 15px 5px;
+    text-align: center;
+    width: 125px !important;
+    max-width: 125px !important;
 }
 
 .diet-plan-table-w{
@@ -432,8 +443,9 @@ select {
     background: #C2A274;
     color: #fff;
 
-    min-width: 16.6666667% !important;
     height: 55px;
+    width: 125px !important;
+    max-width: 125px !important;
 }
 
 #comment-form{

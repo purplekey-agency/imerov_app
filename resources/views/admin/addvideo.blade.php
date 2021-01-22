@@ -107,7 +107,7 @@
                                 <div class="my-3 form-group">
                                     <label for="">Avaliable for subscription type:</label>
                                     @foreach($subtypes as $subtype)
-                                        <div class="col-md-6">
+                                        <div class="col-md-12 d-flex justify-content-between">
                                             <label for="subtype-{{$subtype->id}}"> {{$subtype->subscription_type}} </label>
                                             <input type="checkbox" id="subtype-{{$subtype->id}}" name="subtype_{{$subtype->id}}" value="{{$subtype->id}}">
                                         </div>

@@ -68,20 +68,7 @@
                     </div>
                 </div>
 
-                <div class="col-7 col-md-offset-2">
-                    <div class="search-container mb-5">
-                        <form action="/admin/search" method="POST">
-                            @csrf
-                            <div class="input-group">
-                                <input type="text" name="search-data" class="form-control my-0 py-1" placeholder="Search">
-                                <div class="input-group-append">
-                                    <span class="input-group-text lime lighten-2">
-                                        <i class="fa fa-search text-grey" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="col-10 col-md-offset-2">
 
                     @if(Session::has('success'))
                     <div class="alert alert-success" role="alert">
@@ -151,14 +138,6 @@
                                             <div class="row col-12 px-0 pt-5 pb-2">
                                                 <div class="col-6">
                                                     <div class="row col-12 bg-brown mx-0 mb-3 p-0">
-                                                        <div class="col-3 d-flex border-right-black p-0 justify-content-center align-items-center">
-                                                            <p class="uppercase m-0">DATE</p>
-                                                        </div>
-                                                        <div class="col-9 d-flex border-right-black p-0 justify-content-center align-items-center">
-                                                            <input type="date" name="date_{{$i}}_{{$user->id}}" class="form-control bg-brown">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row col-12 bg-brown mx-0 mb-3 p-0">
                                                         <div class="col-6 p-0 d-flex justify-content-center align-items-center">
                                                             <p class="uppercase m-0"> MUSCLE GROUP </p>
                                                         </div>
@@ -176,16 +155,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
-                                                    <div class="row col-12 bg-brown mx-0 mb-3">
-                                                        <div class="col-6 p-0 py-1 d-flex flex-column justify-content-center align-items-center">
-                                                            <p class="uppercase m-0">Start</p>
-                                                            <input type="time" name="start_{{$i}}_{{$user->id}}" class="form-control bg-brown">
-                                                        </div>
-                                                        <div class="col-6 py-1 d-flex flex-column justify-content-center align-items-center">
-                                                            <p class="uppercase m-0 ">Finish</p>
-                                                            <input type="time" name="finish_{{$i}}_{{$user->id}}" class="form-control bg-brown">
-                                                        </div>
-                                                    </div>
                                                     <div class="row col-12 bg-brown mx-0 mb-3">
                                                         <div class="col-6 p-0 py-1 d-flex flex-column justify-content-center align-items-center">
                                                             <p class="uppercase m-0">STRECH</p>
@@ -339,52 +308,38 @@
                                         <form action="/admin/upload/worksheet/save" method="post" class="w-100 mb-5">
                                             @csrf
                                             <input type="hidden" name="userid" value="{{$user->id}}">
+                                            <div class="user-input-form-container">
+                                                <div class="user-input-form">
+                                                    <table class="diet-plan-table mb-5">
+                                                        <tr>
+                                                            <th>Lean protein</th>
+                                                            <th>Vegetables</th>
+                                                            <th>Fruits</th>
+                                                            <th>Grains</th>
+                                                            <th>Healty Fats</th>
+                                                            <th>Dairy Products</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Lean protein</td>
+                                                            <td>Vegetables</td>
+                                                            <td>Fruits</td>
+                                                            <td>Grains</td>
+                                                            <td>Healty Fats</td>
+                                                            <td>Dairy Products</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
                                             @for($i=1; $i<6; $i++)
                                             <div class="user-input-form-container">
                                                 <div class="user-input-form">
-
-                                                <table class="diet-plan-table mb-5">
-                                                    <tr class="d-flex">
-                                                        <div class="col-6 d-flex">
-                                                            <p class="uppercase m-0">DATE</p>
-                                                        </div>
-                                                        <div class="col-6 d-flex">
-                                                            <input type="date" name="date_{{$i}}" class="form-control bg-brown">
-                                                        </div>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Lean protein</th>
-                                                        <th>Vegetables</th>
-                                                        <th>Fruits</th>
-                                                        <th>Grains</th>
-                                                        <th>Healty Fats</th>
-                                                        <th>Dairy Products</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Lean protein</td>
-                                                        <td>Vegetables</td>
-                                                        <td>Fruits</td>
-                                                        <td>Grains</td>
-                                                        <td>Healty Fats</td>
-                                                        <td>Dairy Products</td>
-                                                    </tr>
-                                                </table>
                                                 <table class="diet-plan-table-w mt-5">
                                                     @for($k = 1; $k<6; $k++)
                                                     <tr>
                                                         <th>meal 0{{$k}}</th>
                                                         <input type="hidden" value="meal 0{{$k}}" name="hiddenvalue_{{$i}}_{{$k}}">
-                                                        @for($j = 1; $j<6; $j++)
+                                                        @for($j = 1; $j<7; $j++)
                                                         <td>
-                                                        <select name="meal_type_{{$i}}_{{$k}}_{{$j}}" class="bg-brown">
-                                                            <option value="" selected disabled>Select one</option>
-                                                            <option value="Lean protein">Lean protein</option>
-                                                            <option value="Vegetables">Vegetables</option>
-                                                            <option value="Fruits">Fruits</option>
-                                                            <option value="Grains">Grains</option>
-                                                            <option value="Healthy Fats">Healthy Fats</option>
-                                                            <option value="Dairy Products">Dairy Products</option>
-                                                        </select>
                                                         <input class="bg-brown" type="text" name="meal_{{$i}}_{{$k}}_{{$j}}" id="meal_{{$i}}_{{$k}}_{{$j}}">
                                                         </td>
                                                         @endfor
@@ -392,17 +347,8 @@
                                                     @endfor
                                                     <tr>
                                                         <th>snack</th>
-                                                        @for($j = 1; $j<6; $j++)
+                                                        @for($j = 1; $j<7; $j++)
                                                         <td>
-                                                        <select name="meal_type_snack_{{$i}}_{{$j}}" class="bg-brown">
-                                                            <option value="" selected disabled>Select one</option>
-                                                            <option value="Lean protein">Lean protein</option>
-                                                            <option value="Vegetables">Vegetables</option>
-                                                            <option value="Fruits">Fruits</option>
-                                                            <option value="Grains">Grains</option>
-                                                            <option value="Healthy Fats">Healthy Fats</option>
-                                                            <option value="Dairy Products">Dairy Products</option>
-                                                        </select>
                                                         <input class="bg-brown" type="text" name="meal_snack_{{$i}}_{{$j}}" id="meal_{{$i}}_{{$j}}_1">
                                                         </td>
                                                         @endfor

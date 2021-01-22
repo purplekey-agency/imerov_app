@@ -60,37 +60,65 @@ class DatabaseSeeder extends Seeder
 
         DB::table('subscription_type')->insert([
 
-            'subscription_type'=>'SubTypeA',
+            'subscription_type'=>'Online Mentoring',
+            'subscription_price'=>'150',
+            'subscription_description'=>'44 trainings (8 weeks)'
+        ]);
+
+        DB::table('subscription_type')->insert([
+
+            'subscription_type'=>'One on one Training',
+            'subscription_price'=>'125',
+            'subscription_description'=>'12 trainings'
+        ]);
+
+        DB::table('subscription_type')->insert([
+
+            'subscription_type'=>'Nutrition',
             'subscription_price'=>'100',
-            'subscription_description'=>'123'
+            'subscription_description'=>'1 month'
         ]);
 
         DB::table('subscription_type')->insert([
 
-            'subscription_type'=>'SubTypeB',
-            'subscription_price'=>'80',
-            'subscription_description'=>'abc'
+            'subscription_type'=>'Tehnique Training by muscle group',
+            'subscription_price'=>'100',
+            'subscription_description'=>'7 weeks'
         ]);
 
         DB::table('subscription_type')->insert([
 
-            'subscription_type'=>'SubTypeC',
-            'subscription_price'=>'60',
-            'subscription_description'=>'cda'
+            'subscription_type'=>'Giant set Program',
+            'subscription_price'=>'100',
+            'subscription_description'=>'20 Terms'
         ]);
 
         DB::table('subscription_type')->insert([
 
-            'subscription_type'=>'SubTypeD',
-            'subscription_price'=>'40',
-            'subscription_description'=>'xyz'
+            'subscription_type'=>'Session Consultation after training',
+            'subscription_price'=>'15',
+            'subscription_description'=>'Half hour/for users who have already bought some program.'
         ]);
 
         DB::table('subscription_type')->insert([
 
-            'subscription_type'=>'SubTypeF',
-            'subscription_price'=>'20',
-            'subscription_description'=>'zyx'
+            'subscription_type'=>'Session Consultation after training',
+            'subscription_price'=>'15',
+            'subscription_description'=>'Half hour/for users who have never bought any program.'
+        ]);
+
+        DB::table('subscription_type')->insert([
+
+            'subscription_type'=>'Monthly fee for access to previously bought programs.',
+            'subscription_price'=>'5',
+            'subscription_description'=>'Monthly fee'
+        ]);
+
+        DB::table('subscription_type')->insert([
+
+            'subscription_type'=>'Yearly fee for access to previously bought programs.',
+            'subscription_price'=>'2',
+            'subscription_description'=>''
         ]);
     }
 }

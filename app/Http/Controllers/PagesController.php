@@ -248,6 +248,7 @@ class PagesController extends Controller
     }
 
     public function updateSubscriptionType(Request $request){
+
         $user = Auth::user();
         $user->subscription_type = $request->sub_select;
         $user->save();
