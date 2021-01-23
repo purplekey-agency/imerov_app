@@ -23,6 +23,7 @@ Route::post('email/resend', 'Auth\VerificationController@resend')->name('resend'
 Auth::routes(['verify'=>true]);
 
 Route::get('/dashboard', 'PagesController@showDashboardPage')->name('showDashboard')->middleware('admin');
+Route::get('/messages', 'PagesController@showMessagesPage')->name('showDashboard')->middleware('admin');
 Route::get('/questionarre','PagesController@showQuestionarePage')->name('showQuestionare')->middleware('admin');
 Route::get('/worksheet', 'PagesController@showWorksheetPage')->name('showWorksheet')->middleware('admin');
 Route::get('/diet-plan', 'PagesController@showDietPlanPage')->name('showDietPlan')->middleware('admin');

@@ -10,6 +10,7 @@ use App\Comments;
 use App\UserDietPlan;
 use App\UserPersonalBests;
 use App\Library;
+use App\ProposedMeet;
 
 class PagesController extends Controller
 {
@@ -38,6 +39,13 @@ class PagesController extends Controller
 
 
         return view('user.dashboard')->with(['userQuestionare'=>$userQuestionare, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages, 'userPersonalBests1'=>$userPersonalBests1, 'userPersonalBests2'=>$userPersonalBests2]);
+    }
+
+    public function showMessagesPage(){
+        $sentMessages = Comments::where('sender_id', Auth::user()->id)->get();
+        $receivedMesseges = Comments::where('receipent_id', Auth::user()->id)->get();
+
+        return view('user.messages')->with(['sentMessages'=>$sentMessages, 'receivedMesseges'=>$receivedMesseges]);
     }
 
     public function showQuestionarePage(){
@@ -191,6 +199,41 @@ class PagesController extends Controller
             $userQuestionare->what_times_4 = true;    
         }
         $userQuestionare->your_expectations = $request->expectations_of_trainer;
+
+
+        if(isset($request->proposed_date_1) && isset($request->proposed_time_1)){
+            $userID = Auth::user()->id;
+
+            $proposedMeet = new ProposedMeet();
+
+            $proposedMeet->user_id = $userID;
+            $proposedMeet->proposed_date = $request->proposed_date_1;
+            $proposedMeet->proposed_time = $request->proposed_time_1;
+            $proposedMeet->save();
+
+        }
+        if(isset($request->proposed_date_2) && isset($request->proposed_time_2)){
+            $userID = Auth::user()->id;
+
+            $proposedMeet = new ProposedMeet();
+
+            $proposedMeet->user_id = $userID;
+            $proposedMeet->proposed_date = $request->proposed_date_2;
+            $proposedMeet->proposed_time = $request->proposed_time_2;
+            $proposedMeet->save();
+
+        }
+        if(isset($request->proposed_date_3) && isset($request->proposed_time_3)){
+            $userID = Auth::user()->id;
+
+            $proposedMeet = new ProposedMeet();
+
+            $proposedMeet->user_id = $userID;
+            $proposedMeet->proposed_date = $request->proposed_date_3;
+            $proposedMeet->proposed_time = $request->proposed_time_3;
+            $proposedMeet->save();
+        }
+
 
         if($userQuestionare->save()){
             return redirect()->back()->with('sucess', 'You have succesfully updated your questionare');

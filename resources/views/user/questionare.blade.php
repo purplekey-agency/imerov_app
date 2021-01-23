@@ -36,6 +36,12 @@
                     </div>
 
                     <div class="hover-text">
+                        <a href="/messages">
+                            <p class="text-secondary">Inbox</p>
+                        </a>
+                    </div>
+
+                    <div class="hover-text">
                         <a href="/questionarre">
                             <p class="strong">Questionarre</p>
                         </a>
@@ -413,7 +419,28 @@
                             <input type="textarea" class="form-control" id="expectations_of_trainer" name="expectations_of_trainer" value="{{$userQuestionare->your_expectations}}">
                         </div>
 
-                        <div class="form-group row justify-content-end">
+                        @if(Auth::user()->subscription_type === 1 || Auth::user()->subscription_type === 3)
+
+                        <div class="form-group">
+                            <label for="expectations_of_trainer" class="strong">What are your proposed times for meetup regarding diet plan (1 of 3)?</label>
+                            <input type="date" class="form-control" id="proposed_date_1" name="proposed_date_1" onchange="enableinput1()">
+                            <input type="time" class="form-control without_ampm" id="proposed_time_1" name="proposed_time_1" placeholder="Time" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="expectations_of_trainer" class="strong">What are your proposed times for meetup regarding diet plan (2 of 3)?</label>
+                            <input type="date" class="form-control" id="proposed_date_2" name="proposed_date_2" onchange="enableinput2()">
+                            <input type="time" class="form-control without_ampm" id="proposed_time_2" name="proposed_time_2" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="expectations_of_trainer" class="strong">What are your proposed times for meetup regarding diet plan (3 of 3)?</label>
+                            <input type="date" class="form-control" id="proposed_date_3" name="proposed_date_3" onchange="enableinput3()">
+                            <input type="time" class="form-control without_ampm" id="proposed_time_3" name="proposed_time_3" disabled>
+                        </div>
+                        @endif
+
+                        <div class="form-group row justify-content-end mb-5">
                             <button type="submit" class="btn btn-transparent">SUBMIT</button>
                         </div>
 
@@ -426,6 +453,58 @@
     </main>
 
 </body>
+
+@if(Auth::user()->subscription_type === 1 || Auth::user()->subscription_type === 3)
+    <script>
+
+        var today = new Date();
+        var dd = today.getDate() + 1;
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        if(dd<10){
+                dd='0'+dd
+            } 
+            if(mm<10){
+                mm='0'+mm
+            } 
+
+        today = yyyy+'-'+mm+'-'+dd;
+        document.getElementById("proposed_date_1").setAttribute("min", today);
+        document.getElementById("proposed_date_2").setAttribute("min", today);
+        document.getElementById("proposed_date_3").setAttribute("min", today);
+
+
+        if(document.getElementById("proposed_date_1") && document.getElementById("proposed_date_1").value){
+            document.getElementById("proposed_time_1").disabled = false;
+            document.getElementById("proposed_time_1").required = true;
+        }
+        if(document.getElementById("proposed_date_2") && document.getElementById("proposed_date_2").value){
+            document.getElementById("proposed_time_2").enabled = true;
+            document.getElementById("proposed_time_2").required = true;
+        }
+        if(document.getElementById("proposed_date_3") && document.getElementById("proposed_date_3").value){
+            document.getElementById("proposed_time_3").enabled = true;
+            document.getElementById("proposed_time_3").required = true;
+        }
+
+        function enableinput1(){
+            document.getElementById("proposed_time_1").disabled = false;
+            document.getElementById("proposed_time_1").required = true;
+        }
+
+        function enableinput2(){
+            document.getElementById("proposed_time_2").disabled = false;
+            document.getElementById("proposed_time_2").required = true;
+        }
+
+        function enableinput3(){
+            document.getElementById("proposed_time_3").disabled = false;
+            document.getElementById("proposed_time_3").required = true;
+        }
+
+
+    </script>
+@endif
 
 </html>
 

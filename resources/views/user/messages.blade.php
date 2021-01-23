@@ -37,7 +37,7 @@
 
                     <div class="hover-text">
                         <a href="/messages">
-                            <p class="text-secondary">Inbox</p>
+                            <p class="strong">Inbox</p>
                         </a>
                     </div>
 
@@ -61,33 +61,17 @@
 
                     <div class="hover-text">
                         <a href="/videos">
-                            <p class="strong">Exercises</p>
+                            <p class="text-secondary">Exercises</p>
                         </a>
                     </div>
                 </div>
 
-                <div class="col-7 md-offset-2 mb-5">
+                <div class="col-7 md-offset-2">
                     
-                <div class="d-flex flex-wrap">
-                    <video width="100%" class="col-12 my-3" controls>
-                        <source src="/storage/videos/{{$video->video_path_m}}" type="video/mp4">
-                    </video>
+                    <div class="">
+                        
 
-                    <video width="100%" class="col-12 my-3" controls>
-                        <source src="/storage/videos/{{$video->video_path_f}}" type="video/mp4">
-                    </video>
-                </div>
-
-                    <a href="">
-                        <div class="row">
-                            <div class="col-8">
-                                <p class="strong text-large">{{$video->exercise_name}}</p>
-                                <p class="font-secondary">
-                                    {{$video->exercise_description}}
-                                </p>
-                            </div>
-                        </div>
-                    </a>
+                    </div>
 
                 </div>
 

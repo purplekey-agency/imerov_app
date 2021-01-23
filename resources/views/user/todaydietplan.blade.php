@@ -36,6 +36,12 @@
                     </div>
 
                     <div class="hover-text">
+                        <a href="/messages">
+                            <p class="text-secondary">Inbox</p>
+                        </a>
+                    </div>
+
+                    <div class="hover-text">
                         <a href="/questionarre">
                             <p class="text-secondary">Questionarre</p>
                         </a>
@@ -49,13 +55,13 @@
 
                     <div class="hover-text">
                         <a href="/diet-plan">
-                            <p class="strong">Diet Plan</p>
+                            <p class="text-secondary">Diet Plan</p>
                         </a>
                     </div>
 
                     <div class="hover-text">
                         <a href="/videos">
-                            <p class="text-secondary">Videos</p>
+                            <p class="strong">Exercises</p>
                         </a>
                     </div>
                 </div>

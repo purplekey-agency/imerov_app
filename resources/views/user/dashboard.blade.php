@@ -31,7 +31,13 @@
                 <div class="col-2 col-md-offset-2">
                     <div class="hover-text">
                         <a href="/dashboard">
-                            <p class="strong">Dashboard</p>
+                            <p class="text-secondary">Dashboard</p>
+                        </a>
+                    </div>
+
+                    <div class="hover-text">
+                        <a href="/messages">
+                            <p class="text-secondary">Inbox</p>
                         </a>
                     </div>
 
@@ -55,7 +61,7 @@
 
                     <div class="hover-text">
                         <a href="/videos">
-                            <p class="text-secondary">Videos</p>
+                            <p class="strong">Exercises</p>
                         </a>
                     </div>
                 </div>
