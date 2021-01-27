@@ -39,7 +39,7 @@
 
                     <div class="hover-text">
                         <a href="/messages">
-                            <p class="text-secondary">Inbox</p>
+                            <p class="text-secondary">Inbox ({!!Auth::user()->getMessageCount()!!})</p>
                         </a>
                     </div>
 
@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="col-7 md-offset-2">
+                <div class="col-9 md-offset-2">
                     
                     <div class="row">
 

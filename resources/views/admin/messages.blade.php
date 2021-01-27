@@ -46,7 +46,7 @@
 
                     <div class="hover-text">
                         <a href="/admin/messages">
-                            <p class="strong">Messages</p>
+                            <p class="text-secondary">Messages ({!!Auth::user()->getMessageCount()!!})</p>
                         </a>
                     </div>
 
@@ -71,7 +71,7 @@
                                 <input type="text" name="search-data" class="form-control my-0 py-1" placeholder="Search">
                                 <div class="input-group-append">
                                     <span class="input-group-text lime lighten-2">
-                                        <i class="fa fa-search text-grey" aria-hidden="true"></i>
+                                        <i class="fa fa-search text-grey" aria-hidden="true" onclick=""></i>
                                     </span>
                                 </div>
                             </div>
@@ -79,7 +79,17 @@
                     </div>
 
                     <div class="col-12 col-md-offset-2">
+                        
+                        @foreach($messages as $message)
 
+                            <div class="message-list-item card p-3 @if(!$message->fromAdmin())unread @endif">
+                                <p class="username-msg">{!!$message->getUserName()!!}</p>
+                                <p class="category-msg">{!!$message->getCategory()!!}</p>
+                                <p class="context-msg">{!!$message->message!!}</p>
+                                <a class="btn btn-light d-block ml-auto mr-0 font-weight-bold" href="{{route('showReply', ['category' => $message->category, 'user' => $message->user_channel])}}">Reply</a>
+                            </div>
+
+                        @endforeach
 
                     </div>
 

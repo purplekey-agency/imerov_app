@@ -61,3 +61,27 @@ Route::post('/admin/upload/save', 'AdminViewsController@updateSpreadsheet');
 Route::post('/admin/upload/worksheet/save', 'AdminViewsController@updateDietPlan');
 
 Route::post('/admin/videos/addnew', 'AdminViewsController@addNewExercise');
+
+// messages
+Route::group(['prefix' => 'messages'], function () {
+    Route::post('/questionare/send', 'MessageController@sendQuestionareMessage')->name('sendQuestionareMessage');
+    Route::post('/questionare/response', 'MessageController@responseQuestionareMessage')->name('responseQuestionareMessage');
+
+    Route::post('/bodymeasure/send', 'MessageController@sendBodyMeasureMessage')->name('sendBodyMeasureMessage');
+    Route::post('/bodymeasure/response', 'MessageController@responseBodyMeasureMessage')->name('responseBodyMeasureMessage');
+
+    Route::post('/exercise/send', 'MessageController@sendExerciseMessage')->name('sendExerciseMessage');
+    Route::post('/exercise/response', 'MessageController@responseExerciseMessage')->name('responseExerciseMessage');
+
+    Route::post('/dietplan/send', 'MessageController@sendDietplanMessage')->name('sendDietplanMessage');
+    Route::post('/dietplan/response', 'MessageController@responseDietplanMessage')->name('responseDietplanMessage');
+
+    // user
+    Route::get('/user/showreply/{category}', 'MessageController@showUserReplyToMessages')->name('showReplyUser');
+    Route::post('/user/sendreply/{category}', 'MessageController@sendReplyUser')->name('sendReplyUser');
+
+    // admin
+    Route::get('/showreply/{category}/{user}', 'MessageController@showReplyToMessages')->name('showReply');
+    Route::post('/sendreply/{category}/{user}', 'MessageController@sendReply')->name('sendReply');
+});
+

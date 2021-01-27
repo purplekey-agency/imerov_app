@@ -37,7 +37,7 @@
 
                     <div class="hover-text">
                         <a href="/messages">
-                            <p class="strong">Inbox</p>
+                            <p class="strong">Inbox ({!!Auth::user()->getMessageCount()!!})</p>
                         </a>
                     </div>
 
@@ -70,6 +70,20 @@
                     
                     <div class="">
                         
+                        @foreach($messages as $message)
+
+                            <div class="message-list-item card p-3 @if($message->fromAdmin())admin @endif">
+                                @if(!$message->fromAdmin())
+                                    <p class="username-msg">You:</p>
+                                @else
+                                    <p class="username-msg">{!!$message->getUserName()!!}</p>
+                                @endif
+                                <p class="category-msg">{!!$message->getCategory()!!}</p>
+                                <p class="context-msg">{!!$message->message!!}</p>
+                                <a class="btn btn-light d-block ml-auto mr-0 font-weight-bold" href="{{route('showReplyUser', ['category' => $message->category])}}">Reply</a>
+                            </div>
+
+                        @endforeach
 
                     </div>
 

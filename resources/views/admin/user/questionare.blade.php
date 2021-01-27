@@ -428,6 +428,28 @@
 
                 </div>
 
+                <div class="col-3 md-offset-2">
+                    <p class="m-0 mb-2 text-center">Messages</p>
+
+                    @if($messages->count() > 0)
+                        @foreach($messages as $message)
+                            <div class="card p-2 m-1 message-card @if($message->fromAdmin())admin @endif">
+                                <p class="message-user">{!!$message->getUserName()!!}:</p>
+                                {!!$message->message!!} <br>
+                                <p class="message-date">{!!$message->getDate()!!}</p>
+                            </div>
+                        @endforeach
+                    @endif
+
+                    <div class="send-message-container">
+                        <form method="POST" class="send-message" action="{{route('responseQuestionareMessage', ['user' => $user->id])}}">
+                            @csrf
+                            <textarea class="form-control m-1" required minlength="10" minlength="200" name="message_body"></textarea>
+                            <button class="btn btn-light w-25 mr-0 ml-auto" type="submit">Send</button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
 
         </div>

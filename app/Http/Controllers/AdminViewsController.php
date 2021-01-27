@@ -11,6 +11,7 @@ use App\SubscriptionType;
 use App\UserWorksheet;
 use App\UserDietPlan;
 use App\Comments;
+use App\Message;
 use App\UserPersonalBests;
 use Auth;
 
@@ -63,7 +64,12 @@ class AdminViewsController extends Controller
     public function showUserQuestionarePage($id){
         $user = User::where('id', $id)->first();
         $userQuestionare = UserQuestionare::where('user_id', $user->id)->first();
-        return view('admin.user.questionare')->with(['user'=>$user, 'userQuestionare'=>$userQuestionare]);
+        $messages = Message::where('user_channel', $user->id)->where('category', 1)->get();
+        return view('admin.user.questionare')->with([
+            'user' => $user, 
+            'userQuestionare' => $userQuestionare,
+            'messages' => $messages
+        ]);
     }
 
     public function showUserWorksheetPage($id){
@@ -87,8 +93,25 @@ class AdminViewsController extends Controller
     }
 
     public function showAdminMessagesPage(){
-        $comments = Comments::where('receipent_id', Auth::user()->id)->get();
-        return view('admin.messages')->with(['comments'=>$comments]);
+        // $comments = Comments::where('receipent_id', Auth::user()->id)->get();
+        $messages = Message::orderBy('created_at', 'desc')->get();
+        $grouped = $messages->groupBy('category');
+
+        $filtered = collect();
+
+        foreach($grouped as $category_id => $group_messages){
+            if($category_id === 1){
+                $filtered->push($group_messages->first());
+            } elseif($category_id === 2) {
+                $filtered->push($group_messages->first());
+            } elseif($category_id === 3) {
+                $filtered->push($group_messages->first());
+            } elseif($category_id === 4) {
+                $filtered->push($group_messages->first());
+            }
+        }
+
+        return view('admin.messages')->with(['messages'=>$filtered]);
     }
 
     public function showAdminUploadPage(){

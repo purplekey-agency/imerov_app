@@ -40,13 +40,13 @@
 
                     <div class="hover-text">
                         <a href="/admin/users">
-                            <p class="strong">Users</p>
+                            <p class="text-secondary">Users</p>
                         </a>
                     </div>
 
                     <div class="hover-text">
                         <a href="/admin/messages">
-                            <p class="text-secondary">Messages ({!!Auth::user()->getMessageCount()!!})</p>
+                            <p class="strong">Messages ({!!Auth::user()->getMessageCount()!!})</p>
                         </a>
                     </div>
 
@@ -64,48 +64,33 @@
                 </div>
 
                 <div class="col-7 col-md-offset-2">
-                    <div class="search-container mb-5">
-                        <form action="/admin/search" method="POST">
-                            @csrf
-                            <div class="input-group">
-                                <input type="text" name="search-data" class="form-control my-0 py-1" placeholder="Search">
-                                <div class="input-group-append">
-                                    <span class="input-group-text lime lighten-2">
-                                        <i class="fa fa-search text-grey" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
 
                     <div class="col-12 col-md-offset-2">
 
-                        @foreach($users as $user)
+                        <a class="btn btn-light w-25 mr-0 ml-auto mb-5" href="/admin/messages">Back to messages</a>
 
-                            <a href="/admin/users/{{$user->id}}">
-                                <div class="row">
+                        <p class="text-center">{!!$title!!}</p>
 
-                                    <div class="col-2">
-                                        <p class="text-secondary">{{$user->id}}</p>
-                                    </div>
-
-                                    <div class="col-4">
-                                        <p class="strong">{{$user->username}}</p>
-                                    </div>
-
-                                    <div class="col-3">
-                                        <p class="text-secondary">Detail 01</p>
-                                    </div>
-
-                                    <div class="col-3">
-                                        <p class="text-secondary">Detail 01</p>
-                                    </div>
-
+                        
+                        @if($messages->count() > 0)
+                            @foreach($messages as $message)
+                                <div class="card p-2 m-1 message-card @if($message->fromAdmin()) admin @endif">
+                                    <p class="message-user">{!!$message->getUserName()!!}:</p>
+                                    {!!$message->message!!} <br>
+                                    <p class="message-date">{!!$message->getDate()!!}</p>
                                 </div>
-                            </a>
+                            @endforeach
+                        @endif
 
+                        <div class="send-message-container">
 
-                        @endforeach
+                            <form method="POST" class="send-message" action="{{route('sendReply', ['category' => $category, 'user' => $user])}}">
+                                @csrf
+                                <textarea class="form-control m-1" required minlength="10" minlength="200" name="message_body"></textarea>
+                                <button class="btn btn-light w-25 mr-0 ml-auto" type="submit">Send</button>
+                            </form>
+
+                        </div>
 
                     </div>
 

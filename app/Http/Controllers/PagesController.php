@@ -10,6 +10,7 @@ use App\Comments;
 use App\UserDietPlan;
 use App\UserPersonalBests;
 use App\Library;
+use App\Message;
 use App\ProposedMeet;
 
 class PagesController extends Controller
@@ -41,20 +42,56 @@ class PagesController extends Controller
         return view('user.dashboard')->with(['userQuestionare'=>$userQuestionare, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages, 'userPersonalBests1'=>$userPersonalBests1, 'userPersonalBests2'=>$userPersonalBests2]);
     }
 
-    public function showMessagesPage(){
-        $sentMessages = Comments::where('sender_id', Auth::user()->id)->get();
-        $receivedMesseges = Comments::where('receipent_id', Auth::user()->id)->get();
 
-        return view('user.messages')->with(['sentMessages'=>$sentMessages, 'receivedMesseges'=>$receivedMesseges]);
+    /**
+     * Show user messages.
+     */
+    public function showMessagesPage(){
+        // $sentMessages = Comments::where('sender_id', Auth::user()->id)->get();
+        // $receivedMesseges = Comments::where('receipent_id', Auth::user()->id)->get();
+        $messages = Message::where('user_channel', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $grouped = $messages->groupBy('category');
+
+        $filtered = collect();
+
+        foreach($grouped as $category_id => $group_messages){
+            if($category_id === 1){
+                $filtered->push($group_messages->first());
+            } elseif($category_id === 2) {
+                $filtered->push($group_messages->first());
+            } elseif($category_id === 3) {
+                $filtered->push($group_messages->first());
+            } elseif($category_id === 4) {
+                $filtered->push($group_messages->first());
+            }
+        }
+
+        return view('user.messages', [
+            'messages' => $filtered,
+        ]);
     }
 
+    /**
+     * Show user questionarre page.
+     */
     public function showQuestionarePage(){
         $userQuestionare = UserQuestionare::where('user_id', Auth::User()->id)->first();
-        return view('user.questionare')->with(['userQuestionare'=>$userQuestionare]);
+        $messages = Message::where('user_channel', Auth::user()->id)->where('category', 1)->get();
+
+        return view('user.questionare')->with([
+            'userQuestionare' => $userQuestionare,
+            'messages' => $messages
+        ]);
     }
 
     public function showWorksheetPage(){
-        return view('user.worksheet');
+        $bodymeasure_messages = Message::where('user_channel', Auth::user()->id)->where('category', 2)->get();
+        $exercise_messages = Message::where('user_channel', Auth::user()->id)->where('category', 3)->get();
+
+        return view('user.worksheet', [
+            'bodymeasure_messages' => $bodymeasure_messages,
+            'exercise_messages' => $exercise_messages
+        ]);
     }
 
     public function showDietPlanPage(){
@@ -75,7 +112,9 @@ class PagesController extends Controller
             }
         }
 
-        return view('user.dietplan')->with(['userDiets'=>$userDiets, 'todaysDiet'=>$todaysDiet, 'userDiets'=>$userDiets]);
+        $messages = Message::where('user_channel', Auth::user()->id)->where('category', 4)->get();
+
+        return view('user.dietplan')->with(['userDiets'=>$userDiets, 'todaysDiet'=>$todaysDiet, 'userDiets'=>$userDiets, 'messages' => $messages]);
     }
 
     public function showDietPlanPageWithParam($date){

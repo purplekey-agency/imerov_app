@@ -37,7 +37,7 @@
 
                     <div class="hover-text">
                         <a href="/messages">
-                            <p class="text-secondary">Inbox</p>
+                            <p class="text-secondary">Inbox ({!!Auth::user()->getMessageCount()!!})</p>
                         </a>
                     </div>
 
@@ -76,8 +76,8 @@
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Messages:</span>
-                        <span class="strong">{{@count($allMessages)}}/</span>
-                        <span class="strong red">{{@count($newMessages)}}</span>
+                        <span class="strong">{!!Auth::user()->getMessageCount()!!}</span>
+                        {{-- <span class="strong red">{{@count($newMessages)}}</span> --}}
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Name:</span>

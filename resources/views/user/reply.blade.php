@@ -61,33 +61,41 @@
 
                     <div class="hover-text">
                         <a href="/videos">
-                            <p class="strong">Exercises</p>
+                            <p class="text-secondary">Exercises</p>
                         </a>
                     </div>
                 </div>
 
-                <div class="col-7 md-offset-2 mb-5">
-                    
-                <div class="d-flex flex-wrap">
-                    <video width="100%" class="col-12 my-3" controls>
-                        <source src="/storage/videos/{{$video->video_path_m}}" type="video/mp4">
-                    </video>
-
-                    <video width="100%" class="col-12 my-3" controls>
-                        <source src="/storage/videos/{{$video->video_path_f}}" type="video/mp4">
-                    </video>
-                </div>
-
-                    <a href="">
-                        <div class="row">
-                            <div class="col-8">
-                                <p class="strong text-large">{{$video->exercise_name}}</p>
-                                <p class="font-secondary">
-                                    {{$video->exercise_description}}
-                                </p>
+                <div class="col-7 md-offset-2">
+                        
+                    <a class="btn btn-light w-25 mr-0 ml-auto mb-5" href="/messages">Back to messages</a>
+    
+                    <p class="text-center">{!!$title!!}</p>
+    
+                            
+                    @if($messages->count() > 0)
+                        @foreach($messages as $message)
+                            <div class="card p-2 m-1 message-card @if($message->fromAdmin()) admin @endif">
+                                @if(!$message->fromAdmin())
+                                    <p class="message-user">You:</p>
+                                @else
+                                    <p class="message-user">{!!$message->getUserName()!!}:</p>
+                                @endif
+                                {!!$message->message!!} <br>
+                                <p class="message-date">{!!$message->getDate()!!}</p>
                             </div>
-                        </div>
-                    </a>
+                        @endforeach
+                    @endif
+    
+                    <div class="send-message-container">
+    
+                        <form method="POST" class="send-message" action="{{route('sendReplyUser', ['category' => $category])}}">
+                            @csrf
+                            <textarea class="form-control m-1" required minlength="10" minlength="200" name="message_body"></textarea>
+                            <button class="btn btn-light w-25 mr-0 ml-auto" type="submit">Send</button>
+                        </form>
+    
+                    </div>
 
                 </div>
 

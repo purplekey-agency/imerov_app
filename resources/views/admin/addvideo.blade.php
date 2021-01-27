@@ -46,7 +46,7 @@
 
                     <div class="hover-text">
                         <a href="/admin/messages">
-                            <p class="text-secondary">Messages</p>
+                            <p class="text-secondary">Messages ({!!Auth::user()->getMessageCount()!!})</p>
                         </a>
                     </div>
 

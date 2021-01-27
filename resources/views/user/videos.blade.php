@@ -37,7 +37,7 @@
 
                     <div class="hover-text">
                         <a href="/messages">
-                            <p class="text-secondary">Inbox</p>
+                            <p class="text-secondary">Inbox ({!!Auth::user()->getMessageCount()!!})</p>
                         </a>
                     </div>
 
@@ -68,16 +68,20 @@
 
                 <div class="col-7 md-offset-2">
                     
-                    @foreach($allVideos as $video)
-                        <a href="/videos/{{$video->id}}" class="row">
-                            <div>
-                                {{$video->id}} . 
-                            </div>
-                            <div class="col-6">
-                                {{$video->exercise_name}}
-                            </div>
-                        </a>
-                    @endforeach
+                    @if($allVideos !== "")
+                        @foreach($allVideos as $video)
+                            <a href="/videos/{{$video->id}}" class="row">
+                                <div>
+                                    {{$video->id}} . 
+                                </div>
+                                <div class="col-6">
+                                    {{$video->exercise_name}}
+                                </div>
+                            </a>
+                        @endforeach
+                    @else
+                            No videos
+                    @endif
                 </div>
 
             </div>

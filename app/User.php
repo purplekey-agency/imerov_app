@@ -50,4 +50,8 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
     }
+
+    public function getMessageCount(){
+        return Message::where('user_channel', $this->id)->get()->count();
+    }
 }
