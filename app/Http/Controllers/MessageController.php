@@ -36,7 +36,7 @@ class MessageController extends Controller
     }
 
     /**
-     * Respo0nse to message from questionare.
+     * Response to message from questionare.
      * 
      * @param Request $request
      * 
@@ -56,7 +56,13 @@ class MessageController extends Controller
         return redirect()->back();
     }
 
-
+    /**
+     * Send message from body measure.
+     * 
+     * @param Request $request
+     * 
+     * @return void
+     */
     public function sendBodyMeasureMessage(Request $request){
         $message = new Message([
             'user_id' => Auth::user()->id,
@@ -70,6 +76,13 @@ class MessageController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Respond from body measure.
+     * 
+     * @param Request $request
+     * 
+     * @return void
+     */
     public function responseBodyMeasureMessage(Request $request){
         $message = new Message([
             'user_id' => Auth::user()->id,
@@ -83,6 +96,13 @@ class MessageController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Send from exercise.
+     * 
+     * @param Request $request
+     * 
+     * @return void
+     */
     public function sendExerciseMessage(Request $request){
         $message = new Message([
             'user_id' => Auth::user()->id,
@@ -96,6 +116,13 @@ class MessageController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Respond from exercise.
+     * 
+     * @param Request $request
+     * 
+     * @return void
+     */
     public function responseExcerciseMessage(Request $request){
         $message = new Message([
             'user_id' => Auth::user()->id,
@@ -109,6 +136,13 @@ class MessageController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Send dietplan message.
+     * 
+     * @param Request $request
+     * 
+     * @return void
+     */
     public function sendDietplanMessage(Request $request){
         $message = new Message([
             'user_id' => Auth::user()->id,
@@ -122,6 +156,14 @@ class MessageController extends Controller
         return redirect()->back();
     }
 
+
+    /**
+     * Response from diet plan message.
+     * 
+     * @param Request $request
+     * 
+     * @return void
+     */
     public function responseDietplanMessage(Request $request){
         $message = new Message([
             'user_id' => Auth::user()->id,
