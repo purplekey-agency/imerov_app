@@ -539,7 +539,7 @@
 
 </form>
 
-<div class="col-3 md-offset-2">
+<div class="col-4 md-offset-2">
     <p class="m-0 mb-2 text-center">Messages</p>
 
     @if($exercise_messages->count() > 0)

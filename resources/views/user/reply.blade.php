@@ -68,14 +68,14 @@
 
                 <div class="col-7 md-offset-2">
                         
-                    <a class="btn btn-light w-25 mr-0 ml-auto mb-5" href="/messages">Back to messages</a>
+                    <a class="btn btn-light mr-0 ml-auto mb-5" href="/messages">Back to messages</a>
     
                     <p class="text-center">{!!$title!!}</p>
     
                             
                     @if($messages->count() > 0)
                         @foreach($messages as $message)
-                            <div class="card p-2 m-1 message-card @if($message->fromAdmin()) admin @endif">
+                            <div class="card p-2 m-1 message-card @if($message->fromAdmin()) admin @else text-right @endif">
                                 @if(!$message->fromAdmin())
                                     <p class="message-user">You:</p>
                                 @else

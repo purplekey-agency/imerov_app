@@ -67,14 +67,14 @@
 
                     <div class="col-12 col-md-offset-2">
 
-                        <a class="btn btn-light w-25 mr-0 ml-auto mb-5" href="/admin/messages">Back to messages</a>
+                        <a class="btn btn-light mr-0 ml-auto mb-5" href="/admin/messages">Back to messages</a>
 
                         <p class="text-center">{!!$title!!}</p>
 
                         
                         @if($messages->count() > 0)
                             @foreach($messages as $message)
-                                <div class="card p-2 m-1 message-card @if($message->fromAdmin()) admin @endif">
+                                <div class="card p-2 m-1 message-card @if($message->fromAdmin()) text-right @else admin @endif">
                                     <p class="message-user">{!!$message->getUserName()!!}:</p>
                                     {!!$message->message!!} <br>
                                     <p class="message-date">{!!$message->getDate()!!}</p>
@@ -82,7 +82,7 @@
                             @endforeach
                         @endif
 
-                        <div class="send-message-container">
+                        <div class="send-message-container mb-5">
 
                             <form method="POST" class="send-message" action="{{route('sendReply', ['category' => $category, 'user' => $user])}}">
                                 @csrf

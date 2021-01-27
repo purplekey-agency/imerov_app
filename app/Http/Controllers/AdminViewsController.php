@@ -93,40 +93,30 @@ class AdminViewsController extends Controller
     }
 
     public function showAdminMessagesPage(){
-        // $comments = Comments::where('receipent_id', Auth::user()->id)->get();
-        $categories = [1,2,3,4];
+        if(request()->search){
+            $filtered = Message::where('message', 'like', '%'.request()->search.'%')->get();
+        } else {
+            // $comments = Comments::where('receipent_id', Auth::user()->id)->get();
+            $categories = [1,2,3,4];
 
-        $filtered = collect();
-        $users = User::where('type_of_user', '!=', '2')->get();
+            $filtered = collect();
+            $users = User::where('type_of_user', '!=', '2')->get();
 
-        foreach($categories as $category){
-            foreach($users as $user){
-                $message = Message::where('category', $category)->where('user_channel', $user->id)->orderBy('created_at', 'desc')->get()->first();
-                $filtered->push($message);
+            foreach($categories as $category){
+                foreach($users as $user){
+                    $message = Message::where('category', $category)->where('user_channel', $user->id)->orderBy('created_at', 'desc')->get()->first();
+                    $filtered->push($message);
+                }
             }
+
+            $filtered = $filtered->sort(function ($a, $b){
+                if ($a->total === $b->total) {
+                    return strtotime($a->created_at) < strtotime($b->created_at);
+                }
+            
+                return $a->total < $b->total;
+            });
         }
-
-        $filtered = $filtered->sort(function ($a, $b){
-            if ($a->total === $b->total) {
-                return strtotime($a->created_at) < strtotime($b->created_at);
-            }
-        
-            return $a->total < $b->total;
-        });
-        
-        // foreach($users as $user){
-        //     $message_1 = Message::where('category', 1)->where('user_channel', $user->id)->orderBy('created_at', 'desc')->get()->first();
-        //     $filtered->push($message_1);
-
-        //     $message_2 = Message::where('category', 2)->where('user_channel', $user->id)->orderBy('created_at', 'desc')->get()->first();
-        //     $filtered->push($message_2);
-
-        //     $message_3 = Message::where('category', 3)->where('user_channel', $user->id)->orderBy('created_at', 'desc')->get()->first();
-        //     $filtered->push($message_3);
-
-        //     $message_4 = Message::where('category', 4)->where('user_channel', $user->id)->orderBy('created_at', 'desc')->get()->first();
-        //     $filtered->push($message_4);
-        // }
 
         return view('admin.messages')->with(['messages'=>$filtered]);
     }

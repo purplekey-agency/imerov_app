@@ -65,14 +65,16 @@
 
                 <div class="col-7 col-md-offset-2">
                     <div class="search-container mb-5">
-                        <form action="/admin/search" method="POST">
-                            @csrf
+                        <form action="/admin/messages" method="GET">
                             <div class="input-group">
-                                <input type="text" name="search-data" class="form-control my-0 py-1" placeholder="Search">
+                                <input type="text" name="search" @if(isset(request()->search)) value="{{request()->search}}" @endif class="form-control my-0 py-1" placeholder="Search">
                                 <div class="input-group-append">
-                                    <span class="input-group-text lime lighten-2">
+                                    <span class="input-group-text lime lighten-2" style="cursor: pointer;">
                                         <i class="fa fa-search text-grey" aria-hidden="true" onclick=""></i>
                                     </span>
+                                    @if(isset(request()->search))
+                                        <a class="btn btn-dark" href="/admin/messages">Cancel</a>
+                                    @endif
                                 </div>
                             </div>
                         </form>
@@ -90,6 +92,10 @@
                             </div>
 
                         @endforeach
+
+                        @if(isset(request()->search) && $messages->isEmpty())
+                            <p class="text-center">No results.</p>
+                        @endif
 
                     </div>
 
