@@ -72,7 +72,7 @@
                     
                     </div>
 
-                    <div class="row col-7 col-md-offset-2">
+                    <div class="row col-7 col-md-offset-2" style="height: 40px; max-height:40px;">
                         <div class="hover-text mx-3">
                             <a href="/admin/users/{{$user->id}}">
                                 <p class="strong">Dashboard</p>
@@ -82,6 +82,12 @@
                         <div class="hover-text mx-3">
                             <a href="/admin/users/{{$user->id}}/questionarre">
                                 <p class="text-secondary">Questionarre</p>
+                            </a>
+                        </div>
+
+                        <div class="hover-text mx-3">
+                            <a href="/admin/users/{{$user->id}}/diet-plan">
+                                <p class="text-secondary">Diet plan</p>
                             </a>
                         </div>
     

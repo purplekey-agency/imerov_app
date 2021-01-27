@@ -320,12 +320,12 @@
                                                             <th>Dairy Products</th>
                                                         </tr>
                                                         <tr>
-                                                            <td>Lean protein</td>
-                                                            <td>Vegetables</td>
-                                                            <td>Fruits</td>
-                                                            <td>Grains</td>
-                                                            <td>Healty Fats</td>
-                                                            <td>Dairy Products</td>
+                                                            <td><div id="td-lean-protein"></div></td>
+                                                            <td><div id="td-vegetables"></div></td>
+                                                            <td><div id="td-fruits"></div></td>
+                                                            <td><div id="td-grains"></div></td>
+                                                            <td><div id="td-healty-fats"></div></td>
+                                                            <td><div id="td-dairy-products"></div></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -395,18 +395,56 @@
             }
 
             function showDietPlan(id){
-                var elems = document.getElementsByClassName('a-hover');
-                var data = document.getElementsByClassName('csv-hidden');
 
-                for(var i=0; i<elems.length; i++){
-                    elems[i].classList.remove('a-hover-active');
-                }
+                $.ajax({
+                    url:'/admin/users/' + id + '/diet-plan/get',
+                    type:'GET',
+                    success:function(response){
 
-                for(var i=0; i<data.length; i++){
-                    data[i].classList.remove('csv-hidden-active');
-                }
+                        $('#td-lean-protein,#td-vegetables,#td-fruits,#td-grains,#td-healty-fats,#td-dairy-products').each(function(){
+                            $(this).empty();
+                        });
 
-                document.getElementById('diet-plan-' + id).classList.toggle('csv-hidden-active');
+                        for(var i=0; i<response.avaliableProtein.length; i++){
+                            $('#td-lean-protein').append(response.avaliableProtein[i].avaliable_food_name + ', ');
+                        }
+
+                        for(var i=0; i<response.avaliableVegetables.length; i++){
+                            $('#td-vegetables').append(response.avaliableVegetables[i].avaliable_food_name + ', ');
+                        }
+
+                        for(var i=0; i<response.avaliableFruits.length; i++){
+                            $('#td-fruits').append(response.avaliableFruits[i].avaliable_food_name + ', ');
+                        }
+
+                        for(var i=0; i<response.avaliableGrains.length; i++){
+                            $('#td-grains').append(response.avaliableGrains[i].avaliable_food_name + ', ');
+                        }
+
+                        for(var i=0; i<response.avaliableHealtyFats.length; i++){
+                            $('#td-healty-fats').append(response.avaliableHealtyFats[i].avaliable_food_name + ', ');
+                        }
+
+                        for(var i=0; i<response.avaliableDairyProducts.length; i++){
+                            $('#td-dairy-products').append(response.avaliableDairyProducts[i].avaliable_food_name + ', ');
+                        }
+
+                        var elems = document.getElementsByClassName('a-hover');
+                        var data = document.getElementsByClassName('csv-hidden');
+
+                        for(var i=0; i<elems.length; i++){
+                            elems[i].classList.remove('a-hover-active');
+                        }
+
+                        for(var i=0; i<data.length; i++){
+                            data[i].classList.remove('csv-hidden-active');
+                        }
+
+                        document.getElementById('diet-plan-' + id).classList.toggle('csv-hidden-active');
+                    }
+                });
+
+
             }
 
         </script>

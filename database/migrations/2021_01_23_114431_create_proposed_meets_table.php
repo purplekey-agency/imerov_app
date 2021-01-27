@@ -19,6 +19,7 @@ class CreateProposedMeetsTable extends Migration
             $table->string('proposed_date');
             $table->string('proposed_time');
             $table->boolean('confirmed')->nullable();
+            $table->boolean('done')->nullable();
             $table->timestamps();
         });
     }

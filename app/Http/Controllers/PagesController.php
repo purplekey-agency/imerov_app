@@ -11,6 +11,7 @@ use App\UserDietPlan;
 use App\UserPersonalBests;
 use App\Library;
 use App\ProposedMeet;
+use App\AvaliableDiet;
 
 class PagesController extends Controller
 {
@@ -63,19 +64,18 @@ class PagesController extends Controller
 
         $today = \Carbon\Carbon::now()->format('Y-m-d');
 
-        $userDiets = UserDietPlan::where('user_id', $user->id)->where('date', '>=', $today)->take(7)->get();
+        $userDiets = UserDietPlan::where('user_id', $user->id)->take(7)->get();
 
-        $todaysDiet = false;
+        $avaliableProtein = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 1)->get();
+        $avaliableVegetables = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 2)->get();
+        $avaliableFruits = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 3)->get();
+        $avaliableGrains = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 4)->get();
+        $avaliableHealtyFats = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 5)->get();
+        $avaliableDairyProducts = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 6)->get();
 
-        foreach($userDiets as $userDiet){
-            if($userDiet->date == $today){
-                $todaysDiet = true;
-
-                return redirect('/diet-plan/' . $userDiet->date);
-            }
-        }
-
-        return view('user.dietplan')->with(['userDiets'=>$userDiets, 'todaysDiet'=>$todaysDiet, 'userDiets'=>$userDiets]);
+        return view('user.dietplan')->with(['userDiets'=>$userDiets, 'userDiets'=>$userDiets, 'avaliableProtein'=>$avaliableProtein,
+        'avaliableVegetables'=>$avaliableVegetables, 'avaliableFruits'=>$avaliableFruits, 'avaliableGrains'=>$avaliableGrains,
+        'avaliableHealtyFats'=>$avaliableHealtyFats, 'avaliableDairyProducts'=>$avaliableDairyProducts]);
     }
 
     public function showDietPlanPageWithParam($date){

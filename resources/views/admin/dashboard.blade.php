@@ -89,6 +89,20 @@
                         <p class="text-secondary">Inactive subscriptions:<strong class="red">{{$inactiveusers}}</strong></p>
                         <p class="text-secondary">Messages: <strong>{{@count($allMessages)}}/</strong><strong class="red">{{@count($newMessages)}}</strong></p>
                     </div>
+                    @if($hasMeets)
+                        <div class="my-3">
+                            <h2>You have unresponded requests for meeting regarding diet plan</h2>
+                        </div>
+
+                        <a href="/admin/dashboard/meetrequests"><div class="btn btn-primary">See all</div></a>
+                    @else
+                        <div class="my-3">
+                            <h2>You have no unresponded requests for meeting.</h2>
+                        </div>
+
+                        <a href="/admin/dashboard/meetrequests"><div class="btn btn-primary">See all</div></a>
+
+                    @endif
                 </div>
 
             </div>

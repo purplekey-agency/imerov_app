@@ -40,6 +40,7 @@ Route::post('/worksheet/updatebodym', 'PagesController@updateBodyMeasurments');
 //admin routes
 
 Route::get('/admin/dashboard', 'AdminViewsController@showAdminDashboard');
+Route::get('/admin/dashboard/meetrequests', 'AdminViewsController@showAllMeetRequests');
 Route::get('/admin/users', 'AdminViewsController@showUsersPage');
 Route::get('/admin/users/{id}', 'AdminViewsController@showUserPage');
 Route::get('/admin/users/{id}/questionarre','AdminViewsController@showUserQuestionarePage');
@@ -61,3 +62,7 @@ Route::post('/admin/upload/save', 'AdminViewsController@updateSpreadsheet');
 Route::post('/admin/upload/worksheet/save', 'AdminViewsController@updateDietPlan');
 
 Route::post('/admin/videos/addnew', 'AdminViewsController@addNewExercise');
+
+Route::post('/dashboard/confirmmeets', 'AdminViewsController@confirmmeets');
+Route::post('/admin/users/{id}/diet-plan/add','AdminViewsController@addFoodType');
+Route::get('/admin/users/{id}/diet-plan/get','AdminViewsController@getFoodType');

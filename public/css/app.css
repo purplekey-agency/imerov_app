@@ -10960,6 +10960,13 @@ a:hover {
   color: #ff0000;
 }
 
+.hover-text {
+  width: 100px;
+  max-width: 100px;
+  height: 35px;
+  max-height: 35px;
+}
+
 .hover-text a:hover {
   font-size: larger;
 }
@@ -11384,5 +11391,16 @@ input[type=time]::-webkit-clear-button {
   -ms-appearance: none;
   appearance: none;
   margin: -10px;
+}
+
+#meetstable tr {
+  min-height: 120px;
+}
+
+#meetstable > th,
+#meetstable > td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 3px;
 }
 
