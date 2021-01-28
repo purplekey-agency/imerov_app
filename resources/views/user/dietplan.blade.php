@@ -103,7 +103,7 @@
 
                 </div>
 
-                <div class="col-3 md-offset-2">
+                <div class="col-5 md-offset-2 m-auto">
                     <p class="m-0 mb-2 text-center">Messages</p>
 
                     @if($messages->count() > 0)

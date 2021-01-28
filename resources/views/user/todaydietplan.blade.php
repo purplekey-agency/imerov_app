@@ -82,12 +82,12 @@
                                     <th>Dairy Products</th>
                                 </tr>
                                 <tr>
-                                    <td>Lean protein</td>
-                                    <td>Vegetables</td>
-                                    <td>Fruits</td>
-                                    <td>Grains</td>
-                                    <td>Healty Fats</td>
-                                    <td>Dairy Products</td>
+                                    <td><div id="td-lean-protein"> <p>@foreach($avaliableProtein as $aP) {{$aP->avaliable_food_name}},  @endforeach</div></td>
+                                    <td><div id="td-vegetables"> <p>@foreach($avaliableVegetables as $aV){{$aV->avaliable_food_name}},  @endforeach</div></td>
+                                    <td><div id="td-fruits"> <p>@foreach($avaliableFruits as $aF){{$aF->avaliable_food_name}},  @endforeach</div></td>
+                                    <td><div id="td-grains"> <p>@foreach($avaliableGrains as $aG){{$aG->avaliable_food_name}},  @endforeach</div></td>
+                                    <td><div id="td-healty-fats"> <p>@foreach($avaliableHealtyFats as $aHF){{$aHF->avaliable_food_name}},  @endforeach</div></td>
+                                    <td><div id="td-dairy-products"> <p>@foreach($avaliableDairyProducts as $aDP){{$aDP->avaliable_food_name}},  @endforeach</div></td>
                                 </tr>
                             </table>
 

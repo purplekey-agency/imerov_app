@@ -110,13 +110,13 @@ class PagesController extends Controller
         $avaliableHealtyFats = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 5)->get();
         $avaliableDairyProducts = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 6)->get();
 
-        foreach($userDiets as $userDiet){
-            if($userDiet->date == $today){
-                $todaysDiet = true;
+        // foreach($userDiets as $userDiet){
+        //     if($userDiet->date == $today){
+        //         $todaysDiet = true;
 
-                return redirect('/diet-plan/' . $userDiet->date);
-            }
-        }
+        //         return redirect('/diet-plan/' . $userDiet->date);
+        //     }
+        // }
 
         $messages = Message::where('user_channel', Auth::user()->id)->where('category', 4)->get();
 
@@ -126,10 +126,20 @@ class PagesController extends Controller
     }
 
     public function showDietPlanPageWithParam($id){
+
+        $user = Auth::user();
         $userDiet = UserDietPlan::where('day', $id)->where('user_id', Auth::user()->id)->get();
+        $avaliableProtein = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 1)->get();
+        $avaliableVegetables = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 2)->get();
+        $avaliableFruits = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 3)->get();
+        $avaliableGrains = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 4)->get();
+        $avaliableHealtyFats = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 5)->get();
+        $avaliableDairyProducts = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 6)->get();
         #dd($userDiet);
 
-        return view('user.todaydietplan')->with(['userDiet'=>$userDiet]);
+        return view('user.todaydietplan')->with(['userDiet'=>$userDiet, 'avaliableProtein'=>$avaliableProtein,
+        'avaliableVegetables'=>$avaliableVegetables, 'avaliableFruits'=>$avaliableFruits, 'avaliableGrains'=>$avaliableGrains,
+        'avaliableHealtyFats'=>$avaliableHealtyFats, 'avaliableDairyProducts'=>$avaliableDairyProducts]);
     }
 
     public function showVideosPage(){
