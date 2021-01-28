@@ -102,20 +102,23 @@ class AdminViewsController extends Controller
             $filtered = collect();
             $users = User::where('type_of_user', '!=', '2')->get();
 
-            foreach($categories as $category){
-                foreach($users as $user){
-                    $message = Message::where('category', $category)->where('user_channel', $user->id)->orderBy('created_at', 'desc')->get()->first();
-                    $filtered->push($message);
+            if(Message::all()->count() > 0){
+                foreach($categories as $category){
+                    foreach($users as $user){
+                        $message = Message::where('category', $category)->where('user_channel', $user->id)->orderBy('created_at', 'desc')->get()->first();
+                        $filtered->push($message);
+                    }
                 }
+    
+                $filtered = $filtered->sort(function ($a, $b){
+                    if ($a->total === $b->total) {
+                        return strtotime($a->created_at) < strtotime($b->created_at);
+                    }
+                    
+                    return $a->total < $b->total;
+                });
             }
 
-            $filtered = $filtered->sort(function ($a, $b){
-                if ($a->total === $b->total) {
-                    return strtotime($a->created_at) < strtotime($b->created_at);
-                }
-            
-                return $a->total < $b->total;
-            });
         }
 
         return view('admin.messages')->with(['messages'=>$filtered]);
