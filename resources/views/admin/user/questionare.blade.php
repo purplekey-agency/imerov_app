@@ -83,6 +83,12 @@
                                 <p class="strong">Questionarre</p>
                             </a>
                         </div>
+
+                        <div class="hover-text mx-3">
+                            <a href="/admin/users/{{$user->id}}/diet-plan">
+                                <p class="text-secondary">Diet Plan</p>
+                            </a>
+                        </div>
     
                     </div>
     

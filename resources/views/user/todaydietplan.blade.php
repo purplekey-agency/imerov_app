@@ -66,11 +66,11 @@
                     </div>
                 </div>
 
-                <div class="col-7 md-offset-2">
+                <div class="col-10 md-offset-2">
                     
                     <div class="">
                         
-                        <div class="table-container">
+                        <div class="table-container d-flex flex-column align-items-end">
                         
                             <table class="diet-plan-table mb-5">
                                 <tr>
@@ -123,6 +123,11 @@
                                                 <br>
                                                 {{$meal->meal_weight_5}}
                                             </th>
+                                            <td>
+                                                {{$meal->meal_type_6}}
+                                                <br>
+                                                {{$meal->meal_weight_6}}
+                                            </th>
                                         </tr>
                                     @elseif($meal->meal_no == 2)
                                     <tr>
@@ -152,10 +157,15 @@
                                                 <br>
                                                 {{$meal->meal_weight_5}}
                                             </th>
+                                            <td>
+                                                {{$meal->meal_type_6}}
+                                                <br>
+                                                {{$meal->meal_weight_6}}
+                                            </th>
                                         </tr>
                                     @elseif($meal->meal_no == 3)
                                     <tr>
-                                            <th>meal 02</th>
+                                            <th>meal 03</th>
                                             <td>
                                                 {{$meal->meal_type_1}}
                                                 <br>
@@ -180,11 +190,16 @@
                                                 {{$meal->meal_type_5}}
                                                 <br>
                                                 {{$meal->meal_weight_5}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_6}}
+                                                <br>
+                                                {{$meal->meal_weight_6}}
                                             </th>
                                         </tr>
                                     @elseif($meal->meal_no == 4)
                                     <tr>
-                                            <th>meal 02</th>
+                                            <th>meal 04</th>
                                             <td>
                                                 {{$meal->meal_type_1}}
                                                 <br>
@@ -209,11 +224,16 @@
                                                 {{$meal->meal_type_5}}
                                                 <br>
                                                 {{$meal->meal_weight_5}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_6}}
+                                                <br>
+                                                {{$meal->meal_weight_6}}
                                             </th>
                                         </tr>
                                     @elseif($meal->meal_no == 5)
                                     <tr>
-                                            <th>meal 02</th>
+                                            <th>meal 05</th>
                                             <td>
                                                 {{$meal->meal_type_1}}
                                                 <br>
@@ -238,6 +258,11 @@
                                                 {{$meal->meal_type_5}}
                                                 <br>
                                                 {{$meal->meal_weight_5}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_6}}
+                                                <br>
+                                                {{$meal->meal_weight_6}}
                                             </th>
                                         </tr>
                                     @elseif($meal->meal_no == 6)
@@ -267,6 +292,11 @@
                                                 {{$meal->meal_type_5}}
                                                 <br>
                                                 {{$meal->meal_weight_5}}
+                                            </th>
+                                            <td>
+                                                {{$meal->meal_type_6}}
+                                                <br>
+                                                {{$meal->meal_weight_6}}
                                             </th>
                                         </tr>
                                     @endif

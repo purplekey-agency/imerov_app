@@ -12,6 +12,7 @@ use App\UserPersonalBests;
 use App\Library;
 use App\Message;
 use App\ProposedMeet;
+use App\AvaliableDiet;
 
 class PagesController extends Controller
 {
@@ -100,9 +101,14 @@ class PagesController extends Controller
 
         $today = \Carbon\Carbon::now()->format('Y-m-d');
 
-        $userDiets = UserDietPlan::where('user_id', $user->id)->where('date', '>=', $today)->take(7)->get();
+        $userDiets = UserDietPlan::where('user_id', $user->id)->get()->groupBy('day');
 
-        $todaysDiet = false;
+        $avaliableProtein = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 1)->get();
+        $avaliableVegetables = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 2)->get();
+        $avaliableFruits = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 3)->get();
+        $avaliableGrains = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 4)->get();
+        $avaliableHealtyFats = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 5)->get();
+        $avaliableDairyProducts = AvaliableDiet::where('user_id', $user->id)->where('avaliable_food_type', 6)->get();
 
         foreach($userDiets as $userDiet){
             if($userDiet->date == $today){
@@ -114,11 +120,13 @@ class PagesController extends Controller
 
         $messages = Message::where('user_channel', Auth::user()->id)->where('category', 4)->get();
 
-        return view('user.dietplan')->with(['userDiets'=>$userDiets, 'todaysDiet'=>$todaysDiet, 'userDiets'=>$userDiets, 'messages' => $messages]);
+        return view('user.dietplan')->with(['userDiets'=>$userDiets, 'userDiets'=>$userDiets, 'avaliableProtein'=>$avaliableProtein,
+        'avaliableVegetables'=>$avaliableVegetables, 'avaliableFruits'=>$avaliableFruits, 'avaliableGrains'=>$avaliableGrains,
+        'avaliableHealtyFats'=>$avaliableHealtyFats, 'avaliableDairyProducts'=>$avaliableDairyProducts, 'messages' => $messages]);
     }
 
-    public function showDietPlanPageWithParam($date){
-        $userDiet = UserDietPlan::where('date', $date)->where('user_id', Auth::user()->id)->get();
+    public function showDietPlanPageWithParam($id){
+        $userDiet = UserDietPlan::where('day', $id)->where('user_id', Auth::user()->id)->get();
         #dd($userDiet);
 
         return view('user.todaydietplan')->with(['userDiet'=>$userDiet]);

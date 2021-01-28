@@ -13,6 +13,8 @@ use App\UserDietPlan;
 use App\Comments;
 use App\Message;
 use App\UserPersonalBests;
+use App\ProposedMeet;
+use App\AvaliableDiet;
 use Auth;
 
 class AdminViewsController extends Controller
@@ -24,13 +26,76 @@ class AdminViewsController extends Controller
     }
 
     public function showAdminDashboard(){
+
+        $proposedMeets = ProposedMeet::where('confirmed', null)->get();
+
+        $hasMeets = false;
+
+        if(count($proposedMeets)>0){
+            $hasMeets = true;
+        }
+
         $inactiveusers = count(User::where('type_of_user', 0)->where('subscription_type', 0)->get());
         $activeusers = count(User::where('type_of_user', 0)->whereIn('subscription_type', [1,2,3,4,5])->get());
 
         $newMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', false)->get();
         $allMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', true)->get();
 
-        return view('admin.dashboard')->with(['inactiveusers'=>$inactiveusers, 'activeusers'=>$activeusers, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages]);
+        return view('admin.dashboard')->with(['inactiveusers'=>$inactiveusers, 'activeusers'=>$activeusers, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages, 'hasMeets'=>$hasMeets]);
+    }
+
+    public function showAllMeetRequests(){
+        $proposedMeets = ProposedMeet::where('confirmed', null)->get()->groupBy('user_id');
+        
+        return view('admin.proposedmeets')->with(['proposedmeets'=>$proposedMeets]);
+    }
+
+    public function confirmmeets(Request $request){
+        #dd($request->all());
+        $data = $request->all();
+        array_shift($data);
+        foreach($data as $key=>$datarequest){
+            
+            $userid = substr($key, strpos($key, "-") + 1);
+            $proposedMeetId = $datarequest;
+            
+            if($proposedMeetId === 'null'){
+                $proposedMeets = ProposedMeet::where('user_id', $userid)->get();
+                foreach($proposedMeets as $proposedMeet){
+                    $proposedMeet->confirmed = false;
+                    $proposedMeet->save();
+                }
+
+                return redirect()->back()->with('success', 'You have declined all proposed times for meetup by the client. Please wait untill client requests some other schedule.');
+            }
+            else{
+                $proposedMeets = ProposedMeet::where('user_id', $userid)->get();
+                foreach($proposedMeets as $proposedMeet){
+                    $proposedMeet->confirmed = false;
+                    $proposedMeet->save();
+                }
+                $proposedMeet = ProposedMeet::where('id', $proposedMeetId)->first();
+                $proposedMeet->confirmed = true;
+                $proposedMeet->save();
+
+                return redirect()->back()->with('success', 'You have confirmed meeting at ' . $proposedMeet->proposed_date . " " . $proposedMeet->proposed_time . '. Please call the user to confirm details.');
+            }
+        }
+    }
+
+    public function addFoodType(Request $request){
+
+        #dd($request->all());
+
+        $avaliableDiet = new AvaliableDiet();
+        $avaliableDiet->user_id = $request->userid;
+        $avaliableDiet->avaliable_food_type = $request->foodid;
+        $avaliableDiet->avaliable_food_name = $request->val;
+
+        if($avaliableDiet->save()){
+            return true;
+        }
+
     }
 
     public function showUsersPage(){
@@ -79,7 +144,32 @@ class AdminViewsController extends Controller
 
     public function showUserDietPlanPage($id){
         $user = User::where('id', $id)->first();
-        return view('admin.user.dietplan')->with(['user'=>$user]);
+
+
+        $avaliableProtein = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 1)->get();
+        $avaliableVegetables = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 2)->get();
+        $avaliableFruits = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 3)->get();
+        $avaliableGrains = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 4)->get();
+        $avaliableHealtyFats = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 5)->get();
+        $avaliableDairyProducts = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 6)->get();
+
+        return view('admin.user.dietplan')->with(['user'=>$user, 'avaliableProtein'=>$avaliableProtein,
+        'avaliableVegetables'=>$avaliableVegetables, 'avaliableFruits'=>$avaliableFruits, 'avaliableGrains'=>$avaliableGrains,
+        'avaliableHealtyFats'=>$avaliableHealtyFats, 'avaliableDairyProducts'=>$avaliableDairyProducts]);
+    }
+
+    public function getFoodType($id){
+        $avaliableProtein = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 1)->get();
+        $avaliableVegetables = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 2)->get();
+        $avaliableFruits = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 3)->get();
+        $avaliableGrains = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 4)->get();
+        $avaliableHealtyFats = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 5)->get();
+        $avaliableDairyProducts = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 6)->get();
+
+        $response = array('avaliableProtein'=>$avaliableProtein,
+        'avaliableVegetables'=>$avaliableVegetables, 'avaliableFruits'=>$avaliableFruits, 'avaliableGrains'=>$avaliableGrains,
+        'avaliableHealtyFats'=>$avaliableHealtyFats, 'avaliableDairyProducts'=>$avaliableDairyProducts);
+        return $response;
     }
 
     public function showUserVideosPage($id){
@@ -290,36 +380,38 @@ class AdminViewsController extends Controller
         #dd($request->all());
 
         $user = User::where('id', $request->userid)->first();
+        $day = 1;
+        #dd((UserDietPlan::where('user_id', $user->id)->orderBy('id', 'desc')->first())->meal_no === "5");
 
         for($i=1; $i<=5; $i++){
-            if(isset($request->{'date_' . $i})){
-                $date = $request->{'date_' . $i};
+            
+            for($j = 1; $j<=6; $j++){
 
-                for($j = 1; $j<=5; $j++){
-
-                    if(isset($request->{"meal_type_".$i."_".$j."_1"}) && isset($request->{"meal_".$i."_".$j."_1"})){
-                        $userDietPlan = new UserDietPlan();
-                        $userDietPlan->user_id = $user->id;
-                        $userDietPlan->date = $date;
-                        $userDietPlan->meal_no = $j;
-    
-                        $userDietPlan->meal_type_1 = $request->{"meal_type_".$i."_".$j."_1"};
-                        $userDietPlan->meal_weight_1 = $request->{"meal_".$i."_".$j."_1"};
-                        $userDietPlan->meal_type_2 = $request->{"meal_type_".$i."_".$j."_2"};
-                        $userDietPlan->meal_weight_2 = $request->{"meal_".$i."_".$j."_2"};
-                        $userDietPlan->meal_type_3 = $request->{"meal_type_".$i."_".$i."_3"};
-                        $userDietPlan->meal_weight_3 = $request->{"meal_".$i."_".$j."_3"};
-                        $userDietPlan->meal_type_4 = $request->{"meal_type_".$i."_".$j."_4"};
-                        $userDietPlan->meal_weight_4 = $request->{"meal_".$i."_".$j."_4"};
-                        $userDietPlan->meal_type_5 = $request->{"meal_type_".$i."_".$j."_5"};
-                        $userDietPlan->meal_weight_5 = $request->{"meal_".$i."_".$j."_5"};
-    
-                        $userDietPlan->save();
-                    }
-
+                if($request->{"meal_".$i."_".$j."_1"} === null && $request->{"meal_".$i."_".$j."_2"} === null && $request->{"meal_".$i."_".$j."_3"} === null && $request->{"meal_".$i."_".$j."_4"} === null && $request->{"meal_".$i."_".$j."_5"} === null && $request->{"meal_".$i."_".$j."_6"} === null){
 
                 }
+                else{
 
+                    if((UserDietPlan::where('user_id', $user->id)->orderBy('id', 'desc')->first()) !== null 
+                    && (UserDietPlan::where('user_id', $user->id)->orderBy('id', 'desc')->first())->meal_no === "5"){
+                        $day = intval((UserDietPlan::where('user_id', $user->id)->orderBy('id', 'desc')->first())->day) + 1;
+                    }
+
+                    $userDietPlan = new UserDietPlan();
+                    $userDietPlan->user_id = $user->id;
+                    $userDietPlan->meal_no = $j;
+
+                    $userDietPlan->day = $day;
+    
+                    $userDietPlan->meal_weight_1 = $request->{"meal_".$i."_".$j."_1"};
+                    $userDietPlan->meal_weight_2 = $request->{"meal_".$i."_".$j."_2"};
+                    $userDietPlan->meal_weight_3 = $request->{"meal_".$i."_".$j."_3"};
+                    $userDietPlan->meal_weight_4 = $request->{"meal_".$i."_".$j."_4"};
+                    $userDietPlan->meal_weight_5 = $request->{"meal_".$i."_".$j."_5"};
+                    $userDietPlan->meal_weight_6 = $request->{"meal_".$i."_".$j."_6"};
+    
+                    $userDietPlan->save();
+                }
             }
         }
 
