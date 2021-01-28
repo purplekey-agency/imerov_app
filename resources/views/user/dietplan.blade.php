@@ -92,7 +92,9 @@
                             </table>
 
                             <table class="diet-plan-table-w mt-5">
-
+                                @foreach($userDiets as $key=>$userDiet)
+                                    <a href="/diet-plan/{{$key}}">Day {{$key}}</a>
+                                @endforeach
                             </table>
                         
                         </div>

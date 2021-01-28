@@ -342,9 +342,11 @@ class AdminViewsController extends Controller
         #dd($request->all());
 
         $user = User::where('id', $request->userid)->first();
+        $day = 1;
+        #dd((UserDietPlan::where('user_id', $user->id)->orderBy('id', 'desc')->first())->meal_no === "5");
 
         for($i=1; $i<=5; $i++){
-            $day ='Day ' . strval(count(UserDietPlan::where('user_id', $user->id)->get()) + $i);
+            
             for($j = 1; $j<=6; $j++){
 
                 if($request->{"meal_".$i."_".$j."_1"} === null && $request->{"meal_".$i."_".$j."_2"} === null && $request->{"meal_".$i."_".$j."_3"} === null && $request->{"meal_".$i."_".$j."_4"} === null && $request->{"meal_".$i."_".$j."_5"} === null && $request->{"meal_".$i."_".$j."_6"} === null){
@@ -352,9 +354,15 @@ class AdminViewsController extends Controller
                 }
                 else{
 
+                    if((UserDietPlan::where('user_id', $user->id)->orderBy('id', 'desc')->first()) !== null 
+                    && (UserDietPlan::where('user_id', $user->id)->orderBy('id', 'desc')->first())->meal_no === "5"){
+                        $day = intval((UserDietPlan::where('user_id', $user->id)->orderBy('id', 'desc')->first())->day) + 1;
+                    }
+
                     $userDietPlan = new UserDietPlan();
                     $userDietPlan->user_id = $user->id;
                     $userDietPlan->meal_no = $j;
+
                     $userDietPlan->day = $day;
     
                     $userDietPlan->meal_weight_1 = $request->{"meal_".$i."_".$j."_1"};

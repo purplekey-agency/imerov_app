@@ -11323,6 +11323,7 @@ select {
   text-align: center;
   width: 125px !important;
   max-width: 125px !important;
+  min-width: 125px !important;
 }
 
 .diet-plan-table-w {
