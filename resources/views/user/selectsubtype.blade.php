@@ -37,7 +37,7 @@
                         @csrf
 
                         <label for="sub_select">Please select your subscription type:</label>
-                        <select id="sub_select" name="sub_select" class="form-control mb-4">
+                        <select id="sub_select" name="sub_select" class="form-control mb-4" required>
                                 <option class="" value="" disabled selected>Please select your subscription type.</option>
                             @foreach($subscriptionTypes as $subType)
                                 <option class="" value="{{$subType->id}}">{{$subType->subscription_type}} | {{$subType->subscription_price}}€</option>

@@ -433,7 +433,7 @@
 
                     @if($messages->count() > 0)
                         @foreach($messages as $message)
-                            <div class="card p-2 m-1 message-card @if($message->fromAdmin())admin @endif">
+                            <div class="card p-2 m-1 message-card @if(!$message->fromAdmin())admin @endif">
                                 <p class="message-user">{!!$message->getUserName()!!}:</p>
                                 {!!$message->message!!} <br>
                                 <p class="message-date">{!!$message->getDate()!!}</p>
