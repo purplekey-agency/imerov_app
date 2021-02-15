@@ -23,4 +23,13 @@ class SubscriptionType extends Model
     protected $fillable = [
         'subscription_type', 'subscription_price', 'subscription_description'
     ];
+
+    
+    public function subtypes(){
+        $subtypes = SubscriptionSubtype::where('subscription_id', $this->id)->get();
+        if(!$subtypes->isEmpty()){
+            return $subtypes;
+        }
+        return null;
+    }
 }

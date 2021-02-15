@@ -18,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'surename', 'username', 'email', 'password', 'subscription_type','user_image_1', 'user_image_2', 'worksheet', 'diet_plan'
+        'name', 'surename', 'username', 'email', 'password', 'subscription_type','user_image_1', 'user_image_2', 'worksheet', 'diet_plan', 'subscription_subtype'
     ];
 
     /**
@@ -49,6 +49,15 @@ class User extends Authenticatable implements MustVerifyEmail
             return "No subscription selected.";
         }
 
+    }
+
+    public function getSubSubtype(){
+        if($this->subscription_subtype !== null){
+            $subtype = SubscriptionSubtype::find($this->subscription_subtype);
+            if($subtype){
+                return "(" . $subtype->subtype . ")";
+            }
+        }
     }
 
     public function getMessageCount(){

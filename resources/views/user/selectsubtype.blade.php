@@ -40,7 +40,19 @@
                         <select id="sub_select" name="sub_select" class="form-control mb-4" required>
                                 <option class="" value="" disabled selected>Please select your subscription type.</option>
                             @foreach($subscriptionTypes as $subType)
-                                <option class="" value="{{$subType->id}}">{{$subType->subscription_type}} | {{$subType->subscription_price}}€</option>
+                                
+                                @if($subType->subtypes() !== null)
+
+                                    <optgroup label="{{$subType->subscription_type}} ({{$subType->subscription_price}} €) ">
+                                        @foreach($subType->subtypes() as $sub_subtype)
+                                            <option class="" value="{{$subType->id}}-{{$sub_subtype->id}}">{{$subType->subscription_type}} | {{$sub_subtype->subtype}}</option>
+                                        @endforeach 
+                                    </optgroup>
+                                    
+                                @else
+                                    <option class="" value="{{$subType->id}}">{{$subType->subscription_type}} | {{$subType->subscription_price}}€</option>
+                                @endif
+
                             @endforeach
                         </select>
 
@@ -52,14 +64,13 @@
 
                 <div class="col-md-6">
                 
-                    @foreach($subscriptionTypes as $subType)
+                    @foreach($subscriptionTypes as $subscription)
 
-                        <div class="subdesc sub-hidden" id="subtype_{{$subType->id}}">
+                        <div class="subdesc sub-hidden" id="subtype_{{$subscription->id}}">
                             <span>Subscription Type description:</span>
 
 
-                            <textarea disabled>{{$subType->subscription_description}}</textarea>
-                        
+                            <textarea style="min-height: 213px;" disabled>{{$subscription->subscription_description}}</textarea>                            
                         </div>
 
                     @endforeach
@@ -80,7 +91,15 @@ $('#sub_select').on('change', function(){
     });
 
     var val = this.value;
-    $('#subtype_' + val).removeClass('sub-hidden');
+    var id;
+    if(val.length > 1){
+        let splitted = val.split('-');
+        id = splitted[0];
+    } else {
+        id = val;
+    }
+
+    $('#subtype_' + id).removeClass('sub-hidden');
 
 })
 
