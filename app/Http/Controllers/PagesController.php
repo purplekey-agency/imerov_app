@@ -13,6 +13,7 @@ use App\Library;
 use App\Message;
 use App\ProposedMeet;
 use App\AvaliableDiet;
+use App\UserWorksheet;
 
 class PagesController extends Controller
 {
@@ -88,10 +89,13 @@ class PagesController extends Controller
     public function showWorksheetPage(){
         $bodymeasure_messages = Message::where('user_channel', Auth::user()->id)->where('category', 2)->get();
         $exercise_messages = Message::where('user_channel', Auth::user()->id)->where('category', 3)->get();
+        $worksheets = UserWorksheet::where('user_id', Auth::user()->id)->get()->groupBy('muscle_group');
+        //dd($worksheets);
 
         return view('user.worksheet', [
             'bodymeasure_messages' => $bodymeasure_messages,
-            'exercise_messages' => $exercise_messages
+            'exercise_messages' => $exercise_messages,
+            'worksheets' => $worksheets
         ]);
     }
 

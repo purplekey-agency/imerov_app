@@ -327,7 +327,7 @@ class AdminViewsController extends Controller
                     $worksheet = new UserWorksheet();                  
                     $worksheet->video_id = $request->{"video_" . $i . "_" . $j};
                     $worksheet->user_id = $user->id;
-                    $worksheet->date = $request->{"date_" . $i . "_" . $user->id};
+                    //$worksheet->date = $request->{"date_" . $i . "_" . $user->id};
                     $worksheet->muscle_group = $request->{"muscle_group_" . $i . "_" . $user->id};
                     $worksheet->start = "Test";
                     $worksheet->finish= "Test";
