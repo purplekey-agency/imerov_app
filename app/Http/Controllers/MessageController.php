@@ -126,7 +126,7 @@ class MessageController extends Controller
     public function responseExcerciseMessage(Request $request){
         $message = new Message([
             'user_id' => Auth::user()->id,
-            'category' => 2,
+            'category' => 3,
             'message' => $request->message_body,
             'user_channel' => (int) $request->user,
             'user_read' => false,
@@ -167,7 +167,7 @@ class MessageController extends Controller
     public function responseDietplanMessage(Request $request){
         $message = new Message([
             'user_id' => Auth::user()->id,
-            'category' => 2,
+            'category' => 4,
             'message' => $request->message_body,
             'user_channel' => (int) $request->user,
             'user_read' => false,

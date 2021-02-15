@@ -47,6 +47,28 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
+        // DB::table('users')->insert([
+        //     'name'=>'Zumra',
+        //     'surename'=>'Alcatel',
+        //     'username'=>'zumra',
+        //     'subscription_type'=>0,
+        //     'user_image_1'=>'default_user_image',
+        //     'user_image_2'=>'default_user_image',
+        //     'type_of_user'=>0,
+        //     'email'=>'zumra@gmail.com',
+        //     'email_verified_at'=>\Carbon\Carbon::now(),
+        //     'password'=>Crypt::encrypt('Lambda12'),
+        // ]);
+        // DB::table('user_questionare')->insert([
+
+        //     'user_id'=>3,
+        //     'name'=>'Zumra',
+        //     'surename'=>'Alactel',
+        //     'email'=>'zumra@gmail.com',
+        //     'gender'=>'F',
+        //     'date_of_birth'=>"24.11.1993",
+        // ]);
+
         DB::table('user_questionare')->insert([
 
             'user_id'=>2,

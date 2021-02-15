@@ -144,7 +144,7 @@ class AdminViewsController extends Controller
 
     public function showUserDietPlanPage($id){
         $user = User::where('id', $id)->first();
-
+        $messages = Message::where('user_channel', $user->id)->where('category', 4)->get();
 
         $avaliableProtein = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 1)->get();
         $avaliableVegetables = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 2)->get();
@@ -153,9 +153,16 @@ class AdminViewsController extends Controller
         $avaliableHealtyFats = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 5)->get();
         $avaliableDairyProducts = AvaliableDiet::where('user_id', $id)->where('avaliable_food_type', 6)->get();
 
-        return view('admin.user.dietplan')->with(['user'=>$user, 'avaliableProtein'=>$avaliableProtein,
-        'avaliableVegetables'=>$avaliableVegetables, 'avaliableFruits'=>$avaliableFruits, 'avaliableGrains'=>$avaliableGrains,
-        'avaliableHealtyFats'=>$avaliableHealtyFats, 'avaliableDairyProducts'=>$avaliableDairyProducts]);
+        return view('admin.user.dietplan', [
+            'user' => $user, 
+            'messages' => $messages,
+            'avaliableProtein' => $avaliableProtein,
+            'avaliableVegetables'=> $avaliableVegetables, 
+            'avaliableFruits' => $avaliableFruits, 
+            'avaliableGrains' => $avaliableGrains,
+            'avaliableHealtyFats' => $avaliableHealtyFats, 
+            'avaliableDairyProducts' => $avaliableDairyProducts
+            ]);
     }
 
     public function getFoodType($id){
