@@ -344,14 +344,31 @@ class PagesController extends Controller
 
         $subscriptionTypes = SubscriptionType::all();
 
-        return view('user.selectsubtype')->with(['subscriptionTypes'=>$subscriptionTypes]);
+        return view('user.selectsubtype', [ 'subscriptionTypes' => $subscriptionTypes ]);
     }
 
     public function updateSubscriptionType(Request $request){
 
         $user = Auth::user();
-        $user->subscription_type = $request->sub_select;
-        $user->save();
+
+        $selected_subscription = request()->sub_select;
+        if(strlen($selected_subscription) === 3){
+            $splitted = explode('-', $selected_subscription);
+            $subscription_type = $splitted[0];
+            $subscription_subtype = $splitted[1];
+
+            $user->subscription_type = $subscription_type;
+            $user->subscription_subtype = $subscription_subtype;
+
+            $user->save();
+
+        }
+        if(strlen($selected_subscription) === 1){
+            $user->subscription_type = $selected_subscription;
+            $user->save();
+        }
+
+        
 
         return \redirect('/dashboard');
     }

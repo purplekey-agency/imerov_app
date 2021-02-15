@@ -72,7 +72,7 @@
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Subscription:</span>
-                        <span class="strong">{{Auth::user()->getSubName(Auth::user()->subscription_type)}}</span>
+                        <span class="strong">{{Auth::user()->getSubName(Auth::user()->subscription_type)}} {!!Auth::user()->getSubSubtype()!!}</span>
                     </div>
                     <div class="text-small">
                         <span class="text-secondary">Messages:</span>

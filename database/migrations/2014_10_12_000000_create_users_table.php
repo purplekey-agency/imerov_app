@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('surename');
             $table->string('username');
             $table->integer('subscription_type')->default(0);
+            $table->integer('subscription_subtype')->nullable(true)->default(null);
             $table->string('user_image_1')->nullable();
             $table->string('user_image_2')->nullable();
             $table->integer('type_of_user')->default(0);
