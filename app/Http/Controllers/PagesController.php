@@ -170,9 +170,18 @@ class PagesController extends Controller
     }
 
     public function showVideoPage($parameter){
-
         $video = Library::where('id', $parameter)->first();
-        return view('user.video')->with(['parameter'=>$parameter, 'video'=>$video]);
+        $user_questionare = UserQuestionare::where("user_id", Auth::user()->id)->first();
+
+        $gender = null;
+        if($user_questionare->gender !== null){
+            $gender = $user_questionare->gender;
+        }
+        return view('user.video', [
+            'parameter' => $parameter, 
+            'video' => $video,
+            'gender' => $gender
+        ]);
     }
 
     public function updateQuestionare(Request $request){
