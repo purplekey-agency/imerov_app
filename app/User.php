@@ -58,4 +58,26 @@ class User extends Authenticatable implements MustVerifyEmail
             return Message::where('user_channel', $this->id)->where('user_id', '<>', $this->id)->get()->count();
         }
     }
+
+    public function hasAccessToDietPlan(){
+
+        //Online mentoring, Nutrition
+        if($this->subscription_type === 1 || $this->subscription_type === 3){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public function hasAccessToTraining(){
+        //Online mentoring, Muscle Group, Senior program, GVT
+
+        if($this->subscription_type === 1 || $this->subscription_type === 4 || $this->subscription_type === 4 || $this->subscription_type === 5 || $this->subscription_type === 6 || $this->subscription_type === 7){
+            return true;
+        }
+
+        return false;
+
+    }
 }

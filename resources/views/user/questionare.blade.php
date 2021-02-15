@@ -419,7 +419,7 @@
                             <input type="textarea" class="form-control" id="expectations_of_trainer" name="expectations_of_trainer" value="{{$userQuestionare->your_expectations}}">
                         </div>
 
-                        @if(Auth::user()->subscription_type === 1 || Auth::user()->subscription_type === 3)
+                        @if(Auth::user()->hasAccessToDietPlan())
 
                         <div class="form-group">
                             <label for="expectations_of_trainer" class="strong">What are your proposed times for meetup regarding diet plan (1 of 3)?</label>

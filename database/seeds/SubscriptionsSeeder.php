@@ -19,15 +19,15 @@ class SubscriptionsSeeder extends Seeder
 
         DB::table('users')->insert([
 
-            'name'=>'Eren',
-            'surename'=>'Yeager',
-            'username'=>'eyeager',
+            'name'=>'Elvir',
+            'surename'=>'Imerov',
+            'username'=>'eimerov',
             'subscription_type'=>0,
             'user_image_1'=>'default_user_image',
             'user_image_2'=>'default_user_image',
             'type_of_user'=>2,
             'email'=>'eyeager@gmail.com',
-            'password'=>Crypt::encrypt('Lambda12'),
+            'password'=>Crypt::encrypt('m1OwkjtwlDnFODrVEOqh'),
 
         ]);
 

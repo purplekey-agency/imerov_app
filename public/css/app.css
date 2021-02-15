@@ -10968,7 +10968,7 @@ a:hover {
 }
 
 .hover-text a:hover {
-  font-size: larger;
+  font-size: 1rem;
 }
 
 .text-small {
@@ -11297,6 +11297,11 @@ select {
   height: auto;
   transition: 0.2s linear;
   opacity: 1;
+  height: 300px;
+}
+
+.subdesc textarea {
+  height: 100%;
 }
 
 .diet-plan-table {

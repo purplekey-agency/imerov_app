@@ -248,7 +248,7 @@ class AdminViewsController extends Controller
 
     public function showAddNewExercisePage(){
 
-        $subtypes = SubscriptionType::all();
+        $subtypes = SubscriptionType::whereIn('id', [1, 3, 4, 5, 6, 7])->get();
         return view('admin.addvideo')->with(['subtypes'=>$subtypes]);
     }
 
@@ -323,18 +323,6 @@ class AdminViewsController extends Controller
 
             for($j=0; $j<6; $j++){
                 if(isset($request->{"video_" . $i . "_" . $j})){
-
-                    if(!isset($request->{"date_" . $i . "_" . $user->id})){
-                        #dd("You haven't selected date.", $request->{"date_" . $i . "_" . $user->id}, $i);
-                        return redirect()->back()->with('error', "You haven't selected date.");
-                    }
-                    if(!isset($request->{"start_" . $i . "_" . $user->id})){
-                        #dd("You haven't selected starting time.", $request->{"start_" . $i . "_" . $user->id}, $i);
-                        return redirect()->back()->with('error', "You haven't selected starting time.");
-                    }
-                    if(!isset($request->{"finish_" . $i . "_" . $user->id})){
-                        return redirect()->back()->with('error', "You haven't selected ending time.");
-                    }
 
                     $worksheet = new UserWorksheet();                  
                     $worksheet->video_id = $request->{"video_" . $i . "_" . $j};

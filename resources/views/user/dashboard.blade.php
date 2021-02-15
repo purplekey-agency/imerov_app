@@ -40,30 +40,34 @@
                             <p class="text-secondary">Inbox ({!!Auth::user()->getMessageCount()!!})</p>
                         </a>
                     </div>
-
+                    @if(Auth::user()->hasAccessToTraining())
                     <div class="hover-text">
                         <a href="/questionarre">
                             <p class="text-secondary">Questionarre</p>
                         </a>
                     </div>
-
+                    @endif
+                    @if(Auth::user()->hasAccessToTraining())
                     <div class="hover-text">
                         <a href="/worksheet">
                             <p class="text-secondary">Worksheet</p>
                         </a>
                     </div>
-
+                    @endif
+                    @if(Auth::user()->hasAccessToDietPlan())
                     <div class="hover-text">
                         <a href="/diet-plan">
                             <p class="text-secondary">Diet Plan</p>
                         </a>
                     </div>
-
+                    @endif
+                    @if(Auth::user()->hasAccessToTraining())
                     <div class="hover-text">
                         <a href="/videos">
                             <p class="text-secondary">Exercises</p>
                         </a>
                     </div>
+                    @endif
                 </div>
 
                 <div class="col-3 md-offset-2">
