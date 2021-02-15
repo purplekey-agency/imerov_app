@@ -2,6 +2,7 @@
 <html>
 <head>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -27,7 +28,7 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container my-5">
 
             <div class="container row">
 
@@ -63,7 +64,7 @@
                     </div>
                 </div>
 
-                <div class="col-7 col-md-offset-2">
+                <div class="col-10 col-md-offset-2">
 
                     <div class="mb-3">
                         <h2>Unresponded meet requests</h2>
@@ -120,7 +121,7 @@
                         <h2>Your Calendar</h2>
                     </div>
 
-                    <div class="pmargin-0">
+                    <div class="pmargin-0" data-dates="{{$allMeets}}" id="calendar">
                         
                     </div>
                 </div>

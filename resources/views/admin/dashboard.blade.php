@@ -2,8 +2,19 @@
 <html>
 <head>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/locales-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/locales-all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.css">
 
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
@@ -29,7 +40,7 @@
 
         <div class="container">
 
-            <div class="container row">
+            <div class="container row mb-5">
 
                 <div class="col-2 col-md-offset-2">
                     <div class="hover-text">
@@ -63,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="col-7 col-md-offset-2">
+                <div class="col-10 col-md-offset-2">
                     <div class="search-container mb-5">
                         <form action="/admin/search" method="POST">
                             @csrf
@@ -103,6 +114,41 @@
                         <a href="/admin/dashboard/meetrequests"><div class="btn btn-primary">See all</div></a>
 
                     @endif
+
+                    <div class="my-3">
+                        <h2>Your Calendar</h2>
+                    </div>
+
+                    <div class="pmargin-0" id="calendar">
+                        
+                    </div>
+                    
+
+                    <script>
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var calendarEl = document.getElementById('calendar');
+                        var calendar = new FullCalendar.Calendar(calendarEl, {
+                            initialView: 'dayGridMonth',
+                            events :    [{
+                                        title  : 'event1',
+                                        start  : '2021-01-01'
+                                        },
+                                        {
+                                        title  : 'event2',
+                                        start  : '2021-01-05',
+                                        end    : '2021-01-07'
+                                        },
+                                        {
+                                        title  : 'event3',
+                                        start  : '2021-01-09T12:30:00',
+                                        allDay : false // will make the time show
+                                        },]
+                        });
+                        calendar.render();
+                    });
+
+                    </script>
                 </div>
 
             </div>

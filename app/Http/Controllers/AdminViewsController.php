@@ -41,13 +41,36 @@ class AdminViewsController extends Controller
         $newMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', false)->get();
         $allMessages = Comments::where('receipent_id', Auth::user()->id)->where('status', true)->get();
 
-        return view('admin.dashboard')->with(['inactiveusers'=>$inactiveusers, 'activeusers'=>$activeusers, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages, 'hasMeets'=>$hasMeets]);
+        $allMeets = ProposedMeet::all();
+        foreach($allMeets as $aM){
+            $start = \Carbon\Carbon::parse($aM->proposed_date . " " . $aM->proposed_time);
+            $aM->start = $start->format('Y-m-d H-i-s');
+            $aM->end = \Carbon\Carbon::parse($start)->addHours()->format('Y-m-d H-i-s');
+            $aM->title = $aM->getUserName();
+        }
+
+        #dd($allMeets);
+
+
+        return view('admin.dashboard')->with(['inactiveusers'=>$inactiveusers, 'activeusers'=>$activeusers, 'newMessages'=>$newMessages, 'allMessages'=>$allMessages, 'hasMeets'=>$hasMeets, 'allMeets'=>$allMeets]);
     }
 
     public function showAllMeetRequests(){
         $proposedMeets = ProposedMeet::where('confirmed', null)->get()->groupBy('user_id');
+        //$proposedMeets = ProposedMeet::all()->groupBy('user_id');
+        $allMeets = ProposedMeet::all();
+
+        foreach($allMeets as $aM){
+            $aM->start = $aM->proposed_date . "-" . $aM->proposed_time;
+            $aM->end = $aM->proposed_date . "-" . $aM->proposed_time;
+            $aM->title = $aM->getUserName();
+        }
         
-        return view('admin.proposedmeets')->with(['proposedmeets'=>$proposedMeets]);
+        return view('admin.proposedmeets')->with(['proposedmeets'=>$proposedMeets, 'allMeets'=>$allMeets]);
+    }
+
+    public function getMeets(){
+        
     }
 
     public function confirmmeets(Request $request){
