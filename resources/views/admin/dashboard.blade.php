@@ -4,17 +4,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/locales-all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/locales-all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.js"></script>
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.5.1/main.min.css">
 
     <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
@@ -22,11 +13,11 @@
     <title>Console Imerov</title>
 </head>
 
-<body>
+<body >
 
     @include('layouts.header')
 
-    <main>
+    <main id="app">
     
         <div class="w-100 p-3 d-flex justify-content-center" style="background:rgba(123,123,123, 0.11);">
             <div class="app-container">
@@ -119,36 +110,9 @@
                         <h2>Your Calendar</h2>
                     </div>
 
-                    <div class="pmargin-0" id="calendar">
-                        
+                    <div id="caleandar">
                     </div>
                     
-
-                    <script>
-
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var calendarEl = document.getElementById('calendar');
-                        var calendar = new FullCalendar.Calendar(calendarEl, {
-                            initialView: 'dayGridMonth',
-                            events :    [{
-                                        title  : 'event1',
-                                        start  : '2021-01-01'
-                                        },
-                                        {
-                                        title  : 'event2',
-                                        start  : '2021-01-05',
-                                        end    : '2021-01-07'
-                                        },
-                                        {
-                                        title  : 'event3',
-                                        start  : '2021-01-09T12:30:00',
-                                        allDay : false // will make the time show
-                                        },]
-                        });
-                        calendar.render();
-                    });
-
-                    </script>
                 </div>
 
             </div>

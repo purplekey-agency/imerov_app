@@ -121,8 +121,7 @@
                         <h2>Your Calendar</h2>
                     </div>
 
-                    <div class="pmargin-0" data-dates="{{$allMeets}}" id="calendar">
-                        
+                    <div id="caleandar">
                     </div>
                 </div>
 

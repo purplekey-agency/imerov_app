@@ -54,6 +54,8 @@ Route::get('/admin/videos', 'AdminViewsController@showAdminVideosPage');
 Route::get('/admin/video/{id}', 'AdminViewsController@showSingleVideo');
 Route::get('/admin/videos/new', 'AdminViewsController@showAddNewExercisePage');
 
+Route::get('/admin/getmmetings', 'AdminViewsController@getmmetings');
+
 
 //admin post routes
 Route::post('/admin/search', 'AdminViewsController@searchFunction');
