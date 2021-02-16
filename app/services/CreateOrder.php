@@ -1,9 +1,9 @@
 <?php
 
-namespace app\services;
+namespace App\services;
 
 //1. Import the PayPal SDK client that was created in `Set up Server-Side SDK`.
-use app\services\PayPalClient;
+use App\services\PayPalClient;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 
 class CreateOrder
@@ -19,7 +19,7 @@ class CreateOrder
     $request = new OrdersCreateRequest();
     $request->prefer('return=representation');
     $request->body = self::buildRequestBody($price);
-   // 3. Call PayPal to set up a transaction
+    // 3. Call PayPal to set up a transaction
 
     $client = PayPalClient::client();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\services;
+namespace App\services;
 
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
