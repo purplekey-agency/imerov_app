@@ -68,26 +68,60 @@
 
                 <div class="col-7 md-offset-2 mb-5">
                     
-                <div class="d-flex flex-wrap">
-                    <video width="100%" class="col-12 my-3" controls>
-                        <source src="/storage/videos/{{$video->video_path_m}}" type="video/mp4">
-                    </video>
-
-                    <video width="100%" class="col-12 my-3" controls>
-                        <source src="/storage/videos/{{$video->video_path_f}}" type="video/mp4">
-                    </video>
-                </div>
-
-                    <a href="">
-                        <div class="row">
-                            <div class="col-8">
-                                <p class="strong text-large">{{$video->exercise_name}}</p>
-                                <p class="font-secondary">
-                                    {{$video->exercise_description}}
-                                </p>
+                    @if($gender !== null)
+                        @if($gender === "M")
+                            <div class="d-flex flex-wrap">
+                                <video width="100%" class="col-12 my-3" controls>
+                                    <source src="/storage/videos/{{$video->video_path_m}}" type="video/mp4">
+                                </video>
                             </div>
+                        @endif
+
+                        @if($gender === "F")
+                            <div class="d-flex flex-wrap">
+                                <video width="100%" class="col-12 my-3" controls>
+                                    <source src="/storage/videos/{{$video->video_path_f}}" type="video/mp4">
+                                </video>
+                            </div>
+                        @endif
+
+                        <a href="">
+                            <div class="row">
+                                <div class="col-8">
+                                    <p class="strong text-large">{{$video->exercise_name}}</p>
+                                    <p class="font-secondary">
+                                        {{$video->exercise_description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    @else
+                        <div class="d-flex flex-wrap">
+                            <div class="text-center w-100">Male video:</div>
+                            <video width="100%" class="col-12 my-3" controls>
+                                <source src="/storage/videos/{{$video->video_path_m}}" type="video/mp4">
+                            </video>
+
+                            <br>
+
+                            <div class="text-center w-100">Female video:</div>
+                            <video width="100%" class="col-12 my-3" controls>
+                                <source src="/storage/videos/{{$video->video_path_f}}" type="video/mp4">
+                            </video>
                         </div>
-                    </a>
+
+                        <a href="">
+                            <div class="row">
+                                <div class="col-8">
+                                    <p class="strong text-large">{{$video->exercise_name}}</p>
+                                    <p class="font-secondary">
+                                        {{$video->exercise_description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    @endif
+
 
                 </div>
 

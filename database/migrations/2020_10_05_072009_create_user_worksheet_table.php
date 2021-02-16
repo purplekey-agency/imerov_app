@@ -17,7 +17,7 @@ class CreateUserWorksheetTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('video_id');
-            $table->date('date');
+            // $table->date('date');
             $table->string('muscle_group');
             $table->string('start');
             $table->string('finish');

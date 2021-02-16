@@ -13,6 +13,7 @@ use App\Library;
 use App\Message;
 use App\ProposedMeet;
 use App\AvaliableDiet;
+use App\UserWorksheet;
 
 class PagesController extends Controller
 {
@@ -88,10 +89,13 @@ class PagesController extends Controller
     public function showWorksheetPage(){
         $bodymeasure_messages = Message::where('user_channel', Auth::user()->id)->where('category', 2)->get();
         $exercise_messages = Message::where('user_channel', Auth::user()->id)->where('category', 3)->get();
+        $worksheets = UserWorksheet::where('user_id', Auth::user()->id)->get()->groupBy('muscle_group');
+        //dd($worksheets);
 
         return view('user.worksheet', [
             'bodymeasure_messages' => $bodymeasure_messages,
-            'exercise_messages' => $exercise_messages
+            'exercise_messages' => $exercise_messages,
+            'worksheets' => $worksheets
         ]);
     }
 
@@ -170,9 +174,18 @@ class PagesController extends Controller
     }
 
     public function showVideoPage($parameter){
-
         $video = Library::where('id', $parameter)->first();
-        return view('user.video')->with(['parameter'=>$parameter, 'video'=>$video]);
+        $user_questionare = UserQuestionare::where("user_id", Auth::user()->id)->first();
+
+        $gender = null;
+        if($user_questionare->gender !== null){
+            $gender = $user_questionare->gender;
+        }
+        return view('user.video', [
+            'parameter' => $parameter, 
+            'video' => $video,
+            'gender' => $gender
+        ]);
     }
 
     public function updateQuestionare(Request $request){
