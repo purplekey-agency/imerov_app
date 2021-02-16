@@ -10,29 +10,15 @@
         <p class="h4 mb-0">Day {{ $i ++ }}</p>
 
         <div class="row col-12 px-0 pt-4 pb-2">
-            <div class="col-6">
-                <div class="row col-12 bg-brown mx-0 mb-3">
-                    <div class="col-3 border-right-black p-0">
-                        <p class="uppercase m-0">DATE</p>
-                    </div>
-                    <div class="col-1 border-right-black p-0">
-                        <p class="uppercase m-0"></p>
-                    </div>
-                    <div class="col-1 border-right-black p-0">
-                        <p class="uppercase m-0"></p>
-                    </div>
-                    <div class="col-6 p-0">
-                        <p class="uppercase m-0"></p>
-                    </div>
-                </div>
+            <div class="col">
                 <div class="row col-12 bg-brown mx-0 mb-3">
                     <div class="col-6 p-0">
-                        <p class="uppercase m-0"> MUSCLE GROUP {{$group}}</p>
+                        <p class="uppercase m-0"> MUSCLE GROUP <strong>{{$group}}</strong></p>
                     </div>
                 </div>
             </div>
 
-            <div class="col-6">
+            {{-- <div class="col-6">
                 <div class="row col-12 bg-brown mx-0 mb-3">
                     <div class="col-8 border-right-black p-0">
                         <p class="uppercase m-0">WEIGHT</p>
@@ -52,16 +38,16 @@
                         <p class="uppercase m-0">FINISH</p>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
-        <div class="p-2 b-top-o b-left-o my-5">
+        <div class="p-2 b-top-o b-left-o my-2">
             <div class="">
                 <div class="">
                     <p class="uppercase">Worksheet</p>
                 </div>
                 <div class="uppercase row m-0">
-                    <p>muscle: {{$group}}</p>
+                    <p>muscle: <strong>{{$group}}</strong></p>
                     <p class="underline"></p>
                     {{-- <p>technique:</p>
                     <p class="underline">{},</p>
@@ -121,7 +107,7 @@
                             <tr class="row m-0">
                                 <td class="col-5">
                                     <div class="w-100 h-100 border-bottom-black">
-                                        <p class="w-100 h-100 m-0 text-large">{{$exercise_index + 1}}. Video: {{$exercise->getVideo()}}</p>
+                                        <p class="w-100 h-100 m-0">{{$exercise_index + 1}}. Exercise: <strong><a href="{{$exercise->getVideoLink()}}">{{$exercise->getVideoName()}}</strong></p>
                                     </div>
                                 </td>
                                 <td class="col-1 p-0">
@@ -504,7 +490,7 @@
             </div>
         </div>
 
-        <div class="row col-12 p-2">
+        {{-- <div class="row col-12 p-2">
 
             <div class="col-6 p-0">
                 <div class="row w-100 m-0">
@@ -552,7 +538,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
     </div>
 
