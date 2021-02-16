@@ -33,7 +33,7 @@
 
                 <div class="form-container col-md-6">
                 
-                    <form action="/selectsubtype" method="post">
+                    <form action="/postpaywithpaypal" method="post">
                         @csrf
 
                         <label for="sub_select">Please select your subscription type:</label>
@@ -56,8 +56,13 @@
                             @endforeach
                         </select>
 
-
-                        <input type="submit" class="btn btn-primary" value="Potvrdi">
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Pay with Paypal
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 
                 </div>

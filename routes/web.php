@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //First two pages
-Route::get('/','AuthViewsController@showIndexPage')->name('register');
+Route::get('/','AuthViewsController@showIndexPage');
 Route::get('/login', 'Auth.LoginController@showLoginPage')->name('login');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
@@ -22,16 +22,20 @@ Route::post('email/resend', 'Auth\VerificationController@resend')->name('resend'
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/dashboard', 'PagesController@showDashboardPage')->name('showDashboard')->middleware('admin');
+Route::get('/dashboard', 'PagesController@showDashboardPage')->middleware('admin');
 Route::get('/messages', 'PagesController@showMessagesPage')->name('showDashboard')->middleware('admin');
 Route::get('/questionarre','PagesController@showQuestionarePage')->name('showQuestionare')->middleware('admin');
 Route::get('/worksheet', 'PagesController@showWorksheetPage')->name('showWorksheet')->middleware('admin');
 Route::get('/diet-plan', 'PagesController@showDietPlanPage')->name('showDietPlan')->middleware('admin');
 Route::get('/diet-plan/{id}', 'PagesController@showDietPlanPageWithParam')->name('showDietPlanParam')->middleware('admin');
-Route::get('/videos', 'PagesController@showVideosPage')->name('showVideos')->middleware('admin');
+Route::get('/videos', 'PagesController@showVideosPage')->middleware('admin');
 Route::get('/videos/{parameter}', 'PagesController@showVideoPage')->name('showVideos')->middleware('admin');
 Route::get('/selectsub', 'PagesController@selectSubscriptionType')->name('selectsub')->middleware('admin');
 Route::post('/selectsubtype', 'PagesController@updateSubscriptionType')->name('updatesub')->middleware('admin');
+
+Route::get('/paywithpaypal', 'PaypalController@payWithPaypal')->name('paywithpaypal');
+Route::post('/postpaywithpaypal', 'PaypalController@postPaymentWithpaypal');
+Route::get('/status', 'PaypalController@getPaymentStatus');
 
 Route::post('/questionarre/update', 'PagesController@updateQuestionare');
 Route::post('/worksheet/updatebodym', 'PagesController@updateBodyMeasurments');

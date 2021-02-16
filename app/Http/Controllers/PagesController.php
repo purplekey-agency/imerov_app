@@ -14,9 +14,8 @@ use App\Message;
 use App\ProposedMeet;
 use App\AvaliableDiet;
 use App\UserWorksheet;
+use URL;
 
-use App\services\PayPalClient;
-use App\services\CreateOrder;
 
 class PagesController extends Controller
 {
@@ -391,10 +390,6 @@ class PagesController extends Controller
             $price = $subscriptionType->subscription_price;
         }
 
-        $paypalclient = new CreateOrder();
-        $response = $paypalclient->createOrder(true, $price);
-
-        dd($response);
 
         return \redirect('/dashboard');
     }
