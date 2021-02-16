@@ -15,6 +15,9 @@ use App\ProposedMeet;
 use App\AvaliableDiet;
 use App\UserWorksheet;
 
+use App\services\PayPalClient;
+use App\services\CreateOrder;
+
 class PagesController extends Controller
 {
 
@@ -364,6 +367,8 @@ class PagesController extends Controller
 
         $user = Auth::user();
 
+        $price = "";
+
         $selected_subscription = request()->sub_select;
         if(strlen($selected_subscription) === 3){
             $splitted = explode('-', $selected_subscription);
@@ -373,15 +378,23 @@ class PagesController extends Controller
             $user->subscription_type = $subscription_type;
             $user->subscription_subtype = $subscription_subtype;
 
-            $user->save();
+            $subscriptionType = SubscriptionType::where('id', $subscription_type)->first();
+            //$user->save();
 
+            $price = $subscriptionType->subscription_price;
         }
         if(strlen($selected_subscription) === 1){
             $user->subscription_type = $selected_subscription;
-            $user->save();
+            //$user->save();
+
+            $subscriptionType = SubscriptionType::where('id', $selected_subscription)->first();
+            $price = $subscriptionType->subscription_price;
         }
 
-        
+        $paypalclient = new CreateOrder();
+        $response = $paypalclient->createOrder(true, $price);
+
+        dd($response);
 
         return \redirect('/dashboard');
     }
