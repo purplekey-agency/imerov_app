@@ -46,24 +46,27 @@
                             <p class="strong">Questionarre</p>
                         </a>
                     </div>
-
+                    @if(Auth::user()->hasAccessToTraining())
                     <div class="hover-text">
                         <a href="/worksheet">
                             <p class="text-secondary">Worksheet</p>
                         </a>
                     </div>
-
+                    @endif
+                    @if(Auth::user()->hasAccessToDietPlan())
                     <div class="hover-text">
                         <a href="/diet-plan">
                             <p class="text-secondary">Diet Plan</p>
                         </a>
                     </div>
-
+                    @endif
+                    @if(Auth::user()->hasAccessToTraining())
                     <div class="hover-text">
                         <a href="/videos">
                             <p class="text-secondary">Videos</p>
                         </a>
                     </div>
+                    @endif
                 </div>
 
                 <div class="col-7 md-offset-2">
@@ -133,7 +136,7 @@
                             <label for="job_desc" class="strong">What do you do for a living?</label>
                             <input type="text" class="form-control" id="job_desc" name="job_desc" value="{{$userQuestionare->job_title}}" >
                         </div>
-
+                        @if(Auth::user()->hasAccessToTraining())
                         <div class="form-group">
                             <label class="strong">What is your activity level at your job?</label>
                             <div class="form-check">
@@ -146,7 +149,7 @@
                                 <input value="3" @if($userQuestionare->job_activity_level == 3) checked @endif type="radio" id="activity_level_3" name="activity_level" class="form-check-input"><label for="activity_level_3">none (seated only)</label>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <label for="regular_schedule" class="strong">Do you follow a regular working schedule, do you work days, afternoon or nights?</label>
                             <input type="text" value="{{$userQuestionare->working_schedule}}" class="form-control" id="regular_schedule" name="regular_schedule">
@@ -204,7 +207,7 @@
                                 <input type="radio" value="2" @if($userQuestionare->stress_motivational_problems == 1) checked @endif id="stress_2" name="stres_problems" class="form-check-input"><label for="stress_2">No</label>
                             </div>
                         </div>
-
+                        @endif
                         <div class="form-group">
                             <label class="strong">Has anyone of your immediate family developed heart disease before the age of 60?</label>
                             <div class="form-check">
@@ -282,7 +285,7 @@
                                 <input type="radio" value="10" @if($userQuestionare->readiness_for_change == 10) checked @endif id="readiness_10" name="readiness" class="form-check-input"><label for="readiness_10">10</label>
                             </div>
                         </div>
-
+                        @if(Auth::user()->hasAccessToTraining())
                         <div class="form-group">
                             <label class="strong">What following goals does best fit in with your goals?</label>
                             <div class="form-check">
@@ -301,7 +304,7 @@
                                 <input type="checkbox" @if($userQuestionare->goals_5) checked @endif id="goals_5" name="goals_5" class="form-check-input"><label for="goals_5">Fat loss</label>
                             </div>
                         </div>
-
+                        
                         <div class="form-group">
                             <label for="your_goal" class="strong">What is your goal with your training?</label>
                             <input type="text" class="form-control" id="your_goal" name="your_goal" value="{{$userQuestionare->goal_for_training}}">
@@ -311,7 +314,7 @@
                             <label for="why" class="strong">Why?</label>
                             <input type="text" class="form-control" id="why" name="why" value="{{$userQuestionare->why_goal_for_training}}">
                         </div>
-
+                        @endif
                         <div class="form-group">
                             <label class="strong">Timeline for achieving your goal.</label>
                             <div class="form-check">
@@ -333,7 +336,7 @@
                                 <input type="radio" @if($userQuestionare->timeline_for_achieing == 54) checked @endif id="timeline_6" name="timeline" value="54" class="form-check-input"><label for="timeline_6">1 YEAR</label>
                             </div>
                         </div>
-
+                        @if(Auth::user()->hasAccessToTraining())
                         <div class="form-group">
                             <label for="how_often" class="strong">How often are you willing to train a week to reach your goal?</label>
                             <input type="text" class="form-control" id="how_often" name="how_often" value="{{$userQuestionare->how_often_wiling_per_week}}">
@@ -413,7 +416,7 @@
                                 <input type="checkbox" @if($userQuestionare->what_times_4) checked @endif id="what_times_4" name="what_times_4" class="form-check-input"><label for="what_times_4">Evening</label>
                             </div>
                         </div>
-
+                        @endif
                         <div class="form-group">
                             <label for="expectations_of_trainer" class="strong">What are your expectations on me as your Personal Trainer?</label>
                             <input type="textarea" class="form-control" id="expectations_of_trainer" name="expectations_of_trainer" value="{{$userQuestionare->your_expectations}}">

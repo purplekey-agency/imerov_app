@@ -40,13 +40,11 @@
                             <p class="text-secondary">Inbox ({!!Auth::user()->getMessageCount()!!})</p>
                         </a>
                     </div>
-                    @if(Auth::user()->hasAccessToTraining())
                     <div class="hover-text">
                         <a href="/questionarre">
                             <p class="text-secondary">Questionarre</p>
                         </a>
                     </div>
-                    @endif
                     @if(Auth::user()->hasAccessToTraining())
                     <div class="hover-text">
                         <a href="/worksheet">

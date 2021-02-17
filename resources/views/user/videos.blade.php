@@ -47,23 +47,27 @@
                         </a>
                     </div>
 
+                    @if(Auth::user()->hasAccessToTraining())
                     <div class="hover-text">
                         <a href="/worksheet">
                             <p class="text-secondary">Worksheet</p>
                         </a>
                     </div>
-
+                    @endif
+                    @if(Auth::user()->hasAccessToDietPlan())
                     <div class="hover-text">
                         <a href="/diet-plan">
                             <p class="text-secondary">Diet Plan</p>
                         </a>
                     </div>
-
+                    @endif
+                    @if(Auth::user()->hasAccessToTraining())
                     <div class="hover-text">
                         <a href="/videos">
                             <p class="strong">Exercises</p>
                         </a>
                     </div>
+                    @endif
                 </div>
 
                 <div class="col-7 md-offset-2">
